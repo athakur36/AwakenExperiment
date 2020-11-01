@@ -1,12 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Button,
-  IconButton,
-} from '@material-ui/core';
+import { AppBar, Toolbar, Typography, IconButton } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import MenuIcon from '@material-ui/icons/Menu';
 import * as Colors from '../constants/colors';
 
@@ -22,6 +17,9 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
+    '& a': {
+      color: 'white !important',
+    },
   },
 }));
 
@@ -39,10 +37,14 @@ const Header = ({ userName }) => {
           >
             <MenuIcon />
           </IconButton>
+
           <Typography variant='h6' className={classes.title}>
-            Awaken Experiment
+            <Link to='/'>
+              <span>Awaken Experiment</span>
+            </Link>
           </Typography>
-          <Button color='inherit'>{userName}</Button>
+
+          <span>{userName ? userName : ''}</span>
         </Toolbar>
       </AppBar>
     </div>

@@ -28,6 +28,7 @@ function App() {
         <Switch>
           <Route exact path='/' component={HomePage} />
           <Route exact path='/survey' component={SurveyPage} />
+          <Route path='/survey/:id' component={SurveyPage} />
           <Route exact path='/experiments' component={ExperimentsPage} />
         </Switch>
       </div>
