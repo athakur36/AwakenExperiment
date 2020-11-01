@@ -1,15 +1,9 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, TextField, Card, CardContent } from '@material-ui/core';
+import * as Colors from '../constants/colors';
 
 const useStyles = makeStyles({
-  root: {
-    height: 'calc(100vh - 64px)',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#eeeeee',
-  },
   card: {
     minWidth: 500,
     minHeight: 350,
@@ -27,18 +21,18 @@ const useStyles = makeStyles({
   loginTitle: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#3f51b5',
+    color: Colors.PRIMARY,
   },
   login: {
     width: '100%',
   },
 });
 
-const HomePage = () => {
+const Login = () => {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <>
       <Card className={classes.card}>
         <CardContent className={classes.cardContent}>
           <div className={classes.loginTitle}>Login to Awaken Experiment</div>
@@ -60,8 +54,8 @@ const HomePage = () => {
           </Button>
         </CardContent>
       </Card>
-    </div>
+    </>
   );
 };
 
-export default HomePage;
+export default Login;
