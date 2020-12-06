@@ -48,7 +48,7 @@ const Login = ({ history, match }) => {
     if (isUserValid) {
       //set global user & navigate to Survey Page
 
-      history.push(`/survey/${userId}`);
+            history.push(`/survey/${userId}`);
     } else {
       //display error to the user
     }

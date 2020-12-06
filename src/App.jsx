@@ -14,6 +14,7 @@ const useStyles = makeStyles({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#eeeeee',
+    overflowY: 'auto',
   },
 });
 
