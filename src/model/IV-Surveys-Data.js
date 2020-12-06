@@ -31,7 +31,8 @@ export const IV_Surveys = [
               'My conscience bothers me if',
             ],
           },
-		surveyType: 'SCT'
+        surveyType: 'SCT',
+        step: 1
     },
     {
 		surveyData: {
@@ -47,7 +48,8 @@ export const IV_Surveys = [
               'My conscience bothers me if',
             ],
           },
-		surveyType: 'LIKERT_MULTIPLE'
+        surveyType: 'LIKERT_MULTIPLE',
+        step: 2
     },
     {
 		surveyData: {
@@ -63,6 +65,24 @@ export const IV_Surveys = [
               'My conscience bothers me if',
             ],
           },
-		surveyType: 'LIKERT_MATRIX'
+        surveyType: 'LIKERT_MATRIX',
+        step: 3
+    },
+    {
+		surveyData: {
+            intro: `asoidhashneed to write an essay
+            for each: completing the sentence with some 4-12 words is enough.`,
+            questions: [
+              'I just can’t stand people who',
+              'My main problem is',
+              'People who step out of line',
+              'A partner has the right to...',
+              'If I were in charge',
+              'Technology',
+              'My conscience bothers me if',
+            ],
+          },
+        surveyType: 'LIKERT_MATRIX',
+        step: 4
 	}
 ];
