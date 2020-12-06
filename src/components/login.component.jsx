@@ -51,7 +51,6 @@ const Login = ({ history, match }) => {
 
   const onLoginClicked = () => {
     const isUserValid = checkUserValidity();
-    console.log(history);
     if (isUserValid) {
       //set global user & navigate to Survey Page
       //setShowUserLoginError(false);

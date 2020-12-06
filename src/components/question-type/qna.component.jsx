@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Button, TextField, Card, CardContent } from '@material-ui/core';
+import { TextField } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   qnaRoot: {

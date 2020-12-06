@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { withRouter } from 'react-router-dom';
-import QSct from '../components/qsct.component';
+import Sct from '../components/questionnaire-format/sct.component';
 
 const useStyles = makeStyles({
   surveyRoot: {
@@ -49,7 +49,7 @@ const SurveyPage = ({ match }) => {
 
   return (
     <div className={classes.surveyRoot}>
-      <QSct questData={questData} />
+      <Sct questData={questData} />
     </div>
   );
 };

@@ -1,8 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
-import QNA from './qna.component';
-import * as Colors from '../constants/colors';
+import QNA from '../question-type/qna.component';
 
 const useStyles = makeStyles({
   root: {},
@@ -15,7 +14,7 @@ const useStyles = makeStyles({
   },
 });
 
-const QSct = ({ questData }) => {
+const Sct = ({ questData }) => {
   const classes = useStyles();
 
   return (
@@ -23,8 +22,8 @@ const QSct = ({ questData }) => {
       <p className={classes.intro}>{questData.intro}</p>
       <h3>Please answer the following:</h3>
       <form>
-        {questData.questions.map((question) => (
-          <QNA label={question} />
+        {questData.questions.map((question, index) => (
+          <QNA key={index} label={question} />
         ))}
       </form>
       <Button className={classes.submit} color='primary' variant='contained'>
@@ -34,4 +33,4 @@ const QSct = ({ questData }) => {
   );
 };
 
-export default QSct;
+export default Sct;
