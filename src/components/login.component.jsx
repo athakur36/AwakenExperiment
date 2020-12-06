@@ -27,11 +27,18 @@ const useStyles = makeStyles({
   login: {
     width: '100%',
   },
+  error: {
+    color: 'red',
+    fontSize: '20px',
+    fontWeight: '600',
+  },
 });
 
 const Login = ({ history, match }) => {
   const classes = useStyles();
+
   const [userId, setUserId] = React.useState('');
+  const [showUserLoginError, setShowUserLoginError] = React.useState(false);
 
   const handleUserIdChange = (event) => {
     setUserId(event.target.value);
@@ -47,10 +54,11 @@ const Login = ({ history, match }) => {
     console.log(history);
     if (isUserValid) {
       //set global user & navigate to Survey Page
-
-            history.push(`/survey/${userId}`);
+      //setShowUserLoginError(false);
+      history.push(`/survey/${userId}`);
     } else {
       //display error to the user
+      setShowUserLoginError(true);
     }
   };
 
@@ -70,6 +78,9 @@ const Login = ({ history, match }) => {
             onChange={handleUserIdChange}
             value={userId}
           />
+          {showUserLoginError && (
+            <div className={classes.error}>Invalid User ID</div>
+          )}
           <Button
             className={classes.login}
             color='primary'
