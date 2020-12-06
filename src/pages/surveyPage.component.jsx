@@ -114,7 +114,9 @@ const SurveyPage = ({ match }) => {
                 onClick={handleNext}
                 className={classes.button}
               >
-                {activeStep === IV_Surveys.length - 1 ? 'Finish' : 'Next'}
+                {activeStep === IV_Surveys.length - 1
+                  ? 'Finish'
+                  : 'Submit & Proceed'}
               </Button>
             </div>
           </div>

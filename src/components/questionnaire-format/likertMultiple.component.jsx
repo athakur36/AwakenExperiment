@@ -26,9 +26,6 @@ const LikertMultiple = ({ questData }) => {
           <QNA key={index} label={question} />
         ))}
       </form>
-      <Button className={classes.submit} color='primary' variant='contained'>
-        Submit and Proceed
-      </Button>
     </div>
   );
 };
