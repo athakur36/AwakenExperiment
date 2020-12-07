@@ -14,18 +14,32 @@ const useStyles = makeStyles((theme) => ({
   surveyRoot: {
     width: '100%',
     height: '100%',
+    padding: '0 50px',
+  },
+  surveyHeader: {
     display: 'flex',
-    padding: '50px',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '50px',
+    fontSize: '22px',
+    fontWeight: 'bold',
   },
-  root: {
-    width: '100%',
+  stepContent: {
+    paddingBottom: '50px',
   },
-  button: {
-    marginRight: theme.spacing(1),
+  buttons: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    marginTop: '50px',
   },
   instructions: {
-    marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(1),
+    height: '300px',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+    fontSize: '24px',
+    marginTop: '100px',
   },
 }));
 
@@ -39,10 +53,6 @@ const SurveyPage = ({ match }) => {
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
-
-  const handleReset = () => {
-    setActiveStep(0);
   };
 
   const renderSwitch = (activeStep) => {
@@ -75,8 +85,8 @@ const SurveyPage = ({ match }) => {
   };
 
   return (
-    <div className={classes.root}>
-      <div>IV SURVEY PAGE</div>
+    <div className={classes.surveyRoot}>
+      <div className={classes.surveyHeader}>STUDY PART 1</div>
       <Stepper activeStep={activeStep}>
         {IV_Surveys.map((ivSurvey, index) => {
           return (
@@ -86,40 +96,43 @@ const SurveyPage = ({ match }) => {
           );
         })}
       </Stepper>
-      <div>
+      <div className={classes.stepContent}>
         {activeStep === IV_Surveys.length ? (
-          <div>
-            <div className={classes.instructions}>
-              All steps completed - you&apos;re finished
+          <div className={classes.instructions}>
+            <div>
+              Thank you! Now you will proceed to part-2 of the experiment.
             </div>
-            <Button onClick={handleReset} className={classes.button}>
-              Reset
+            <div>Please press Proceed To Part-2.</div>
+            <Button
+              variant='contained'
+              color='primary'
+              onClick={() => console.log('proceed to experiments route')}
+            >
+              PROCEED TO PART 2
             </Button>
           </div>
         ) : (
-          <div>
+          <>
             {renderSwitch(activeStep)}
-            <div>
-              <Button
-                disabled={activeStep === 0}
-                onClick={handleBack}
-                className={classes.button}
-              >
-                Back
-              </Button>
-
-              <Button
-                variant='contained'
-                color='primary'
-                onClick={handleNext}
-                className={classes.button}
-              >
+            <div className={classes.buttons}>
+              {activeStep !== 0 ? (
+                <Button
+                  variant='contained'
+                  color='primary'
+                  onClick={handleBack}
+                >
+                  Back
+                </Button>
+              ) : (
+                <div></div>
+              )}
+              <Button variant='contained' color='primary' onClick={handleNext}>
                 {activeStep === IV_Surveys.length - 1
                   ? 'Finish'
                   : 'Submit & Proceed'}
               </Button>
             </div>
-          </div>
+          </>
         )}
       </div>
     </div>
