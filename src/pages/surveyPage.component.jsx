@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { withRouter } from 'react-router-dom';
 import Sct from '../components/questionnaire-format/sct.component';
@@ -103,13 +104,15 @@ const SurveyPage = ({ match }) => {
               Thank you! Now you will proceed to part-2 of the experiment.
             </div>
             <div>Please press Proceed To Part-2.</div>
-            <Button
-              variant='contained'
-              color='primary'
-              onClick={() => console.log('proceed to experiments route')}
-            >
-              PROCEED TO PART 2
-            </Button>
+            <Link to='/experiments'>
+              <Button
+                variant='contained'
+                color='primary'
+                onClick={() => console.log('proceed to experiments route')}
+              >
+                PROCEED TO PART 2
+              </Button>
+            </Link>
           </div>
         ) : (
           <>
