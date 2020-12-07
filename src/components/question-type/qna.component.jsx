@@ -14,7 +14,7 @@ const QNA = ({ label }) => {
   return (
     <div className={classes.qnaRoot}>
       <label>{label}</label>
-      <TextField fullWidth />
+      <TextField variant='outlined' fullWidth />
     </div>
   );
 };
