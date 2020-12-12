@@ -4,7 +4,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { withRouter } from 'react-router-dom';
 import Sct from '../components/questionnaire-format/sct.component';
 import { IV_Surveys } from '../model/IV-Surveys-Data';
-import LikertMultiple from '../components/questionnaire-format/likertMultiple.component';
 import LikertMatrix from '../components/questionnaire-format/likertMatrix.component';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -59,24 +58,17 @@ const SurveyPage = ({ match }) => {
   const renderSwitch = (activeStep) => {
     const ivSurvey = IV_Surveys[activeStep];
     switch (ivSurvey.surveyType) {
-      case 'SCT':
+      case 'SCT_SURVEY':
         return (
           <Sct
             key={'survey-' + ivSurvey.step}
             questData={ivSurvey.surveyData}
           />
         );
-      case 'LIKERT_MULTIPLE':
-        return (
-          <LikertMultiple
-            key={'survey-' + ivSurvey.step}
-            questData={ivSurvey.surveyData}
-          />
-        );
-      case 'LIKERT_MATRIX':
+      case 'LIKERT_MATRIX_SURVEY':
         return (
           <LikertMatrix
-            key={'survey-' + ivSurvey.step}
+            key={'likert-' + ivSurvey.step}
             questData={ivSurvey.surveyData}
           />
         );

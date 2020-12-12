@@ -33,7 +33,7 @@ export const IV_Surveys = [
         { text: "My conscience bothers me if", type: "SCT" },
       ],
     },
-    surveyType: "SCT",
+    surveyType: "SCT_SURVEY",
     step: 1,
   },
   {
@@ -41,14 +41,14 @@ export const IV_Surveys = [
       intro: `asoidhashneed to write an essay
             for each: completing the sentence with some 4-12 words is enough.`,
       questions: [
-        { text: "Raising a family", type: "radio" },
-        { text: "When I am criticized", type: "radio" },
-        { text: "Being with other people", type: "radio" },
-        { text: "The thing I like about myself is", type: "radio" },
-        { text: "What gets me into trouble is", type: "radio" },
+        { text: "Raising a family", type: "RADIO", scale: 5 },
+        { text: "When I am criticized", type: "RADIO", scale: 5 },
+        { text: "Being with other people", type: "RADIO", scale: 5 },
+        { text: "The thing I like about myself is", type: "RADIO", scale: 5 },
+        { text: "What gets me into trouble is", type: "RADIO", scale: 5 },
       ],
     },
-    surveyType: "LIKERT_MULTIPLE",
+    surveyType: "SCT_SURVEY",
     step: 2,
   },
   {
@@ -56,14 +56,14 @@ export const IV_Surveys = [
       intro: `asoidhashneed to write an essay
             for each: completing the sentence with some 4-12 words is enough.`,
       questions: [
-        { text: "Raising a family", type: "radio" },
+        { text: "Raising a family", type: "RADIO" },
         { text: "When I am criticized", type: "SCT" },
         { text: "Being with other people", type: "SCT" },
         { text: "The thing I like about myself is", type: "SCT" },
         { text: "What gets me into trouble is", type: "SCT" },
       ],
     },
-    surveyType: "LIKERT_MATRIX",
+    surveyType: "LIKERT_MATRIX_SURVEY",
     step: 3,
   },
   {
@@ -78,7 +78,7 @@ export const IV_Surveys = [
         { text: "What gets me into trouble is", type: "SCT" },
       ],
     },
-    surveyType: "SCT",
+    surveyType: "SCT_SURVEY",
     step: 4,
   },
 ];
