@@ -1,10 +1,29 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { TextField } from '@material-ui/core';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
 
 const useStyles = makeStyles((theme) => ({
   qnaRoot: {
     marginBottom: '20px',
+  },
+  question: {
+    fontSize: '18px',
+    fontWeight: 'bold',
+    marginBottom: '10px',
+    marginTop: '30px',
+  },
+  radioGroupWrapper: {
+    width: '100%',
+  },
+  radioGroup: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'space-between',
   },
 }));
 
@@ -14,8 +33,41 @@ const QNRadio = ({ question }) => {
 
   return (
     <div className={classes.qnaRoot}>
-      <label>{text}</label>
-      <TextField variant='outlined' fullWidth />
+      <div className={classes.question}>{text}</div>
+      <FormControl component='fieldset' className={classes.radioGroupWrapper}>
+        <RadioGroup
+          row
+          aria-label='position'
+          name='position'
+          defaultValue='top'
+          className={classes.radioGroup}
+        >
+          <FormControlLabel
+            value='top'
+            control={<Radio color='primary' />}
+            label='Top'
+            labelPlacement='top'
+          />
+          <FormControlLabel
+            value='start'
+            control={<Radio color='primary' />}
+            label='Start'
+            labelPlacement='top'
+          />
+          <FormControlLabel
+            value='bottom'
+            control={<Radio color='primary' />}
+            label='Bottom'
+            labelPlacement='top'
+          />
+          <FormControlLabel
+            value='end'
+            control={<Radio color='primary' />}
+            label='End'
+            labelPlacement='top'
+          />
+        </RadioGroup>
+      </FormControl>
     </div>
   );
 };
