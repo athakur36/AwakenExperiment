@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Button } from '@material-ui/core';
 import QNA from '../question-type/qna.component';
+import QNRadio from '../question-type/qnradio.component';
 
 const useStyles = makeStyles({
   root: {},
@@ -14,6 +14,17 @@ const useStyles = makeStyles({
   },
 });
 
+const renderSwitch = (question) => {
+  switch (question.type) {
+    case 'SCT':
+      return <QNA label={question.text} />;
+    case 'RADIO':
+      return <QNRadio question={question} />;
+    default:
+      return <div>Survey Type is Invalid</div>;
+  }
+};
+
 const Sct = ({ questData }) => {
   const classes = useStyles();
 
@@ -23,7 +34,7 @@ const Sct = ({ questData }) => {
       <h3>Please answer the following:</h3>
       <form>
         {questData.questions.map((question, index) => (
-          <QNA key={index} label={question} />
+          <div key={'question-' + index}>{renderSwitch(question)} </div>
         ))}
       </form>
     </div>
