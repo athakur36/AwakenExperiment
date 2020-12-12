@@ -1,3 +1,5 @@
+import Sct from "../components/questionnaire-format/sct.component";
+
 export const IV_Surveys = [
   {
     surveyData: {
@@ -14,21 +16,21 @@ export const IV_Surveys = [
             words. There are no right or wrong responses. No need to write an essay
             for each: completing the sentence with some 4-12 words is enough.`,
       questions: [
-        "Raising a family",
-        "When I am criticized",
-        "Being with other people",
-        "The thing I like about myself is",
-        "What gets me into trouble is",
-        "Crime and delinquency could be halted if",
-        "Business and society",
-        "Rules are",
-        "I just can’t stand people who",
-        "My main problem is",
-        "People who step out of line",
-        "A partner has the right to...",
-        "If I were in charge",
-        "Technology",
-        "My conscience bothers me if",
+        { text: "Raising a family", type: "SCT" },
+        { text: "When I am criticized", type: "SCT" },
+        { text: "Being with other people", type: "SCT" },
+        { text: "The thing I like about myself is", type: "SCT" },
+        { text: "What gets me into trouble is", type: "SCT" },
+        { text: "Crime and delinquency could be halted if", type: "SCT" },
+        { text: "Business and society", type: "SCT" },
+        { text: "Rules are", type: "SCT" },
+        { text: "I just can’t stand people who", type: "SCT" },
+        { text: "My main problem is", type: "SCT" },
+        { text: "People who step out of line", type: "SCT" },
+        { text: "A partner has the right to...", type: "SCT" },
+        { text: "If I were in charge", type: "SCT" },
+        { text: "Technology", type: "SCT" },
+        { text: "My conscience bothers me if", type: "SCT" },
       ],
     },
     surveyType: "SCT",
@@ -39,10 +41,11 @@ export const IV_Surveys = [
       intro: `asoidhashneed to write an essay
             for each: completing the sentence with some 4-12 words is enough.`,
       questions: [
-        "I just can’t stand people who",
-        "My main problem is",
-        "People who step out of line",
-        "A partner has the right to...",
+        { text: "Raising a family", type: "radio" },
+        { text: "When I am criticized", type: "radio" },
+        { text: "Being with other people", type: "radio" },
+        { text: "The thing I like about myself is", type: "radio" },
+        { text: "What gets me into trouble is", type: "radio" },
       ],
     },
     surveyType: "LIKERT_MULTIPLE",
@@ -53,10 +56,11 @@ export const IV_Surveys = [
       intro: `asoidhashneed to write an essay
             for each: completing the sentence with some 4-12 words is enough.`,
       questions: [
-        "I just can’t stand people who",
-        "My main problem is",
-        "Technology",
-        "My conscience bothers me if",
+        { text: "Raising a family", type: "radio" },
+        { text: "When I am criticized", type: "SCT" },
+        { text: "Being with other people", type: "SCT" },
+        { text: "The thing I like about myself is", type: "SCT" },
+        { text: "What gets me into trouble is", type: "SCT" },
       ],
     },
     surveyType: "LIKERT_MATRIX",
@@ -67,10 +71,11 @@ export const IV_Surveys = [
       intro: `asoidhashneed to write an essay
             for each: completing the sentence with some 4-12 words is enough.`,
       questions: [
-        "I just can’t stand people who",
-        "My main problem is",
-        "Technology",
-        "My conscience bothers me if",
+        { text: "Raising a family", type: "SCT" },
+        { text: "When I am criticized", type: "SCT" },
+        { text: "Being with other people", type: "SCT" },
+        { text: "The thing I like about myself is", type: "SCT" },
+        { text: "What gets me into trouble is", type: "SCT" },
       ],
     },
     surveyType: "SCT",
