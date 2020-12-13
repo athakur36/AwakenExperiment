@@ -1,4 +1,14 @@
 import React, { useState } from 'react';
+import {
+  TextField,
+  Button,
+  ListItem,
+  ListItemIcon,
+  FolderIcon,
+  ListItemText,
+  List,
+} from '@material-ui/core';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 const commentsArray = [
   "Let me guess, they're called Tonald Drump and Kared Jushner.",
@@ -25,19 +35,30 @@ const Comments = () => {
         {/* use TextField instead of textarea */}
         {/* <TextField variant='outlined' fullWidth /> */}
         {/* use List Text with Icon from Material */}
-        {commentsArray.map((comment) => (
-          <div>{comment}</div>
-        ))}
-        <textarea
-          type='text'
-          name='comment'
-          className='form-control'
-          placeholder='Type a comment here'
-          onChange={handleChange}
-          value={comment}
-        />
+        <List>
+          {commentsArray.map((comment) => (
+            <div>
+              <ListItem key={comment.key}>
+                <ListItemIcon>
+                  <AccountCircleIcon />
+                </ListItemIcon>
+                <ListItemText primary={comment} />
+              </ListItem>
+            </div>
+          ))}
+        </List>
+
+        <div>
+          <TextField
+            variant='outlined'
+            fullWidth
+            placeholder='Type a comment here'
+          />
+        </div>
         {/* use material button */}
-        <button>Submit</button>
+        <Button variant='contained' color='primary'>
+          Submit
+        </Button>
       </form>
     </section>
   );
