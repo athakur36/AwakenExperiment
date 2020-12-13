@@ -1,5 +1,3 @@
-import Sct from "../components/questionnaire-format/sct.component";
-
 export const IV_Surveys = [
   {
     surveyData: {
