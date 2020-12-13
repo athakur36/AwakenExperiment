@@ -5,12 +5,20 @@ import VideoReactions from './reactions.component';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
+  body: {
+    display: 'flex',
+    overflowY: 'auto',
+    alignItems: 'inherit',
+    justifyContent: 'center',
+    backgroundColor: '#eeeeee',
+  },
   root: {
-    width: '100%',
-    height: '100%',
+    width: '60%',
+    height: '60%',
     display: 'flex',
     flexDirection: 'column',
-    padding: '50px',
+    padding: '10px',
+    alignItems: 'inherit',
   },
   title: {},
   video: {
@@ -53,27 +61,29 @@ const VideoPlayer = () => {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-      <h1 className={classes.title}> Chris Pratt on Trump </h1>
-      <div className={classes.videoPlayerContainer}>
-        <ReactPlayer
-          className={classes.video}
-          url='https://youtu.be/hoNb6HuNmU0'
-          controls={true}
-          width='100%'
-          height='100%'
-          //height='56.25%'
-        />
-      </div>
-
-      <div className={classes.viewsAndIcons}>
-        <div className={classes.views}> Views: 40,236</div>
-        <div className={classes.icons}>
-          <VideoReactions />
+    <div className={classes.body}>
+      <div className={classes.root}>
+        <h2 className={classes.title}> Chris Pratt on Trump </h2>
+        <div className={classes.videoPlayerContainer}>
+          <ReactPlayer
+            className={classes.video}
+            url='https://youtu.be/hoNb6HuNmU0'
+            controls={true}
+            width='100%'
+            height='100%'
+            //height='56.25%'
+          />
         </div>
-      </div>
-      <div className={classes.comments}>
-        <NewComment />
+
+        <div className={classes.viewsAndIcons}>
+          <div className={classes.views}> Views: 40,236</div>
+          <div className={classes.icons}>
+            <VideoReactions />
+          </div>
+        </div>
+        <div className={classes.comments}>
+          <NewComment />
+        </div>
       </div>
     </div>
   );
