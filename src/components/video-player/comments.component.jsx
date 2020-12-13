@@ -4,7 +4,6 @@ import {
   Button,
   ListItem,
   ListItemIcon,
-  FolderIcon,
   ListItemText,
   List,
 } from '@material-ui/core';
@@ -32,9 +31,6 @@ const Comments = () => {
   return (
     <section className='display-comment'>
       <form onSubmit={handleSubmit}>
-        {/* use TextField instead of textarea */}
-        {/* <TextField variant='outlined' fullWidth /> */}
-        {/* use List Text with Icon from Material */}
         <List>
           {commentsArray.map((comment) => (
             <div>
@@ -47,18 +43,17 @@ const Comments = () => {
             </div>
           ))}
         </List>
-
+        {/* add classes and give padding for submit button */}
         <div>
           <TextField
             variant='outlined'
             fullWidth
             placeholder='Type a comment here'
           />
+          <Button variant='contained' color='primary'>
+            Submit
+          </Button>
         </div>
-        {/* use material button */}
-        <Button variant='contained' color='primary'>
-          Submit
-        </Button>
       </form>
     </section>
   );

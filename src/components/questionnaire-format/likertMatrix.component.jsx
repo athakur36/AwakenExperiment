@@ -23,7 +23,6 @@ const useStyles = makeStyles({
   firstColumn: {
     minWidth: '300px',
     height: '100%',
-    border: '1px red solid',
     width: '30%',
   },
   secondColumn: {
@@ -33,8 +32,7 @@ const useStyles = makeStyles({
   },
   secondColumnItem: {
     flex: 1,
-    border: '1px solid blue',
-    lineBreak: 'anywhere',
+    lineBreak: 'auto',
   },
 });
 
@@ -67,7 +65,6 @@ const LikertMatrix = ({ questData }) => {
           <div className={classes.secondColumn}>
             <div className={classes.secondColumnItem}>
               <Radio
-                checked={selectedValue === 'a'}
                 onChange={handleChange}
                 value='a'
                 name='radio-button-demo'
@@ -76,7 +73,6 @@ const LikertMatrix = ({ questData }) => {
             </div>
             <div className={classes.secondColumnItem}>
               <Radio
-                checked={selectedValue === 'b'}
                 onChange={handleChange}
                 value='b'
                 name='radio-button-demo'
@@ -85,7 +81,6 @@ const LikertMatrix = ({ questData }) => {
             </div>
             <div className={classes.secondColumnItem}>
               <Radio
-                checked={selectedValue === 'c'}
                 onChange={handleChange}
                 value='c'
                 name='radio-button-demo'
@@ -94,7 +89,6 @@ const LikertMatrix = ({ questData }) => {
             </div>
             <div className={classes.secondColumnItem}>
               <Radio
-                checked={selectedValue === 'd'}
                 onChange={handleChange}
                 value='d'
                 name='radio-button-demo'
@@ -103,7 +97,6 @@ const LikertMatrix = ({ questData }) => {
             </div>
             <div className={classes.secondColumnItem}>
               <Radio
-                checked={selectedValue === 'e'}
                 onChange={handleChange}
                 value='e'
                 name='radio-button-demo'
