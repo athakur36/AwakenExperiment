@@ -1,61 +1,43 @@
 import React, { useState } from 'react';
-import {
-  TextField,
-  Button,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  List,
-} from '@material-ui/core';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import { makeStyles } from '@material-ui/core/styles';
+import QNA from '../question-type/qna.component';
+import QNRadio from '../question-type/qnradio.component';
 
-const commentsArray = [
-  "Let me guess, they're called Tonald Drump and Kared Jushner.",
-  'I have really crazy allergies and I will STILL get it. I’ll make sure to have my epinephrine ready...maybe take a dose of Benadryl beforehand, if my doc okays it. Still absolutely worth the risk.',
-  'I understand the concern. However, if you watch US television you are inundated with medical commercials. Many of them life saving treatments for cancer and other serious ailments.',
-  'People with severe allergies should definitely be more careful.',
-  'People who have severe allergies should not be getting any sort of flu shot or in this case Covid shot. That should be the headline not the one that’s scaring everybody to death.',
-];
+const useStyles = makeStyles({
+  root: {},
+  intro: {
+    marginBottom: '50px',
+  },
+  submit: {
+    marginTop: '50px',
+    marginBottom: '150px',
+  },
+});
 
-const DVSurvey = () => {
-  const [comment, setComment] = useState('test comment');
+const renderSwitch = (question) => {
+  switch (question.type) {
+    case 'SCT':
+      return <QNA label={question.text} />;
+    case 'RADIO':
+      return <QNRadio question={question} />;
+    default:
+      return <div>Survey Type is Invalid</div>;
+  }
+};
 
-  const handleChange = (event) => {
-    setComment(event.target.value);
-  };
-
-  const handleSubmit = (event) => {
-    // submit comment to firebase
-  };
-
+const DVSurvey = ({ questData }) => {
+  const classes = useStyles();
+  console.log(questData.intro);
   return (
-    <section className='display-comment'>
-      <form onSubmit={handleSubmit}>
-        <List>
-          {commentsArray.map((comment) => (
-            <div>
-              <ListItem key={comment.key}>
-                <ListItemIcon>
-                  <AccountCircleIcon />
-                </ListItemIcon>
-                <ListItemText primary={comment} />
-              </ListItem>
-            </div>
-          ))}
-        </List>
-        {/* add classes and give padding for submit button */}
-        <div>
-          <TextField
-            variant='outlined'
-            fullWidth
-            placeholder='Type a comment here'
-          />
-          <Button variant='contained' color='primary'>
-            Submit
-          </Button>
-        </div>
+    <div className={classes.root}>
+      <p className={classes.intro}>{questData.intro}</p>
+      <h3>Please answer the following:</h3>
+      <form>
+        {questData.questions.map((question, index) => (
+          <div key={'question-' + index}>{renderSwitch(question)} </div>
+        ))}
       </form>
-    </section>
+    </div>
   );
 };
 

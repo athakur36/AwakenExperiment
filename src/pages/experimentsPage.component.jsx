@@ -6,6 +6,7 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import DVSurvey from '../components/dv/dv-survey.component';
+import { DV_Survey } from '../model/DV-Survey-Data';
 import VideoListPage from '../components/video-list/videolistPage.component';
 
 const useStyles = makeStyles((theme) => ({
@@ -54,15 +55,27 @@ const ExperimentsPage = () => {
   };
 
   const renderSwitch = (activeStep) => {
+    const dvSurvey = DV_Survey[0];
+    console.log(dvSurvey.surveyData);
     switch (activeStep) {
       case 0:
         return <VideoPlayer />;
       case 1:
-        return <DVSurvey />;
+        return (
+          <DVSurvey
+            key={'survey-' + activeStep}
+            questData={dvSurvey.surveyData}
+          />
+        );
       case 2:
         return <VideoListPage />;
       case 3:
-        return <DVSurvey />;
+        return (
+          <DVSurvey
+            key={'survey-' + activeStep}
+            questData={dvSurvey.surveyData}
+          />
+        );
       default:
         return <div>Survey Type is Invalid</div>;
     }
@@ -85,7 +98,7 @@ const ExperimentsPage = () => {
         {activeStep === 4 ? (
           <div className={classes.instructions}>
             <div>
-              Thank you! Now you will proceed to part-2 of the experiment.
+              Thank you! Now you will proceed to part-3 of the experiment.
             </div>
           </div>
         ) : (

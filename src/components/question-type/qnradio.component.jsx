@@ -45,25 +45,31 @@ const QNRadio = ({ question }) => {
           <FormControlLabel
             value='top'
             control={<Radio color='primary' />}
-            label='Top'
+            label='Strongly agree'
             labelPlacement='top'
           />
           <FormControlLabel
             value='start'
             control={<Radio color='primary' />}
-            label='Start'
+            label='Agree'
             labelPlacement='top'
           />
           <FormControlLabel
             value='bottom'
             control={<Radio color='primary' />}
-            label='Bottom'
+            label='Nuetral'
             labelPlacement='top'
           />
           <FormControlLabel
             value='end'
             control={<Radio color='primary' />}
-            label='End'
+            label='Disagree'
+            labelPlacement='top'
+          />
+          <FormControlLabel
+            value='end'
+            control={<Radio color='primary' />}
+            label='Strongly Disagree'
             labelPlacement='top'
           />
         </RadioGroup>
