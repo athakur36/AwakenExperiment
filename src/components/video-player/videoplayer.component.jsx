@@ -6,11 +6,11 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
   root: {
-    width: '100%',
+    width: '60%',
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
-    padding: '50px',
+    padding: '10px',
   },
   title: {},
   video: {
@@ -54,7 +54,7 @@ const VideoPlayer = () => {
 
   return (
     <div className={classes.root}>
-      <h1 className={classes.title}> Chris Pratt on Trump </h1>
+      <h2 className={classes.title}> Chris Pratt on Trump </h2>
       <div className={classes.videoPlayerContainer}>
         <ReactPlayer
           className={classes.video}

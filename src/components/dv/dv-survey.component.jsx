@@ -17,7 +17,7 @@ const commentsArray = [
   'People who have severe allergies should not be getting any sort of flu shot or in this case Covid shot. That should be the headline not the one that’s scaring everybody to death.',
 ];
 
-const Comments = () => {
+const DVSurvey = () => {
   const [comment, setComment] = useState('test comment');
 
   const handleChange = (event) => {
@@ -59,4 +59,4 @@ const Comments = () => {
   );
 };
 
-export default Comments;
+export default DVSurvey;
