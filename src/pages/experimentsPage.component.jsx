@@ -5,9 +5,14 @@ import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
-import DVSurvey from '../components/dv/dv-survey.component';
 import { DV_Survey } from '../model/DV-Survey-Data';
 import VideoListPage from '../components/video-list/videolistPage.component';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import DVQRadio from '../components/dv/dvsurvey.component';
 
 const useStyles = makeStyles((theme) => ({
   experimentsRoot: {
@@ -45,8 +50,20 @@ const useStyles = makeStyles((theme) => ({
 const ExperimentsPage = () => {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
+  const [open, setOpen] = React.useState(false);
+  const dvSurvey = DV_Survey[0];
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    // Save the DV measurements in the firebase including the condition information (pro or counter)
+  };
 
   const handleNext = () => {
+    handleClose();
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
@@ -55,27 +72,11 @@ const ExperimentsPage = () => {
   };
 
   const renderSwitch = (activeStep) => {
-    const dvSurvey = DV_Survey[0];
-    console.log(dvSurvey.surveyData);
     switch (activeStep) {
       case 0:
         return <VideoPlayer />;
       case 1:
-        return (
-          <DVSurvey
-            key={'survey-' + activeStep}
-            questData={dvSurvey.surveyData}
-          />
-        );
-      case 2:
         return <VideoListPage />;
-      case 3:
-        return (
-          <DVSurvey
-            key={'survey-' + activeStep}
-            questData={dvSurvey.surveyData}
-          />
-        );
       default:
         return <div>Survey Type is Invalid</div>;
     }
@@ -116,9 +117,45 @@ const ExperimentsPage = () => {
               ) : (
                 <div></div>
               )}
-              <Button variant='contained' color='primary' onClick={handleNext}>
-                {activeStep === 4 - 1 ? 'Finish' : 'Proceed'}
+              <Button
+                variant='contained'
+                color='primary'
+                onClick={handleClickOpen}
+              >
+                Proceed
+                {/* {activeStep === 4 - 1 ? 'Finish' : 'Proceed'} */}
               </Button>
+              <Dialog
+                open={open}
+                onClose={handleClose}
+                aria-labelledby='form-dialog-title'
+              >
+                <DialogTitle id='form-dialog-title'>
+                  Please answer the following questions regarding the video you
+                  just watched:
+                </DialogTitle>
+                <DialogContent>
+                  <DialogContentText>
+                    {console.log(dvSurvey.surveyData.questions)}
+                    {dvSurvey.surveyData.questions.map((question, index) => (
+                      <DVQRadio questData={question} />
+                    ))}
+                    {/* <DVSurvey
+                      key={'survey-' + activeStep}
+                      questData={dvSurvey.surveyData}
+                    /> */}
+                  </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                  <Button
+                    onClick={handleNext}
+                    variant='contained'
+                    color='primary'
+                  >
+                    Submit
+                  </Button>
+                </DialogActions>
+              </Dialog>
             </div>
           </>
         )}
