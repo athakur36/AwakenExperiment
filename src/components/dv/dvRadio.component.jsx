@@ -25,15 +25,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const DVQRadio = ({ questData }) => {
-  console.log(questData);
+const DVRadio = ({ questData }) => {
   const { question, responses } = questData;
   const classes = useStyles();
-  const [selectedValue, setSelectedValue] = React.useState(1);
+  const [selectedValue, setSelectedValue] = React.useState(3);
 
-  const handleChange = (value) => {
-    console.log(value);
-    setSelectedValue(value);
+  const handleChange = (event) => {
+    setSelectedValue(Number(event.target.value));
   };
 
   return (
@@ -45,35 +43,35 @@ const DVQRadio = ({ questData }) => {
           aria-label='position'
           name='position'
           className={classes.radioGroup}
+          onChange={handleChange}
           value={selectedValue}
         >
           <FormControlLabel
-            value={responses[0].val}
+            value={responses[0].value}
             control={<Radio color='primary' />}
-            onChange={handleChange}
             label={responses[0].text}
             labelPlacement='top'
           />
           <FormControlLabel
-            value={responses[1].val}
+            value={responses[1].value}
             control={<Radio color='primary' />}
             label={responses[1].text}
             labelPlacement='top'
           />
           <FormControlLabel
-            value={responses[2].val}
+            value={responses[2].value}
             control={<Radio color='primary' />}
             label={responses[2].text}
             labelPlacement='top'
           />
           <FormControlLabel
-            value={responses[3].val}
+            value={responses[3].value}
             control={<Radio color='primary' />}
             label={responses[3].text}
             labelPlacement='top'
           />
           <FormControlLabel
-            value={responses[4].val}
+            value={responses[4].value}
             control={<Radio color='primary' />}
             label={responses[4].text}
             labelPlacement='top'
@@ -84,4 +82,4 @@ const DVQRadio = ({ questData }) => {
   );
 };
 
-export default DVQRadio;
+export default DVRadio;

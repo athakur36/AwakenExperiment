@@ -12,7 +12,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import DVQRadio from '../components/dv/dvsurvey.component';
+import DVRadio from '../components/dv/dvRadio.component';
 
 const useStyles = makeStyles((theme) => ({
   experimentsRoot: {
@@ -135,16 +135,9 @@ const ExperimentsPage = () => {
                   just watched:
                 </DialogTitle>
                 <DialogContent>
-                  <DialogContentText>
-                    {console.log(dvSurvey.surveyData.questions)}
-                    {dvSurvey.surveyData.questions.map((question, index) => (
-                      <DVQRadio questData={question} />
-                    ))}
-                    {/* <DVSurvey
-                      key={'survey-' + activeStep}
-                      questData={dvSurvey.surveyData}
-                    /> */}
-                  </DialogContentText>
+                  {dvSurvey.surveyData.questions.map((question, index) => (
+                    <DVRadio key={'dvradio-' + index} questData={question} />
+                  ))}
                 </DialogContent>
                 <DialogActions>
                   <Button

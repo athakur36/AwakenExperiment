@@ -32,8 +32,8 @@ const Comments = () => {
     <section className='display-comment'>
       <form onSubmit={handleSubmit}>
         <List>
-          {commentsArray.map((comment) => (
-            <div>
+          {commentsArray.map((comment, index) => (
+            <div key={'comment-' + index}>
               <ListItem key={comment.key}>
                 <ListItemIcon>
                   <AccountCircleIcon />
