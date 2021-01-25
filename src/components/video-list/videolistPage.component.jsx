@@ -4,7 +4,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import { WrapText } from '@material-ui/icons';
 
 const useStyles = makeStyles({
-  title: {},
+  vidoetitle: {
+    fontWeight: 'bold',
+    fontSize: '18px',
+  },
   videoWrapper: {
     display: 'flex',
     justifyContent: 'space-between',
@@ -81,7 +84,7 @@ const VideoListPage = () => {
       <div className={classes.videoWrapper}>
         {counterVideos.map((counterVideo, index) => (
           <div className={classes.thumbnailContainer}>
-            <div>{counterVideo.name}</div>
+            <h3>{counterVideo.name}</h3>
             <div>
               <img src={counterVideo.logo} alt='video image' />
             </div>
@@ -92,7 +95,7 @@ const VideoListPage = () => {
       <div className={classes.videoWrapper}>
         {proVideos.map((proVideo, index) => (
           <div className={classes.thumbnailContainer}>
-            <div>{proVideo.name}</div>
+            <h3>{proVideo.name}</h3>
             <div>
               <img src={proVideo.logo} alt='video image' />
             </div>
