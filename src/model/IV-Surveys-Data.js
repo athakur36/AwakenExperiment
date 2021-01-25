@@ -18,6 +18,14 @@ export const IV_Surveys = [
         { text: 'When I am criticized', type: 'SCT' },
         { text: 'Being with other people', type: 'SCT' },
         { text: 'The thing I like about myself is', type: 'SCT' },
+        { text: 'Raising a family', type: 'SCT' },
+        { text: 'When I am criticized', type: 'SCT' },
+        { text: 'Being with other people', type: 'SCT' },
+        { text: 'The thing I like about myself is', type: 'SCT' },
+        { text: 'Raising a family', type: 'SCT' },
+        { text: 'When I am criticized', type: 'SCT' },
+        { text: 'Being with other people', type: 'SCT' },
+        { text: 'The thing I like about myself is', type: 'SCT' },
       ],
     },
     surveyType: 'SCT_SURVEY',
@@ -28,11 +36,19 @@ export const IV_Surveys = [
       intro: `asoidhashneed to write an essay
             for each: completing the sentence with some 4-12 words is enough.`,
       questions: [
-        { text: 'Raising a family', type: 'RADIO', scale: 5 },
-        { text: 'When I am criticized', type: 'RADIO', scale: 5 },
-        { text: 'Being with other people', type: 'RADIO', scale: 5 },
-        { text: 'The thing I like about myself is', type: 'RADIO', scale: 5 },
-        { text: 'What gets me into trouble is', type: 'RADIO', scale: 5 },
+        { text: 'I am not a worrier', type: 'RADIO', scale: 5 },
+        {
+          text: 'At times I feel bitter and resentful',
+          type: 'RADIO',
+          scale: 5,
+        },
+        { text: 'I am not a worrier', type: 'RADIO', scale: 5 },
+        {
+          text: 'At times I feel bitter and resentful',
+          type: 'RADIO',
+          scale: 5,
+        },
+        { text: 'I am not a worrier', type: 'RADIO', scale: 5 },
       ],
     },
     surveyType: 'SCT_SURVEY',
@@ -54,6 +70,26 @@ export const IV_Surveys = [
         },
         {
           text: 'If I could live my life over I would change nothing',
+          type: 'RADIO_MATRIX',
+        },
+      ],
+    },
+    surveyType: 'LIKERT_MATRIX_SURVEY',
+    step: 3,
+  },
+  {
+    surveyData: {
+      intro: `Please select the option which appears closest to your answer`,
+      questions: [
+        {
+          text:
+            'The modern scientific evidence confirms the connection of vaccines with chronic illnesses such as autism, diabetes and multiple sclerosis.',
+          type: 'RADIO_MATRIX',
+        },
+        { text: 'Vaccines are 100% efficient.', type: 'RADIO_MATRIX' },
+        { text: 'I am satisfied with my life', type: 'RADIO_MATRIX' },
+        {
+          text: 'Covid-19 vaccination is safe to take',
           type: 'RADIO_MATRIX',
         },
       ],
