@@ -60,11 +60,12 @@ const LikertMatrix = ({ questData }) => {
         </div>
       </div>
       {questData.questions.map((question, index) => (
-        <div className={classes.header}>
+        <div className={classes.header} key={question.id}>
           <div className={classes.firstColumn}>{question.text}</div>
           <div className={classes.secondColumn}>
             <div className={classes.secondColumnItem}>
               <Radio
+                color='primary'
                 onChange={handleChange}
                 value='a'
                 name='radio-button-demo'
@@ -73,6 +74,7 @@ const LikertMatrix = ({ questData }) => {
             </div>
             <div className={classes.secondColumnItem}>
               <Radio
+                color='primary'
                 onChange={handleChange}
                 value='b'
                 name='radio-button-demo'
@@ -81,6 +83,7 @@ const LikertMatrix = ({ questData }) => {
             </div>
             <div className={classes.secondColumnItem}>
               <Radio
+                color='primary'
                 onChange={handleChange}
                 value='c'
                 name='radio-button-demo'
@@ -89,6 +92,7 @@ const LikertMatrix = ({ questData }) => {
             </div>
             <div className={classes.secondColumnItem}>
               <Radio
+                color='primary'
                 onChange={handleChange}
                 value='d'
                 name='radio-button-demo'
@@ -97,6 +101,7 @@ const LikertMatrix = ({ questData }) => {
             </div>
             <div className={classes.secondColumnItem}>
               <Radio
+                color='primary'
                 onChange={handleChange}
                 value='e'
                 name='radio-button-demo'

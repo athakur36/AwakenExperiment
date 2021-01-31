@@ -14,15 +14,30 @@ const useStyles = makeStyles({
   },
 });
 
+const pageData = [];
+
 const renderSwitch = (question) => {
   switch (question.type) {
     case 'SCT':
-      return <QNA label={question.text} />;
+      return (
+        <QNA
+          label={question.text}
+          onAnswerChange={(answer) => saveAnswer(answer, question.id)}
+        />
+      );
     case 'RADIO':
       return <QNRadio question={question} />;
     default:
       return <div>Survey Type is Invalid</div>;
   }
+};
+
+const saveAnswer = (answer, id) => {
+  //save this answer in a big page object which will be saved in session storage on submit button
+  console.log(answer);
+  console.log(id);
+  // pageData.push(new Answer)
+  // var pageData = {1 : 'khsdkaksjhdkash', 2: 'jhsgdjasg'};
 };
 
 const Sct = ({ questData }) => {

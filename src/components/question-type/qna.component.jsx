@@ -8,13 +8,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const QNA = ({ label }) => {
+const QNA = ({ label, onAnswerChange }) => {
   const classes = useStyles();
 
   return (
     <div className={classes.qnaRoot}>
       <label>{label}</label>
-      <TextField variant='outlined' fullWidth />
+      <TextField
+        variant='outlined'
+        fullWidth
+        onChange={(e) => onAnswerChange(e.target.value)}
+      />
     </div>
   );
 };
