@@ -14,7 +14,7 @@ export const IV_Surveys = [
             words. There are no right or wrong responses. No need to write an essay
             for each: completing the sentence with some 4-12 words is enough.`,
       questions: [
-        { text: 'Raising a family', type: 'SCT' },
+        { text: 'Raising a family', type: 'SCT', id: '1-1' },
         { text: 'When I am criticized', type: 'SCT' },
         { text: 'Being with other people', type: 'SCT' },
         { text: 'The thing I like about myself is', type: 'SCT' },

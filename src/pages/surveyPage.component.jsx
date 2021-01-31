@@ -49,6 +49,18 @@ const SurveyPage = ({ match }) => {
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    //save object
+    // var pageData = {1 : 'khsdkaksjhdkash', '1-2': 'jhsgdjasg'};
+    // sessionStorage.setItem('pageData-D2322-1-1', JSON.stringify(pageData));
+    // sessionStorage.setItem('pageData-D2322-1-2', JSON.stringify(pageData));
+    // sessionStorage.setItem('pageData-D2322-1-3', JSON.stringify(pageData));
+    // sessionStorage.setItem('pageData-D2322-1-4', JSON.stringify(pageData));
+    // sessionStorage.setItem('pageData-D2322-2-1', JSON.stringify(pageData));
+    // sessionStorage.setItem('pageData-D2322-2-2', JSON.stringify(pageData));
+    // sessionStorage.setItem('pageData-D2322-2-3', JSON.stringify(pageData));
+    // sessionStorage.setItem('pageData-D2322-2-4', JSON.stringify(pageData));
+    // sessionStorage.setItem('pageData-D2322-2-5', JSON.stringify(pageData));
+    // var obj = JSON.parse(sessionStorage.page1Data);
   };
 
   const handleBack = () => {
