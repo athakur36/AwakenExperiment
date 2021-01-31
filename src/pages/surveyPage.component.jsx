@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { withRouter } from 'react-router-dom';
@@ -47,14 +47,17 @@ const SurveyPage = ({ match }) => {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
 
+  useEffect(() => {
+    // const answerData-D2323-1-1 ? answerData-D2322-1-1 : '';
+  }, []);
+
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
     //save object
-    // var pageData = {1 : 'khsdkaksjhdkash', '1-2': 'jhsgdjasg'};
-    // sessionStorage.setItem('pageData-D2322-1-1', JSON.stringify(pageData));
-    // sessionStorage.setItem('pageData-D2322-1-2', JSON.stringify(pageData));
-    // sessionStorage.setItem('pageData-D2322-1-3', JSON.stringify(pageData));
-    // sessionStorage.setItem('pageData-D2322-1-4', JSON.stringify(pageData));
+    // sessionStorage.setItem('answerData-D2322-1-1', JSON.stringify(pageData));
+    // sessionStorage.setItem('answerData-D2322-1-2', JSON.stringify(pageData));
+    // sessionStorage.setItem('answerData-D2322-1-3', JSON.stringify(pageData));
+    // sessionStorage.setItem('answerData-D2322-1-4', JSON.stringify(pageData));
     // sessionStorage.setItem('pageData-D2322-2-1', JSON.stringify(pageData));
     // sessionStorage.setItem('pageData-D2322-2-2', JSON.stringify(pageData));
     // sessionStorage.setItem('pageData-D2322-2-3', JSON.stringify(pageData));
