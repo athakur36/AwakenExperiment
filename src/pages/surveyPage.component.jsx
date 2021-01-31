@@ -83,7 +83,7 @@ const SurveyPage = ({ match }) => {
       <Stepper activeStep={activeStep}>
         {IV_Surveys.map((ivSurvey, index) => {
           return (
-            <Step key={'step-' + index}>
+            <Step key={'step-' + activeStep + ':' + index}>
               <StepLabel />
             </Step>
           );

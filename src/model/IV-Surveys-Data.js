@@ -61,16 +61,27 @@ export const IV_Surveys = [
         {
           text: 'In most ways my life is close to ideal',
           type: 'RADIO_MATRIX',
+          id: '3-1',
         },
-        { text: 'Conditions of my life is excellent', type: 'RADIO_MATRIX' },
-        { text: 'I am satisfied with my life', type: 'RADIO_MATRIX' },
+        {
+          text: 'Conditions of my life is excellent',
+          type: 'RADIO_MATRIX',
+          id: '3-2',
+        },
+        {
+          text: 'I am satisfied with my life',
+          type: 'RADIO_MATRIX',
+          id: '3-3',
+        },
         {
           text: 'SO far I have gotten important things I want in my life',
           type: 'RADIO_MATRIX',
+          id: '3-4',
         },
         {
           text: 'If I could live my life over I would change nothing',
           type: 'RADIO_MATRIX',
+          id: '3-5',
         },
       ],
     },
@@ -85,12 +96,22 @@ export const IV_Surveys = [
           text:
             'The modern scientific evidence confirms the connection of vaccines with chronic illnesses such as autism, diabetes and multiple sclerosis.',
           type: 'RADIO_MATRIX',
+          id: '4-1',
         },
-        { text: 'Vaccines are 100% efficient.', type: 'RADIO_MATRIX' },
-        { text: 'I am satisfied with my life', type: 'RADIO_MATRIX' },
+        {
+          text: 'Vaccines are 100% efficient.',
+          type: 'RADIO_MATRIX',
+          id: '4-2',
+        },
+        {
+          text: 'I am satisfied with my life',
+          type: 'RADIO_MATRIX',
+          id: '4-3',
+        },
         {
           text: 'Covid-19 vaccination is safe to take',
           type: 'RADIO_MATRIX',
+          id: '4-4',
         },
       ],
     },
