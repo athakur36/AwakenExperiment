@@ -2,8 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { WrapText } from '@material-ui/icons';
+import { shuffle } from 'lodash';
+import { IconButton } from '@material-ui/core';
+import { ThumbUp, ThumbDown } from '@material-ui/icons';
 
 const useStyles = makeStyles({
+  videoRoot: {
+    rows: '2 asuto',
+  },
   vidoetitle: {
     fontWeight: 'bold',
     fontSize: '18px',
@@ -19,8 +25,8 @@ const { useState } = React;
 
 const VideoListPage = () => {
   const classes = useStyles();
-
-  const [counterVideos] = useState([
+  const imgIndex = React.useState(Math.floor(Math.random(6)));
+  const videoslist = [
     {
       name:
         'Why Black and Latino communities are hesitant to take COVID-19 vaccine | GMA',
@@ -39,67 +45,84 @@ const VideoListPage = () => {
       logo: 'https://picsum.photos/150/150?2',
     },
     {
-      name:
-        'Why Black and Latino communities are hesitant to take COVID-19 vaccine | GMA',
+      name: 'Why white communities are hesitant to take COVID-19 vaccine | GMA',
       description:
         'One of the major hurdles facing the coronavirus vaccine is getting people to take it, and this issue of trust is especially present in Black and Latino communities.',
       url: 'https://www.youtube.com/watch?v=4DOWd04iNFM',
       type: 'COUNTER',
       logo: 'https://picsum.photos/150/150?3',
     },
-  ]);
-
-  const [proVideos] = useState([
     {
       name:
-        'Why Black and Latino communities are hesitant to take COVID-19 vaccine | GMA',
+        'Why Black and Latino communities are willing to take COVID-19 vaccine | GMA',
       description:
         'One of the major hurdles facing the coronavirus vaccine is getting people to take it, and this issue of trust is especially present in Black and Latino communities.',
       url: 'https://www.youtube.com/watch?v=MrmiEBmeumA',
-      type: 'COUNTER',
+      type: 'PRO',
       logo: 'https://picsum.photos/150/150?1',
     },
     {
-      name: 'Covid-19: why vaccine mistrust is growing | The Economist',
+      name: 'Covid-19: why vaccine trust is growing | The Economist',
       description:
         'One of the major hurdles facing the coronavirus vaccine is getting people to take it, and this issue of trust is especially present in Black and Latino communities.',
       url: 'https://www.youtube.com/watch?v=BJ2rT7h70QM',
-      type: 'COUNTER',
+      type: 'PRO',
       logo: 'https://picsum.photos/150/150?2',
     },
     {
-      name:
-        'Why Black and Latino communities are hesitant to take COVID-19 vaccine | GMA',
+      name: 'Why white communities are willing to take COVID-19 vaccine | GMA',
       description:
         'One of the major hurdles facing the coronavirus vaccine is getting people to take it, and this issue of trust is especially present in Black and Latino communities.',
       url: 'https://www.youtube.com/watch?v=4DOWd04iNFM',
-      type: 'COUNTER',
+      type: 'PRO',
       logo: 'https://picsum.photos/150/150?3',
     },
-  ]);
-
+  ];
+  const shuffled_list = shuffle(videoslist);
   return (
-    <div>
+    <div className={classes.videoRoot}>
       <h1 className={classes.title}> Please Select A Video To Watch Next </h1>
       <div className={classes.videoWrapper}>
-        {counterVideos.map((counterVideo, index) => (
+        {shuffled_list.map((video, index) => (
           <div className={classes.thumbnailContainer}>
-            <h3>{counterVideo.name}</h3>
+            <h3>{video.name}</h3>
             <div>
-              <img src={counterVideo.logo} alt='video image' />
+              <img src={video.logo} alt='video image' />
             </div>
-            <div>{counterVideo.description}</div>
-          </div>
-        ))}
-      </div>
-      <div className={classes.videoWrapper}>
-        {proVideos.map((proVideo, index) => (
-          <div className={classes.thumbnailContainer}>
-            <h3>{proVideo.name}</h3>
             <div>
-              <img src={proVideo.logo} alt='video image' />
+              <IconButton
+              // className={
+              //   video.like
+              //     ? classes.LikedDislikedButton
+              //     : classes.LikeDislikeButton
+              // }
+              // onClick={() => {
+              //   console.log('like pressed!');
+              //   if (video.like === false) {
+              //     video.like = true;
+              //     console.log('inside onclick');
+              //   }
+              // }}
+              >
+                <ThumbUp />
+              </IconButton>
+              <IconButton
+              // className={
+              //   video.dislike
+              //     ? classes.LikedDislikedButton
+              //     : classes.LikeDislikeButton
+              // }
+              // onClick={() => {
+              //   //save the interacion in the database
+              //   if (video.dislike === false) {
+              //     video.dislike = true;
+              //   }
+              // }}
+              >
+                <ThumbDown />
+              </IconButton>
             </div>
-            <div>{proVideo.description}</div>
+            <div>{video.description}</div>
           </div>
         ))}
       </div>
