@@ -1,4 +1,9 @@
-import React, { useEffect } from 'react';
+import React, {
+  forwardRef,
+  useRef,
+  useImperativeHandle,
+  useEffect,
+} from 'react';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { withRouter } from 'react-router-dom';
@@ -9,6 +14,8 @@ import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
+import { useContext } from 'react';
+import { UserContext } from './../constants/context.component';
 
 const useStyles = makeStyles((theme) => ({
   surveyRoot: {
@@ -46,13 +53,22 @@ const useStyles = makeStyles((theme) => ({
 const SurveyPage = ({ match }) => {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
+  const user = useContext(UserContext);
+  const big_obj = {};
+  const childRef = useRef();
 
   useEffect(() => {
-    // const answerData-D2323-1-1 ? answerData-D2322-1-1 : '';
+    // const survey1Data-+{user.ID}+-1-1 ? answerData-D2322-1-1 : '';
   }, []);
 
-  const handleNext = () => {
+  const buildObject = (formData) => {
+    console.log(formData);
+    big_obj.push(formData);
+  };
+  const handleNext = (activeStep) => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    // call child fuction from here
+    childRef.current.savePagedata();
     //save object
     // sessionStorage.setItem('answerData-D2322-1-1', JSON.stringify(pageData));
     // sessionStorage.setItem('answerData-D2322-1-2', JSON.stringify(pageData));
@@ -78,6 +94,8 @@ const SurveyPage = ({ match }) => {
           <Sct
             key={'survey-' + ivSurvey.step}
             questData={ivSurvey.surveyData}
+            ref={childRef}
+            // onObjectChange={(obj) => handleNext(obj)}
           />
         );
       case 'LIKERT_MATRIX_SURVEY':
@@ -136,11 +154,17 @@ const SurveyPage = ({ match }) => {
               ) : (
                 <div></div>
               )}
-              <Button variant='contained' color='primary' onClick={handleNext}>
-                {activeStep === IV_Surveys.length - 1
-                  ? 'Finish'
-                  : 'Submit & Proceed'}
-              </Button>
+              {
+                <Button
+                  variant='contained'
+                  color='primary'
+                  onClick={handleNext}
+                >
+                  {activeStep === IV_Surveys.length - 1
+                    ? 'Finish'
+                    : 'Submit & Proceed'}
+                </Button>
+              }
             </div>
           </>
         )}
