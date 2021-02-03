@@ -54,21 +54,13 @@ const SurveyPage = ({ match }) => {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const user = useContext(UserContext);
-  const big_obj = {};
-  const childRef = useRef();
 
-  useEffect(() => {
-    // const survey1Data-+{user.ID}+-1-1 ? answerData-D2322-1-1 : '';
-  }, []);
+  // useEffect(() => {
+  //   // const survey1Data-+{user.ID}+-1-1 ? answerData-D2322-1-1 : '';
+  // }, []);
 
-  const buildObject = (formData) => {
-    console.log(formData);
-    big_obj.push(formData);
-  };
   const handleNext = (activeStep) => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    // call child fuction from here
-    childRef.current.savePagedata();
     //save object
     // sessionStorage.setItem('answerData-D2322-1-1', JSON.stringify(pageData));
     // sessionStorage.setItem('answerData-D2322-1-2', JSON.stringify(pageData));
@@ -94,7 +86,6 @@ const SurveyPage = ({ match }) => {
           <Sct
             key={'survey-' + ivSurvey.step}
             questData={ivSurvey.surveyData}
-            ref={childRef}
             // onObjectChange={(obj) => handleNext(obj)}
           />
         );

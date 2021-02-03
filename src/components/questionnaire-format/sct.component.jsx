@@ -2,7 +2,6 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import QNA from '../question-type/qna.component';
 import QNRadio from '../question-type/qnradio.component';
-import { forwardRef, useRef, useImperativeHandle } from 'react';
 
 const useStyles = makeStyles({
   root: {},
@@ -32,20 +31,19 @@ const renderSwitch = (question) => {
       return <div>Survey Type is Invalid</div>;
   }
 };
-const savePagedata = () => {
-  localStorage.setItem('SCT', survey1Data);
-};
+
 const saveAnswer = (answer, id) => {
   //save this answer in a big page object which will be saved in session storage on submit button
   console.log(answer);
   console.log(id);
   // survey1Data.push({ id: answer });
   survey1Data[id] = answer;
+  localStorage.setItem('SCT', JSON.stringify(survey1Data));
   // pageData.push(new Answer)
   // var pageData = {1 : 'khsdkaksjhdkash', 2: 'jhsgdjasg'};
 };
 
-const Sct = ({ questData }, ref) => {
+const Sct = ({ questData }) => {
   const classes = useStyles();
 
   return (
