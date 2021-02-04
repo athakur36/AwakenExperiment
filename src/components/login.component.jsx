@@ -1,44 +1,46 @@
-import React from "react";
-import { withRouter } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
-import { Button, TextField, Card, CardContent } from "@material-ui/core";
-import * as Colors from "../constants/colors";
-import firebase from "../firebase/firebase.utils";
+import React from 'react';
+import { withRouter } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core/styles';
+import { Button, TextField, Card, CardContent } from '@material-ui/core';
+import * as Colors from '../constants/colors';
+import firebase from '../firebase/firebase.utils';
+import { useContext } from 'react';
+import { UserContext } from './../constants/context.component';
 
 const useStyles = makeStyles({
   card: {
     minWidth: 500,
     minHeight: 350,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   cardContent: {
     minWidth: 500,
     minHeight: 300,
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-between",
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
   },
   loginTitle: {
     fontSize: 24,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     color: Colors.PRIMARY,
   },
   login: {
-    width: "100%",
+    width: '100%',
   },
   error: {
-    color: "red",
-    fontSize: "20px",
-    fontWeight: "600",
+    color: 'red',
+    fontSize: '20px',
+    fontWeight: '600',
   },
 });
 
 const Login = ({ history, match }) => {
   const classes = useStyles();
-
-  const [userId, setUserId] = React.useState("");
+  const user = useContext(UserContext);
+  const [userId, setUserId] = React.useState('');
   const [showUserLoginError, setShowUserLoginError] = React.useState(false);
   const [
     showUserDuplicateLoginError,
@@ -50,14 +52,15 @@ const Login = ({ history, match }) => {
   };
 
   const checkUserValidity = () => {
-    const dbRef = firebase.database().ref("users/" + userId);
-    console.log("users/" + userId);
+    const dbRef = firebase.database().ref('users/' + userId);
+    console.log('users/' + userId);
 
-    dbRef.once("value").then(function (snapshot) {
+    dbRef.once('value').then(function (snapshot) {
       var doesIDExist = snapshot.exists();
       console.log(doesIDExist);
       if (doesIDExist == true) {
         setShowUserLoginError(false);
+        user.userID = userId;
         history.push(`/survey/${userId}`);
       } else {
         setShowUserLoginError(true);
@@ -79,10 +82,10 @@ const Login = ({ history, match }) => {
           <TextField
             fullWidth
             required
-            label="User ID"
-            margin="normal"
-            type="text"
-            variant="outlined"
+            label='User ID'
+            margin='normal'
+            type='text'
+            variant='outlined'
             onChange={handleUserIdChange}
             value={userId}
           />
@@ -96,10 +99,10 @@ const Login = ({ history, match }) => {
           )}
           <Button
             className={classes.login}
-            color="primary"
-            size="large"
-            type="submit"
-            variant="contained"
+            color='primary'
+            size='large'
+            type='submit'
+            variant='contained'
             onClick={onLoginClicked}
           >
             Log In

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { withRouter } from 'react-router-dom';
@@ -9,6 +9,10 @@ import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
+import { useContext } from 'react';
+import { UserContext } from './../constants/context.component';
+import firebase from "../firebase/firebase.utils";
+
 
 const useStyles = makeStyles((theme) => ({
   surveyRoot: {
@@ -46,24 +50,31 @@ const useStyles = makeStyles((theme) => ({
 const SurveyPage = ({ match }) => {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
+  const user = useContext(UserContext);
 
-  useEffect(() => {
-    // const answerData-D2323-1-1 ? answerData-D2322-1-1 : '';
-  }, []);
+  let urlElements = window.location.href.split('/');
+  let userID = (urlElements[4]);
+  const dbRef = firebase.database().ref("users/" + userID);
 
-  const handleNext = () => {
+  const pushDataToDatabase = (freeResponse, multipleChoice) => {
+    // Push user answers into database on finish
+    if (activeStep === IV_Surveys.length - 1) {
+      dbRef.child("Part1ResponseShortAnswer").set(freeResponse);
+      dbRef.child("Part1ResponseMC").set(multipleChoice);
+      console.log("Successfully submitted!")
+    }
+  }
+
+
+  const handleNext = (activeStep) => {
+    let Part1FreeResponse = localStorage.getItem('Part1FreeResponse');
+    let Part1MC = localStorage.getItem('Part1MC');
+
+    console.log("Local Storage:" + Part1FreeResponse);
+    console.log("Local Storage:" + Part1MC);
+
+    pushDataToDatabase(Part1FreeResponse, Part1MC);
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    //save object
-    // sessionStorage.setItem('answerData-D2322-1-1', JSON.stringify(pageData));
-    // sessionStorage.setItem('answerData-D2322-1-2', JSON.stringify(pageData));
-    // sessionStorage.setItem('answerData-D2322-1-3', JSON.stringify(pageData));
-    // sessionStorage.setItem('answerData-D2322-1-4', JSON.stringify(pageData));
-    // sessionStorage.setItem('pageData-D2322-2-1', JSON.stringify(pageData));
-    // sessionStorage.setItem('pageData-D2322-2-2', JSON.stringify(pageData));
-    // sessionStorage.setItem('pageData-D2322-2-3', JSON.stringify(pageData));
-    // sessionStorage.setItem('pageData-D2322-2-4', JSON.stringify(pageData));
-    // sessionStorage.setItem('pageData-D2322-2-5', JSON.stringify(pageData));
-    // var obj = JSON.parse(sessionStorage.page1Data);
   };
 
   const handleBack = () => {
@@ -122,28 +133,34 @@ const SurveyPage = ({ match }) => {
             </Link>
           </div>
         ) : (
-          <>
-            {renderSwitch(activeStep)}
-            <div className={classes.buttons}>
-              {activeStep !== 0 ? (
-                <Button
-                  variant='contained'
-                  color='primary'
-                  onClick={handleBack}
-                >
-                  Back
-                </Button>
-              ) : (
-                <div></div>
-              )}
-              <Button variant='contained' color='primary' onClick={handleNext}>
-                {activeStep === IV_Surveys.length - 1
-                  ? 'Finish'
-                  : 'Submit & Proceed'}
-              </Button>
-            </div>
-          </>
-        )}
+            <>
+              {renderSwitch(activeStep)}
+              <div className={classes.buttons}>
+                {activeStep !== 0 ? (
+                  <Button
+                    variant='contained'
+                    color='primary'
+                    onClick={handleBack}
+                  >
+                    Back
+                  </Button>
+                ) : (
+                    <div></div>
+                  )}
+                {
+                  <Button
+                    variant='contained'
+                    color='primary'
+                    onClick={handleNext}
+                  >
+                    {activeStep === IV_Surveys.length - 1
+                      ? 'Finish'
+                      : 'Submit & Proceed'}
+                  </Button>
+                }
+              </div>
+            </>
+          )}
       </div>
     </div>
   );

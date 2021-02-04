@@ -8,12 +8,14 @@ export const UserProvider = ({ children }) => {
   );
   const [vaccineAttitude] = useState(1);
   const [commentType] = useState(0);
+  const [userID] = useState();
   return (
     <UserContext.Provider
       value={{
         experimentCondition,
         vaccineAttitude,
         commentType,
+        userID,
       }}
     >
       {children}
