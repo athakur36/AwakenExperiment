@@ -33,25 +33,41 @@ export const IV_Surveys = [
   },
   {
     surveyData: {
-      intro: `asoidhashneed to write an essay
-            for each: completing the sentence with some 4-12 words is enough.`,
+      intro: `Please select the option which appears closest to your answer.`,
       questions: [
-        { text: 'I am not a worrier', type: 'RADIO', scale: 5 },
+        {
+          text: 'I am not a worrier',
+          type: 'RADIO',
+          scale: 5,
+          id: '2-1',
+        },
         {
           text: 'At times I feel bitter and resentful',
           type: 'RADIO',
           scale: 5,
+          id: '2-2',
         },
-        { text: 'I am not a worrier', type: 'RADIO', scale: 5 },
+        {
+          text: 'I am not a worrier',
+          type: 'RADIO',
+          scale: 5,
+          id: '2-3',
+        },
         {
           text: 'At times I feel bitter and resentful',
           type: 'RADIO',
           scale: 5,
+          id: '2-4',
         },
-        { text: 'I am not a worrier', type: 'RADIO', scale: 5 },
+        {
+          text: 'I am not a worrier',
+          type: 'RADIO',
+          scale: 5,
+          id: '2-5',
+        },
       ],
     },
-    surveyType: 'SCT_SURVEY',
+    surveyType: 'LIKERT_MATRIX_SURVEY',
     step: 2,
   },
   {
@@ -59,7 +75,7 @@ export const IV_Surveys = [
       intro: `Please select the option which appears closest to your answer`,
       questions: [
         {
-          text: 'In most ways my life is close to ideal',
+          text: 'In most ways my life is close to ideal', type: 'RADIO', scale: 5,
           type: 'RADIO_MATRIX',
           id: '3-1',
         },
@@ -116,6 +132,6 @@ export const IV_Surveys = [
       ],
     },
     surveyType: 'LIKERT_MATRIX_SURVEY',
-    step: 3,
+    step: 4,
   },
 ];

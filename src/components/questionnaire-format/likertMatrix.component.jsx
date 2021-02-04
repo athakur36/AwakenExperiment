@@ -36,12 +36,29 @@ const useStyles = makeStyles({
   },
 });
 
+const surveyMCData = {};
+
 const LikertMatrix = ({ questData }) => {
   const classes = useStyles();
-  const [selectedValue, setSelectedValue] = React.useState('a');
+  const [selectedValue, setSelectedValue] = React.useState('');
+
+  const saveAnswer = (answer, id) => {
+    // Test printing to see output on console. Can delete.
+    console.log(answer);
+    console.log(id);
+
+    // Make key-value pairs in dictionary, id is question.id from IV-Surveys-Data.js.
+    // answer is event value.
+    surveyMCData[id] = answer;
+    console.log(surveyMCData);
+
+    // store into localStorage.
+    localStorage.setItem('Part1MC', JSON.stringify(surveyMCData));
+  };
 
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
+    saveAnswer(event.target.value, event.target.id);
   };
 
   return (
@@ -67,7 +84,8 @@ const LikertMatrix = ({ questData }) => {
               <Radio
                 color='primary'
                 onChange={handleChange}
-                value='a'
+                value='1'
+                id={question.id}
                 name='radio-button-demo'
                 inputProps={{ 'aria-label': 'A' }}
               />
@@ -76,7 +94,8 @@ const LikertMatrix = ({ questData }) => {
               <Radio
                 color='primary'
                 onChange={handleChange}
-                value='b'
+                value='2'
+                id={question.id}
                 name='radio-button-demo'
                 inputProps={{ 'aria-label': 'B' }}
               />
@@ -85,7 +104,8 @@ const LikertMatrix = ({ questData }) => {
               <Radio
                 color='primary'
                 onChange={handleChange}
-                value='c'
+                value='3'
+                id={question.id}
                 name='radio-button-demo'
                 inputProps={{ 'aria-label': 'C' }}
               />
@@ -94,7 +114,8 @@ const LikertMatrix = ({ questData }) => {
               <Radio
                 color='primary'
                 onChange={handleChange}
-                value='d'
+                value='4'
+                id={question.id}
                 name='radio-button-demo'
                 inputProps={{ 'aria-label': 'D' }}
               />
@@ -103,7 +124,8 @@ const LikertMatrix = ({ questData }) => {
               <Radio
                 color='primary'
                 onChange={handleChange}
-                value='e'
+                value='5'
+                id={question.id}
                 name='radio-button-demo'
                 inputProps={{ 'aria-label': 'E' }}
               />

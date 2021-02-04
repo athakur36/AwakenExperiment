@@ -13,6 +13,7 @@ const useStyles = makeStyles({
     marginBottom: '150px',
   },
 });
+
 // pass the survey1data to parent
 const survey1Data = {};
 
@@ -35,12 +36,10 @@ const renderSwitch = (question) => {
 const saveAnswer = (answer, id) => {
   //save this answer in a big page object which will be saved in session storage on submit button
   console.log(answer);
-  console.log(id);
-  // survey1Data.push({ id: answer });
+
   survey1Data[id] = answer;
-  localStorage.setItem('SCT', JSON.stringify(survey1Data));
-  // pageData.push(new Answer)
-  // var pageData = {1 : 'khsdkaksjhdkash', 2: 'jhsgdjasg'};
+  localStorage.setItem('Part1FreeResponse', JSON.stringify(survey1Data));
+
 };
 
 const Sct = ({ questData }) => {
