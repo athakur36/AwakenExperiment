@@ -11,8 +11,7 @@ import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import { useContext } from 'react';
 import { UserContext } from './../constants/context.component';
-import firebase from "../firebase/firebase.utils";
-
+import firebase from '../firebase/firebase.utils';
 
 const useStyles = makeStyles((theme) => ({
   surveyRoot: {
@@ -53,27 +52,37 @@ const SurveyPage = ({ match }) => {
   const user = useContext(UserContext);
 
   let urlElements = window.location.href.split('/');
-  let userID = (urlElements[4]);
-  const dbRef = firebase.database().ref("users/" + userID);
+  let userID = urlElements[4];
+  const dbRef = firebase.database().ref('users/' + userID);
 
-  const pushDataToDatabase = (freeResponse, multipleChoice) => {
+  const pushDataToDatabase = (Survey1, Survey2, Survey3, Survey4) => {
+    // const vaccine_attitude= sumValues(Survey4)
+    // const vaccine_attitude = (obj) =>
+    //   Object.values(Survey4).reduce((a, b) => a + b);
+    // console.log(vaccine_attitude);
     // Push user answers into database on finish
     if (activeStep === IV_Surveys.length - 1) {
-      dbRef.child("Part1ResponseShortAnswer").set(freeResponse);
-      dbRef.child("Part1ResponseMC").set(multipleChoice);
-      console.log("Successfully submitted!")
+      // compute vaccine attitue and push data to db
+      console.log('Pushing data to the firebase');
+      dbRef.child('Survey1').set(Survey1);
+      dbRef.child('Survey2').set(Survey2);
+      dbRef.child('Survey3').set(Survey3);
+      dbRef.child('Survey4').set(Survey4);
+      console.log('Successfully submitted!');
     }
-  }
-
+  };
 
   const handleNext = (activeStep) => {
-    let Part1FreeResponse = localStorage.getItem('Part1FreeResponse');
-    let Part1MC = localStorage.getItem('Part1MC');
+    let Survey1 = localStorage.getItem('Part1FreeResponse');
+    let Survey2 = localStorage.getItem('Survey2');
+    let Survey3 = localStorage.getItem('Survey3');
+    let Survey4 = localStorage.getItem('Survey4');
 
-    console.log("Local Storage:" + Part1FreeResponse);
-    console.log("Local Storage:" + Part1MC);
+    console.log(activeStep);
+    console.log('IV_Surveys.length:' + IV_Surveys.length);
 
-    pushDataToDatabase(Part1FreeResponse, Part1MC);
+    pushDataToDatabase(Survey1, Survey2, Survey3, Survey4);
+
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
@@ -133,34 +142,34 @@ const SurveyPage = ({ match }) => {
             </Link>
           </div>
         ) : (
-            <>
-              {renderSwitch(activeStep)}
-              <div className={classes.buttons}>
-                {activeStep !== 0 ? (
-                  <Button
-                    variant='contained'
-                    color='primary'
-                    onClick={handleBack}
-                  >
-                    Back
-                  </Button>
-                ) : (
-                    <div></div>
-                  )}
-                {
-                  <Button
-                    variant='contained'
-                    color='primary'
-                    onClick={handleNext}
-                  >
-                    {activeStep === IV_Surveys.length - 1
-                      ? 'Finish'
-                      : 'Submit & Proceed'}
-                  </Button>
-                }
-              </div>
-            </>
-          )}
+          <>
+            {renderSwitch(activeStep)}
+            <div className={classes.buttons}>
+              {activeStep !== 0 ? (
+                <Button
+                  variant='contained'
+                  color='primary'
+                  onClick={handleBack}
+                >
+                  Back
+                </Button>
+              ) : (
+                <div></div>
+              )}
+              {
+                <Button
+                  variant='contained'
+                  color='primary'
+                  onClick={handleNext}
+                >
+                  {activeStep === IV_Surveys.length - 1
+                    ? 'Finish'
+                    : 'Submit & Proceed'}
+                </Button>
+              }
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
