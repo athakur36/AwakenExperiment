@@ -36,7 +36,9 @@ const useStyles = makeStyles({
   },
 });
 
-const surveyMCData = {};
+const survey2Data = {};
+const survey3Data = {};
+const survey4Data = {};
 
 const LikertMatrix = ({ questData }) => {
   const classes = useStyles();
@@ -45,15 +47,21 @@ const LikertMatrix = ({ questData }) => {
   const saveAnswer = (answer, id) => {
     // Test printing to see output on console. Can delete.
     console.log(answer);
-    console.log(id);
+    console.log('id is: ' + id);
 
     // Make key-value pairs in dictionary, id is question.id from IV-Surveys-Data.js.
     // answer is event value.
-    surveyMCData[id] = answer;
-    console.log(surveyMCData);
-
-    // store into localStorage.
-    localStorage.setItem('Part1MC', JSON.stringify(surveyMCData));
+    // store into localStorage in the corrosponding survey object
+    if (id.startsWith('2')) {
+      survey2Data[id] = answer;
+      localStorage.setItem('Survey2', JSON.stringify(survey2Data));
+    } else if (id.startsWith('3-')) {
+      survey3Data[id] = answer;
+      localStorage.setItem('Survey3', JSON.stringify(survey3Data));
+    } else if (id.startsWith('4-')) {
+      survey4Data[id] = answer;
+      localStorage.setItem('Survey4', JSON.stringify(survey4Data));
+    }
   };
 
   const handleChange = (event) => {
