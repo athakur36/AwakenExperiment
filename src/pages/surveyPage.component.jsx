@@ -61,11 +61,15 @@ const SurveyPage = ({ match }) => {
     //   Object.values(Survey4).reduce((a, b) => a + b);
     // console.log(vaccine_attitude);
     // Push user answers into database on finish
-    dbRef.child('Survey1').set(Survey1);
-    dbRef.child('Survey2').set(Survey2);
-    dbRef.child('Survey3').set(Survey3);
-    dbRef.child('Survey4').set(Survey4);
-    console.log('Successfully submitted!');
+    if (activeStep === IV_Surveys.length - 1) {
+      // compute vaccine attitue and push data to db
+      console.log('Pushing data to the firebase');
+      dbRef.child('Survey1').set(Survey1);
+      dbRef.child('Survey2').set(Survey2);
+      dbRef.child('Survey3').set(Survey3);
+      dbRef.child('Survey4').set(Survey4);
+      console.log('Successfully submitted!');
+    }
   };
 
   const handleNext = (activeStep) => {
@@ -76,11 +80,8 @@ const SurveyPage = ({ match }) => {
 
     console.log(activeStep);
     console.log('IV_Surveys.length:' + IV_Surveys.length);
-    if (activeStep === IV_Surveys.length - 1) {
-      // compute vaccine attitue and push data to db
-      console.log('Pushing data to the firebase');
-      pushDataToDatabase(Survey1, Survey2, Survey3, Survey4);
-    }
+
+    pushDataToDatabase(Survey1, Survey2, Survey3, Survey4);
 
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
