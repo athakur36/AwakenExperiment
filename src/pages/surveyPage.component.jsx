@@ -55,12 +55,7 @@ const SurveyPage = ({ match }) => {
   let userID = urlElements[4];
   const dbRef = firebase.database().ref('users/' + userID);
 
-  const pushDataToDatabase = () => {
-    let Survey1 = localStorage.getItem('Part1FreeResponse');
-    let Survey2 = localStorage.getItem('Survey2');
-    let Survey3 = localStorage.getItem('Survey3');
-    let Survey4 = localStorage.getItem('Survey4');
-
+  const pushDataToDatabase = (Survey1, Survey2, Survey3, Survey4) => {
     // const vaccine_attitude= sumValues(Survey4)
     // const vaccine_attitude = (obj) =>
     //   Object.values(Survey4).reduce((a, b) => a + b);
@@ -74,12 +69,17 @@ const SurveyPage = ({ match }) => {
   };
 
   const handleNext = (activeStep) => {
-    console.log('current active step:' + activeStep);
+    let Survey1 = localStorage.getItem('Part1FreeResponse');
+    let Survey2 = localStorage.getItem('Survey2');
+    let Survey3 = localStorage.getItem('Survey3');
+    let Survey4 = localStorage.getItem('Survey4');
+
+    console.log(activeStep);
     console.log('IV_Surveys.length:' + IV_Surveys.length);
     if (activeStep === IV_Surveys.length - 1) {
       // compute vaccine attitue and push data to db
       console.log('Pushing data to the firebase');
-      pushDataToDatabase();
+      pushDataToDatabase(Survey1, Survey2, Survey3, Survey4);
     }
 
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
