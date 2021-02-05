@@ -13,8 +13,6 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DVRadio from '../components/dv/dvRadio.component';
-import { useContext } from 'react';
-import { UserContext } from './../constants/context.component';
 
 const useStyles = makeStyles((theme) => ({
   experimentsRoot: {
@@ -54,7 +52,9 @@ const ExperimentsPage = () => {
   const [activeStep, setActiveStep] = React.useState(0);
   const [open, setOpen] = React.useState(false);
   const dvSurvey = DV_Survey[0];
-  const user = useContext(UserContext);
+  const experimentCondition = JSON.parse(
+    localStorage.getItem('experiment_condition')
+  );
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -87,7 +87,7 @@ const ExperimentsPage = () => {
 
   return (
     <div className={classes.experimentsRoot}>
-      #console.log({user.experimentCondition})
+      #console.log({experimentCondition})
       <div className={classes.experimentsHeader}>STUDY PART 2</div>
       <Stepper activeStep={activeStep}>
         {[1, 2, 3, 4].map((stepNumber, index) => {

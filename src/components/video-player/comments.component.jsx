@@ -11,8 +11,6 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { makeStyles } from '@material-ui/core/styles';
 import { IconButton } from '@material-ui/core';
 import { ThumbUp, ThumbDown } from '@material-ui/icons';
-import { useContext } from 'react';
-import { UserContext } from './../../constants/context.component';
 
 const useStyles = makeStyles({
   NameWrapper: {
@@ -123,16 +121,11 @@ const vaccinecommentsArray_anti = [
 ];
 
 const Comments = () => {
-  const [comment, setComment] = useState('test comment');
   const classes = useStyles();
   const commentType = JSON.parse(localStorage.getItem('commentType'));
 
   const handleActiveReaction = (icon) => {
     // toggle like-dislike button and save to firebase
-  };
-
-  const handleChange = (event) => {
-    setComment(event.target.value);
   };
 
   const handleSubmit = (event) => {
