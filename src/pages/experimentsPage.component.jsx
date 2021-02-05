@@ -15,6 +15,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import DVRadio from '../components/dv/dvRadio.component';
 import { useContext } from 'react';
 import { UserContext } from './../constants/context.component';
+import firebase from '../firebase/firebase.utils';
 
 const useStyles = makeStyles((theme) => ({
   experimentsRoot: {
@@ -56,13 +57,34 @@ const ExperimentsPage = () => {
   const dvSurvey = DV_Survey[0];
   const user = useContext(UserContext);
 
+  let urlElements = window.location.href.split('/');
+  let userID = urlElements[4];
+  const dbRef = firebase.database().ref('users/' + userID);
+
+  const pushDataToDatabase = (VideoReactionData) => {
+    // const vaccine_attitude= sumValues(Survey4)
+    // const vaccine_attitude = (obj) =>
+    //   Object.values(Survey4).reduce((a, b) => a + b);
+    // console.log(vaccine_attitude);
+    // Push user answers into database on finish
+    //if (activeStep === IV_Surveys.length - 1) {
+      // compute vaccine attitue and push data to db
+    console.log('Pushing data to the firebase');
+    dbRef.child('VideoReactionData').set(VideoReactionData);
+    console.log('Successfully submitted!');
+    //}
+  };
+
   const handleClickOpen = () => {
     setOpen(true);
   };
 
   const handleClose = () => {
     setOpen(false);
+
     // Save the DV measurements in the firebase including the condition information (pro or counter)
+    let VideoReactionData = localStorage.getItem('VideoReactionData');
+    pushDataToDatabase(VideoReactionData);
   };
 
   const handleNext = () => {
