@@ -54,9 +54,9 @@ const ExperimentsPage = () => {
   const [open, setOpen] = React.useState(false);
   const dvSurvey = DV_Survey[0];
 
-  let urlElements = window.location.href.split('/');
-  let userID = urlElements[4];
-  const dbRef = firebase.database().ref('users/' + userID);
+  const dbRef = firebase
+    .database()
+    .ref('users/' + JSON.parse(localStorage.getItem('userID')));
   const experimentCondition = JSON.parse(
     localStorage.getItem('experiment_condition')
   );

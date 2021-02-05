@@ -55,8 +55,10 @@ const Login = ({ history, match }) => {
     dbRef.once('value').then(function (snapshot) {
       var doesIDExist = snapshot.exists();
       console.log(doesIDExist);
-      if (doesIDExist == true) {
+      if (doesIDExist === true) {
         setShowUserLoginError(false);
+        console.log(userId);
+        localStorage.setItem('userID', JSON.stringify(userId));
         history.push(`/survey/${userId}`);
       } else {
         setShowUserLoginError(true);

@@ -48,9 +48,9 @@ const SurveyPage = ({ match }) => {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
 
-  let urlElements = window.location.href.split('/');
-  let userID = urlElements[4];
-  const dbRef = firebase.database().ref('users/' + userID);
+  const dbRef = firebase
+    .database()
+    .ref('users/' + JSON.parse(localStorage.getItem('userID')));
 
   const pushDataToDatabase = (Survey1, Survey2, Survey3, Survey4) => {
     // Push user answers into database on finish
