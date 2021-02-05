@@ -46,8 +46,8 @@ const LikertMatrix = ({ questData }) => {
 
   const saveAnswer = (answer, id) => {
     // Test printing to see output on console. Can delete.
-    console.log(answer);
-    console.log('id is: ' + id);
+    //console.log(answer);
+    //console.log('id is: ' + id);
 
     // Make key-value pairs in dictionary, id is question.id from IV-Surveys-Data.js.
     // answer is event value.
