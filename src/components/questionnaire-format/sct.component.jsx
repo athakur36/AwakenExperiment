@@ -35,11 +35,10 @@ const renderSwitch = (question) => {
 
 const saveAnswer = (answer, id) => {
   //save this answer in a big page object which will be saved in session storage on submit button
-  console.log(answer);
+  //console.log(answer);
 
   survey1Data[id] = answer;
   localStorage.setItem('Part1FreeResponse', JSON.stringify(survey1Data));
-
 };
 
 const Sct = ({ questData }) => {
