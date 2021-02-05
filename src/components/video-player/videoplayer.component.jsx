@@ -3,8 +3,6 @@ import ReactPlayer from 'react-player';
 import NewComment from './comments.component';
 import VideoReactions from './reactions.component';
 import { makeStyles } from '@material-ui/core/styles';
-import { useContext } from 'react';
-import { UserContext } from './../../constants/context.component';
 
 const useStyles = makeStyles({
   root: {

@@ -13,8 +13,6 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DVRadio from '../components/dv/dvRadio.component';
-import { useContext } from 'react';
-import { UserContext } from './../constants/context.component';
 import firebase from '../firebase/firebase.utils';
 
 const useStyles = makeStyles((theme) => ({
@@ -55,7 +53,13 @@ const ExperimentsPage = () => {
   const [activeStep, setActiveStep] = React.useState(0);
   const [open, setOpen] = React.useState(false);
   const dvSurvey = DV_Survey[0];
-  const user = useContext(UserContext);
+
+  const dbRef = firebase
+    .database()
+    .ref('users/' + JSON.parse(localStorage.getItem('userID')));
+  const experimentCondition = JSON.parse(
+    localStorage.getItem('experiment_condition')
+  );
 
   let urlElements = window.location.href.split('/');
   let userID = urlElements[4];
@@ -81,7 +85,7 @@ const ExperimentsPage = () => {
 
   const handleClose = () => {
     setOpen(false);
-
+    dbRef.child('commentType').set(localStorage.getItem('commentType'));
     // Save the DV measurements in the firebase including the condition information (pro or counter)
     let VideoReactionData = localStorage.getItem('VideoReactionData');
     pushDataToDatabase(VideoReactionData);
@@ -109,7 +113,7 @@ const ExperimentsPage = () => {
 
   return (
     <div className={classes.experimentsRoot}>
-      #console.log({user.experimentCondition})
+      #console.log({experimentCondition})
       <div className={classes.experimentsHeader}>STUDY PART 2</div>
       <Stepper activeStep={activeStep}>
         {[1, 2, 3, 4].map((stepNumber, index) => {

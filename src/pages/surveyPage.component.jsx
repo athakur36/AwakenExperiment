@@ -9,8 +9,6 @@ import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
-import { useContext } from 'react';
-import { UserContext } from './../constants/context.component';
 import firebase from '../firebase/firebase.utils';
 
 const useStyles = makeStyles((theme) => ({
@@ -49,11 +47,10 @@ const useStyles = makeStyles((theme) => ({
 const SurveyPage = ({ match }) => {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
-  const user = useContext(UserContext);
 
-  let urlElements = window.location.href.split('/');
-  let userID = urlElements[4];
-  const dbRef = firebase.database().ref('users/' + userID);
+  const dbRef = firebase
+    .database()
+    .ref('users/' + JSON.parse(localStorage.getItem('userID')));
 
   const pushDataToDatabase = (Survey1, Survey2, Survey3, Survey4) => {
     // Push user answers into database on finish
@@ -78,12 +75,17 @@ const SurveyPage = ({ match }) => {
         sum += parseFloat(Survey4[el]);
       }
     }
-    vaccine_attitude = sum / 4 >= 3 ? 1 : 0;
+    // vaccine attitude(pro: 0, anti: 1)
+    vaccine_attitude = sum / 4 >= 3 ? 0 : 1;
     localStorage.setItem('vaccine_attitude', JSON.stringify(vaccine_attitude));
     localStorage.setItem(
       'experiment_condition',
       JSON.stringify(experimentCondition)
     );
+
+    // pushing the vaccine_attitude and condition to firebase
+    dbRef.child('vaccine_attitude').set(vaccine_attitude);
+    dbRef.child('experiment_condition').set(experimentCondition);
     console.log(vaccine_attitude);
     console.log(typeof Survey4);
   };

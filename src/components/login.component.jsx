@@ -4,8 +4,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Button, TextField, Card, CardContent } from '@material-ui/core';
 import * as Colors from '../constants/colors';
 import firebase from '../firebase/firebase.utils';
-import { useContext } from 'react';
-import { UserContext } from './../constants/context.component';
 
 const useStyles = makeStyles({
   card: {
@@ -39,7 +37,6 @@ const useStyles = makeStyles({
 
 const Login = ({ history, match }) => {
   const classes = useStyles();
-  const user = useContext(UserContext);
   const [userId, setUserId] = React.useState('');
   const [showUserLoginError, setShowUserLoginError] = React.useState(false);
   const [
@@ -58,9 +55,10 @@ const Login = ({ history, match }) => {
     dbRef.once('value').then(function (snapshot) {
       var doesIDExist = snapshot.exists();
       console.log(doesIDExist);
-      if (doesIDExist == true) {
+      if (doesIDExist === true) {
         setShowUserLoginError(false);
-        user.userID = userId;
+        console.log(userId);
+        localStorage.setItem('userID', JSON.stringify(userId));
         history.push(`/survey/${userId}`);
       } else {
         setShowUserLoginError(true);

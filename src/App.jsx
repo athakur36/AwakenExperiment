@@ -6,6 +6,7 @@ import Header from './components/header.component';
 import HomePage from './pages/homePage.component';
 import SurveyPage from './pages/surveyPage.component';
 import ExperimentsPage from './pages/experimentsPage.component';
+import DashboardPage from './pages/dashboardPage.component';
 
 const useStyles = makeStyles({
   appBody: {
@@ -31,6 +32,7 @@ function App() {
           <Route exact path='/survey' component={SurveyPage} />
           <Route path='/survey/:id' component={SurveyPage} />
           <Route exact path='/experiments' component={ExperimentsPage} />
+          <Route exact path='/dashboard' component={DashboardPage} />
         </Switch>
       </div>
     </>
