@@ -53,11 +53,14 @@ const useStyles = makeStyles({
 
 const VideoPlayer = () => {
   const classes = useStyles();
-  const user = useContext(UserContext);
-  console.log(user.experimentCondition);
-  if (user.experimentCondition === 0) {
-    if (user.vaccineAttitude === 0) {
-      user.commentType = 0; //show pro vaccine comments
+  const experimentCondition = JSON.parse(
+    localStorage.getItem('experiment_condition')
+  );
+  const vaccineAttitude = JSON.parse(localStorage.getItem('vaccine_attitude'));
+  console.log(experimentCondition);
+  if (experimentCondition === 0) {
+    if (vaccineAttitude === 0) {
+      localStorage.setItem('commentType', JSON.stringify(0)); //show pro vaccine comments
       // show participant pro attitudinal vaccine video as participant is pro-vaccine
       return (
         <div className={classes.root}>
@@ -84,7 +87,7 @@ const VideoPlayer = () => {
         </div>
       );
     } else {
-      user.commentType = 1; //show anti vaccine comments
+      localStorage.setItem('commentType', JSON.stringify(1)); //show anti vaccine comments
       // show participant anti vaccine video as participant is anti vaccine
       return (
         <div className={classes.root}>
@@ -112,9 +115,9 @@ const VideoPlayer = () => {
       );
     }
   } else {
-    if (user.vaccineAttitude === 0) {
+    if (vaccineAttitude === 0) {
       // show participant anti vaccine video and comments as participant is pro-vaccine
-      user.commentType = 1;
+      localStorage.setItem('commentType', JSON.stringify(1));
       return (
         <div className={classes.root}>
           <h2 className={classes.title}> Chris Pratt on Trump </h2>
@@ -141,7 +144,7 @@ const VideoPlayer = () => {
       );
     } else {
       // show participant pro vaccine video and comments as participant is anti-vaccine
-      user.commentType = 0;
+      localStorage.setItem('commentType', JSON.stringify(0));
       return (
         <div className={classes.root}>
           <h2 className={classes.title}> Chris Pratt on Trump </h2>

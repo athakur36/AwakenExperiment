@@ -56,10 +56,6 @@ const SurveyPage = ({ match }) => {
   const dbRef = firebase.database().ref('users/' + userID);
 
   const pushDataToDatabase = (Survey1, Survey2, Survey3, Survey4) => {
-    // const vaccine_attitude= sumValues(Survey4)
-    // const vaccine_attitude = (obj) =>
-    //   Object.values(Survey4).reduce((a, b) => a + b);
-    // console.log(vaccine_attitude);
     // Push user answers into database on finish
     if (activeStep === IV_Surveys.length - 1) {
       // compute vaccine attitue and push data to db
@@ -71,7 +67,26 @@ const SurveyPage = ({ match }) => {
       console.log('Successfully submitted!');
     }
   };
-
+  const computeAttitudeandExpcondition = () => {
+    console.log('computing vaccine attitude');
+    let Survey4 = JSON.parse(localStorage.getItem('Survey4'));
+    let vaccine_attitude = 0;
+    let sum = 0;
+    const experimentCondition = Math.floor(Math.random() * Math.floor(2));
+    for (var el in Survey4) {
+      if (Survey4.hasOwnProperty(el)) {
+        sum += parseFloat(Survey4[el]);
+      }
+    }
+    vaccine_attitude = sum / 4 >= 3 ? 1 : 0;
+    localStorage.setItem('vaccine_attitude', JSON.stringify(vaccine_attitude));
+    localStorage.setItem(
+      'experiment_condition',
+      JSON.stringify(experimentCondition)
+    );
+    console.log(vaccine_attitude);
+    console.log(typeof Survey4);
+  };
   const handleNext = (activeStep) => {
     let Survey1 = localStorage.getItem('Part1FreeResponse');
     let Survey2 = localStorage.getItem('Survey2');
@@ -135,7 +150,7 @@ const SurveyPage = ({ match }) => {
               <Button
                 variant='contained'
                 color='primary'
-                onClick={() => console.log('proceed to experiments route')}
+                onClick={computeAttitudeandExpcondition}
               >
                 PROCEED TO PART 2
               </Button>

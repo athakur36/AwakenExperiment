@@ -125,7 +125,7 @@ const vaccinecommentsArray_anti = [
 const Comments = () => {
   const [comment, setComment] = useState('test comment');
   const classes = useStyles();
-  const user = useContext(UserContext);
+  const commentType = JSON.parse(localStorage.getItem('commentType'));
 
   const handleActiveReaction = (icon) => {
     // toggle like-dislike button and save to firebase
@@ -138,7 +138,7 @@ const Comments = () => {
   const handleSubmit = (event) => {
     // submit comment to firebase
   };
-  if (user.commentType === 0) {
+  if (parseInt(commentType) === 0) {
     return (
       <section>
         <form onSubmit={handleSubmit}>
