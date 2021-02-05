@@ -13,6 +13,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DVRadio from '../components/dv/dvRadio.component';
+import firebase from '../firebase/firebase.utils';
 
 const useStyles = makeStyles((theme) => ({
   experimentsRoot: {
@@ -52,6 +53,10 @@ const ExperimentsPage = () => {
   const [activeStep, setActiveStep] = React.useState(0);
   const [open, setOpen] = React.useState(false);
   const dvSurvey = DV_Survey[0];
+
+  let urlElements = window.location.href.split('/');
+  let userID = urlElements[4];
+  const dbRef = firebase.database().ref('users/' + userID);
   const experimentCondition = JSON.parse(
     localStorage.getItem('experiment_condition')
   );
@@ -62,6 +67,7 @@ const ExperimentsPage = () => {
 
   const handleClose = () => {
     setOpen(false);
+    dbRef.child('commentType').set(localStorage.getItem('commentType'));
     // Save the DV measurements in the firebase including the condition information (pro or counter)
   };
 
