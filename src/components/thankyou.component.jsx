@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Button, Card, CardContent } from '@material-ui/core';
 import * as Colors from '../constants/colors';
 import { Link } from 'react-router-dom';
-import { GraphPart1 } from '/Users/ww/Dropbox/AwakenExperimentRepository/AwakenExperiment/src/components/graphvis.component.jsx';
+import App from '/Users/ww/Dropbox/AwakenExperimentRepository/AwakenExperiment/src/components/graphvis.component.jsx';
 
 
 
@@ -34,25 +34,26 @@ const useStyles = makeStyles({
   },
 });
 
-const createdashboard = (GraphPart1) => {
-  const Survey1 = localStorage.getItem('Part1FreeResponse');
-  const Survey2 = localStorage.getItem('Survey2');
-  const Survey3 = localStorage.getItem('Survey3');
-  const Survey4 = localStorage.getItem('Survey4');
+
+const createdashboard = () => {
+  //const Survey1 = localStorage.getItem('Part1FreeResponse');
+  //const Survey2 = localStorage.getItem('Survey2');
+  //const Survey3 = localStorage.getItem('Survey3');
+  //const Survey4 = localStorage.getItem('Survey4');
   //const Graph2 = localStorage.getItem('GraphPart1');
 
   //console.log(Survey2)
 
 
-  return (<GraphPart1 />);
+  return (<App />);
   //console.log(GraphPart1)
   //setState({content: GraphPart1});
-  
+
   //document.getElementById('GraphPart1').style.display='block';
   //init(GraphPart1);
-  //GraphPart1.render();
-
-  
+  //App.render();
+  //https://canvasjs.com/forums/topic/rendering-a-chart-with-a-button-click/
+  //https://stackoverflow.com/questions/62519770/react-display-chart-when-button-is-clicked
 };
 
 
