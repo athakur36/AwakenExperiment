@@ -84,6 +84,7 @@ const ExperimentEnd = () => {
               type='submit'
               variant='contained'
               onClick={createdashboard}
+              
             >
               Go to Dashboard
             </Button>
