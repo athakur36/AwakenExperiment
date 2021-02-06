@@ -1,10 +1,17 @@
-/* App.js */
-var React = require('react');
-var Component = React.Component;
-var CanvasJSReact = require('./canvasjs.react');
-var CanvasJS = CanvasJSReact.CanvasJS;
+import React, { Component } from 'react';
+import CanvasJSReact from '/Users/ww/Dropbox/AwakenExperimentRepository/AwakenExperiment/src/components/canvasjs.react';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
-class App extends Component {
+var CanvasJS = CanvasJSReact.CanvasJS;
+ 
+class BarChart extends Component {
+	addSymbols(e){
+		var suffixes = ["", "K", "M", "B"];
+		var order = Math.max(Math.floor(Math.log(e.value) / Math.log(1000)), 0);
+		if(order > suffixes.length - 1)
+			order = suffixes.length - 1;
+		var suffix = suffixes[order];
+		return CanvasJS.formatNumber(e.value / Math.pow(1000, order)) + suffix;
+	}
 	render() {
 		const options = {
 			animationEnabled: true,
@@ -18,7 +25,6 @@ class App extends Component {
 			},
 			axisY: {
 				title: "Monthly Active Users",
-				includeZero: true,
 				labelFormatter: this.addSymbols
 			},
 			data: [{
@@ -34,22 +40,17 @@ class App extends Component {
 				]
 			}]
 		}
+		
 		return (
 		<div>
-			<CanvasJSChart options = {options}
-				/* onRef={ref => this.chart = ref} */
+			<h1>React Bar Chart</h1>
+			<CanvasJSChart options = {options} 
+				onRef={ref => this.chart = ref}
 			/>
 			{/*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart properties and methods*/}
 		</div>
 		);
 	}
-	addSymbols(e){
-		var suffixes = ["", "K", "M", "B"];
-		var order = Math.max(Math.floor(Math.log(e.value) / Math.log(1000)), 0);
-		if(order > suffixes.length - 1)
-			order = suffixes.length - 1;
-		var suffix = suffixes[order];
-		return CanvasJS.formatNumber(e.value / Math.pow(1000, order)) + suffix;
-	}
 }
-module.exports = App;  
+
+export default BarChart;

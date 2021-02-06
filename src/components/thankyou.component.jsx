@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Button, Card, CardContent } from '@material-ui/core';
 import * as Colors from '../constants/colors';
 import { Link } from 'react-router-dom';
-import App from '/Users/ww/Dropbox/AwakenExperimentRepository/AwakenExperiment/src/components/graphvis.component.jsx';
+import BarChart from '/Users/ww/Dropbox/AwakenExperimentRepository/AwakenExperiment/src/components/graphvis.component.jsx';
 
 
 
@@ -43,9 +43,9 @@ const createdashboard = () => {
   //const Graph2 = localStorage.getItem('GraphPart1');
 
   //console.log(Survey2)
-
-
-  return (<App />);
+  //BarChart.render()
+  document.write(BarChart) 
+  //return (<BarChart />);
   //console.log(GraphPart1)
   //setState({content: GraphPart1});
 
@@ -84,6 +84,7 @@ const ExperimentEnd = () => {
               type='submit'
               variant='contained'
               onClick={createdashboard}
+
               
             >
               Go to Dashboard
