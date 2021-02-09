@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Button, Card, CardContent } from '@material-ui/core';
 import * as Colors from '../constants/colors';
 import { Link } from 'react-router-dom';
-import BarChart from '/Users/ww/Dropbox/AwakenExperimentRepository/AwakenExperiment/src/components/graphvis.component.jsx';
+import BarChart from './graphvis.component.jsx';
 
 
 
