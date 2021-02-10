@@ -60,6 +60,7 @@ const VideoPlayer = () => {
     if (vaccineAttitude === 0) {
       localStorage.setItem('commentType', JSON.stringify(0)); //show pro vaccine comments
       // show participant pro attitudinal vaccine video as participant is pro-vaccine
+      localStorage.setItem('VideoID', "pro_vid1");
       return (
         <div className={classes.root}>
           <h2 className={classes.title}> Chris Pratt on Trump </h2>
@@ -87,6 +88,7 @@ const VideoPlayer = () => {
     } else {
       localStorage.setItem('commentType', JSON.stringify(1)); //show anti vaccine comments
       // show participant anti vaccine video as participant is anti vaccine
+      localStorage.setItem('VideoID', "anti_vid1");
       return (
         <div className={classes.root}>
           <h2 className={classes.title}> Chris Pratt on Trump </h2>
@@ -115,6 +117,7 @@ const VideoPlayer = () => {
   } else {
     if (vaccineAttitude === 0) {
       // show participant anti vaccine video and comments as participant is pro-vaccine
+      localStorage.setItem('VideoID', "anti_vid1");
       localStorage.setItem('commentType', JSON.stringify(1));
       return (
         <div className={classes.root}>
@@ -142,6 +145,7 @@ const VideoPlayer = () => {
       );
     } else {
       // show participant pro vaccine video and comments as participant is anti-vaccine
+      localStorage.setItem('VideoID', "pro_vid1");
       localStorage.setItem('commentType', JSON.stringify(0));
       return (
         <div className={classes.root}>

@@ -8,7 +8,7 @@ import DisatisfiedIcon from '@material-ui/icons/SentimentDissatisfied';
 import ShareIcon from '@material-ui/icons/Share';
 import FlagIcon from '@material-ui/icons/Flag';
 
-const VideoReactionData = {};
+//const VideoReactionData = {};
 
 class VideoReactions extends Component {
   constructor(props) {
@@ -28,21 +28,21 @@ class VideoReactions extends Component {
 
   handleActiveReaction(icon) {
     this.setState({ reaction: icon });
-    VideoReactionData['Reaction'] = icon
-    localStorage.setItem('VideoReactionData', JSON.stringify(VideoReactionData))
+    //VideoReactionData['Reaction'] = icon
+    localStorage.setItem('Reaction', icon)
     console.log(localStorage)
   }
 
   toggleShareState() {
-    VideoReactionData['Shared'] = !this.state.shared
-    localStorage.setItem('VideoReactionData', JSON.stringify(VideoReactionData))
+    //VideoReactionData['Shared'] = !this.state.shared
+    localStorage.setItem('Shared', this.state.shared)
     console.log(localStorage)
     this.setState({ shared: !this.state.shared });
   }
 
   toggleFlagState() {
-    VideoReactionData['Flagged'] = !this.state.flagged
-    localStorage.setItem('VideoReactionData', JSON.stringify(VideoReactionData));
+    //VideoReactionData['Flagged'] = !this.state.flagged
+    localStorage.setItem('Flagged', !this.state.flagged);
     console.log(localStorage)
     this.setState({ flagged: !this.state.flagged });
   }

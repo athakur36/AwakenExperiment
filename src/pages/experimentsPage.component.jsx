@@ -61,10 +61,6 @@ const ExperimentsPage = () => {
     localStorage.getItem('experiment_condition')
   );
 
-  let urlElements = window.location.href.split('/');
-  let userID = urlElements[4];
-  const dbRef = firebase.database().ref('users/' + userID);
-
   const pushDataToDatabase = (VideoReactionData) => {
     // const vaccine_attitude= sumValues(Survey4)
     // const vaccine_attitude = (obj) =>
@@ -87,8 +83,9 @@ const ExperimentsPage = () => {
     setOpen(false);
     dbRef.child('commentType').set(localStorage.getItem('commentType'));
     // Save the DV measurements in the firebase including the condition information (pro or counter)
-    let VideoReactionData = localStorage.getItem('VideoReactionData');
-    pushDataToDatabase(VideoReactionData);
+    let VideoData = {"Flagged":localStorage.getItem('Flagged'), "Shared":localStorage.getItem('Shared'), "Reaction":localStorage.getItem('Reaction'), "VideoID":localStorage.getItem('VideoID')};
+    localStorage.setItem('VideoReactionData', JSON.stringify(VideoData))
+    pushDataToDatabase(localStorage.getItem('VideoReactionData'));
   };
 
   const handleNext = () => {
