@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Button, TextField, Card, CardContent } from '@material-ui/core';
 import * as Colors from '../constants/colors';
 import firebase from '../firebase/firebase.utils';
-
+//look for library which provides a bar chart component in react
 const useStyles = makeStyles({
   card: {
     minWidth: 500,

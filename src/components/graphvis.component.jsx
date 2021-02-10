@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CanvasJSReact from './canvasjs.react';
+import CanvasJSReact from '/Users/ww/Dropbox/AwakenExperiment/src/components/canvasjs.react.js';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 var CanvasJS = CanvasJSReact.CanvasJS;
  
