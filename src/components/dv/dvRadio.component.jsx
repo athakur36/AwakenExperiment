@@ -25,13 +25,42 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const dv1Data = {};
+// const dv2Data = {};
+// const dv3Data = {};
+
 const DVRadio = ({ questData }) => {
   const { question, responses } = questData;
   const classes = useStyles();
   const [selectedValue, setSelectedValue] = React.useState(3);
 
+  const saveAnswer = (answer, question) => {
+    // Test printing to see output on console. Can delete.
+    //console.log(answer);
+    //console.log('id is: ' + id);
+
+    // Make key-value pairs in dictionary, id is question.id from IV-Surveys-Data.js.
+    // answer is event value.
+    // store into localStorage in the corrosponding survey object
+    console.log(answer)
+    dv1Data[question] = answer;
+    //   localStorage.setItem('Survey3', JSON.stringify(survey3Data));
+    localStorage.setItem('dv1Data', JSON.stringify(dv1Data));
+    // if (id.startsWith('2')) {
+    //   survey2Data[id] = answer;
+    //   localStorage.setItem('Survey2', JSON.stringify(survey2Data));
+    // } else if (id.startsWith('3-')) {
+    //   survey3Data[id] = answer;
+    //   localStorage.setItem('Survey3', JSON.stringify(survey3Data));
+    // } else if (id.startsWith('4-')) {
+    //   survey4Data[id] = answer;
+    //   localStorage.setItem('Survey4', JSON.stringify(survey4Data));
+    // }
+  };
+
   const handleChange = (event) => {
     setSelectedValue(Number(event.target.value));
+    saveAnswer(event.target.value, question);
   };
 
   return (
