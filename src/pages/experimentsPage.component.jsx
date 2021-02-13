@@ -61,18 +61,11 @@ const ExperimentsPage = () => {
     localStorage.getItem('experiment_condition')
   );
 
-  const pushDataToDatabase = (VideoReactionData) => {
-    // const vaccine_attitude= sumValues(Survey4)
-    // const vaccine_attitude = (obj) =>
-    //   Object.values(Survey4).reduce((a, b) => a + b);
-    // console.log(vaccine_attitude);
-    // Push user answers into database on finish
-    //if (activeStep === IV_Surveys.length - 1) {
-      // compute vaccine attitue and push data to db
+  const pushDataToDatabase = (ConfirmationBiasManipulationData) => {
+    // Push data into database on finish
     console.log('Pushing data to the firebase');
-    dbRef.child('VideoReactionData').set(VideoReactionData);
+    dbRef.child('ConfirmationBiasManipulationData').set(ConfirmationBiasManipulationData);
     console.log('Successfully submitted!');
-    //}
   };
 
   const handleClickOpen = () => {
@@ -83,9 +76,9 @@ const ExperimentsPage = () => {
     setOpen(false);
     dbRef.child('commentType').set(localStorage.getItem('commentType'));
     // Save the DV measurements in the firebase including the condition information (pro or counter)
-    let VideoData = {"Flagged":localStorage.getItem('Flagged'), "Shared":localStorage.getItem('Shared'), "Reaction":localStorage.getItem('Reaction'), "VideoID":localStorage.getItem('VideoID'), "Link":localStorage.getItem('Link'), "dvData":localStorage.getItem('dvData')};
-    localStorage.setItem('VideoReactionData', JSON.stringify(VideoData))
-    pushDataToDatabase(localStorage.getItem('VideoReactionData'));
+    let ConfirmationBiasManipulationData = {"Flagged":localStorage.getItem('Flagged'), "Shared":localStorage.getItem('Shared'), "Reaction":localStorage.getItem('Reaction'), "VideoID":localStorage.getItem('VideoID'), "Link":localStorage.getItem('Link'), "dvData":localStorage.getItem('dvData')};
+    localStorage.setItem('ConfirmationBiasManipulationData', JSON.stringify(ConfirmationBiasManipulationData))
+    pushDataToDatabase(localStorage.getItem('ConfirmationBiasManipulationData'));
   };
 
   const handleNext = () => {
@@ -164,7 +157,6 @@ const ExperimentsPage = () => {
                   {dvSurvey.surveyData.questions.map((question, index) => (
                     <DVRadio key={'dvradio-' + index} questData={question} />
                   ))}
-                  console.log(id)
                 </DialogContent>
                 <DialogActions>
                   <Button
