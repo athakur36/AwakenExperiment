@@ -83,7 +83,7 @@ const ExperimentsPage = () => {
     setOpen(false);
     dbRef.child('commentType').set(localStorage.getItem('commentType'));
     // Save the DV measurements in the firebase including the condition information (pro or counter)
-    let VideoData = {"Flagged":localStorage.getItem('Flagged'), "Shared":localStorage.getItem('Shared'), "Reaction":localStorage.getItem('Reaction'), "VideoID":localStorage.getItem('VideoID'), "Link":localStorage.getItem('Link'), "dv1Data":localStorage.getItem('dv1Data')};
+    let VideoData = {"Flagged":localStorage.getItem('Flagged'), "Shared":localStorage.getItem('Shared'), "Reaction":localStorage.getItem('Reaction'), "VideoID":localStorage.getItem('VideoID'), "Link":localStorage.getItem('Link'), "dvData":localStorage.getItem('dvData')};
     localStorage.setItem('VideoReactionData', JSON.stringify(VideoData))
     pushDataToDatabase(localStorage.getItem('VideoReactionData'));
   };
@@ -164,6 +164,7 @@ const ExperimentsPage = () => {
                   {dvSurvey.surveyData.questions.map((question, index) => (
                     <DVRadio key={'dvradio-' + index} questData={question} />
                   ))}
+                  console.log(id)
                 </DialogContent>
                 <DialogActions>
                   <Button
