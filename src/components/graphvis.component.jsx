@@ -24,8 +24,7 @@ const computeAttitudeSurvey2 = () => {
 	const experimentCondition = Math.floor(Math.random() * Math.floor(2));
 	for (var el in Survey2) {
 		if (Survey2.hasOwnProperty(el)) {
-			//reverse code the items
-			sum += 6 - parseFloat(Survey2[el]);
+			sum += parseFloat(Survey2[el]);
 		}
 	}
 	Survey2_attitude = sum / 5;
@@ -51,8 +50,7 @@ const computeAttitudeSurvey3 = () => {
 	const experimentCondition = Math.floor(Math.random() * Math.floor(2));
 	for (var el in Survey3) {
 		if (Survey3.hasOwnProperty(el)) {
-			//reverse code the items
-			sum += 6 - parseFloat(Survey3[el]);
+			sum += parseFloat(Survey3[el]);
 		}
 	}
 	Survey3_attitude = sum / 5;
@@ -78,8 +76,7 @@ const computeAttitudeSurvey4 = () => {
 	const experimentCondition = Math.floor(Math.random() * Math.floor(2));
 	for (var el in Survey4) {
 		if (Survey4.hasOwnProperty(el)) {
-			//reverse code the items
-			sum += 6 - parseFloat(Survey4[el]);
+			sum += parseFloat(Survey4[el]);
 		}
 	}
 	Survey4_attitude = sum / 4;
@@ -122,15 +119,15 @@ class BarChart extends Component {
 				reversed: true,
 			},
 			axisY: {
-				title: "Potential Harm (Higher Score = Greater Risk)",
+				title: "Potential Harm (Higher Score = Healthier Mind)",
 				labelFormatter: this.addSymbols
 			},
 			data: [{
 				type: "bar",
 				dataPoints: [
-					{ y: survey2value, label: "General Anxiety" },
-					{ y: survey3value, label: "Life Disatisfaction" },
-					{ y: survey4value, label: "Distrust of Institutions" }
+					{ y: survey2value, label: "General Calm" },
+					{ y: survey3value, label: "Life Satisfaction" },
+					{ y: survey4value, label: "Trust of Institutions" }
 
 				]
 			}]
