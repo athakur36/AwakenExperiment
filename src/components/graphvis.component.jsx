@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CanvasJSReact from '/Users/ww/Dropbox/AwakenExperiment/src/components/canvasjs.react.js';
+import CanvasJSReact from '../constants/canvasjs.react.js';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { withRouter } from 'react-router-dom';
@@ -24,7 +24,8 @@ const computeAttitudeSurvey2 = () => {
 	const experimentCondition = Math.floor(Math.random() * Math.floor(2));
 	for (var el in Survey2) {
 		if (Survey2.hasOwnProperty(el)) {
-			sum += parseFloat(Survey2[el]);
+			//reverse code the items
+			sum += 6 - parseFloat(Survey2[el]);
 		}
 	}
 	Survey2_attitude = sum / 5;
@@ -77,6 +78,7 @@ const computeAttitudeSurvey4 = () => {
 	const experimentCondition = Math.floor(Math.random() * Math.floor(2));
 	for (var el in Survey4) {
 		if (Survey4.hasOwnProperty(el)) {
+			//reverse code the items
 			sum += 6 - parseFloat(Survey4[el]);
 		}
 	}
