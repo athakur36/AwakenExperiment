@@ -41,7 +41,6 @@ const computeAttitudeSurvey2 = () => {
 const survey2value = computeAttitudeSurvey2();
 
 
-
 const computeAttitudeSurvey3 = () => {
 	console.log('computing Survey3 attitude');
 	let Survey3 = JSON.parse(localStorage.getItem('Survey3'));
@@ -67,7 +66,6 @@ const computeAttitudeSurvey3 = () => {
 const survey3value = computeAttitudeSurvey3();
 
 
-
 const computeAttitudeSurvey4 = () => {
 	console.log('computing Survey4 attitude');
 	let Survey4 = JSON.parse(localStorage.getItem('Survey4'));
@@ -91,9 +89,6 @@ const computeAttitudeSurvey4 = () => {
 
 };
 const survey4value = computeAttitudeSurvey4();
-
-
-
 
 
 
