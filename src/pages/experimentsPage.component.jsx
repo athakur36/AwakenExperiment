@@ -14,6 +14,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DVRadio from '../components/dv/dvRadio.component';
 import firebase from '../firebase/firebase.utils';
+import ConfirmationBiasExperiment from '../components/confirmationbias-experiment/confirmationbias-experiment.component';
 
 const useStyles = makeStyles((theme) => ({
   experimentsRoot: {
@@ -83,7 +84,8 @@ const ExperimentsPage = () => {
   const renderSwitch = (activeStep) => {
     switch (activeStep) {
       case 0:
-        return <VideoPlayer />;
+        // return <VideoPlayer />;
+        return <ConfirmationBiasExperiment />;
       case 1:
         return <VideoListPage />;
       default:
