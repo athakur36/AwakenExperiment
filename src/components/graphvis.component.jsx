@@ -1,3 +1,5 @@
+//Imports to help the code run.  Taken from surveyPage.component.jsx witten by Arti. 
+//Imports that mention CanvasJS or react taken from example code from CanvasJS https://canvasjs.com/react-charts/bar-chart/
 import React, { Component } from 'react';
 import CanvasJSReact from '../constants/canvasjs.react.js';
 import { Link } from 'react-router-dom';
@@ -15,7 +17,7 @@ import firebase from '../firebase/firebase.utils';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 var CanvasJS = CanvasJSReact.CanvasJS;
 
-
+//Calculate result of Survey 2 on Anxiety from survey item values stored in local storage.  Code taken and lightly modified from surveyPage.component.jsx written by Arti.  Sums the five-item survey results and divides by 5 to equalize data for display next to the other two surveys.
 const computeAttitudeSurvey2 = () => {
 	console.log('computing Survey2 attitude');
 	let Survey2 = JSON.parse(localStorage.getItem('Survey2'));
@@ -40,7 +42,7 @@ const computeAttitudeSurvey2 = () => {
 };
 const survey2value = computeAttitudeSurvey2();
 
-
+//Calculate result of Survey 3 on Life Satisfaction from survey item values stored in local storage.  Code taken and lightly modified from surveyPage.component.jsx written by Arti.  Sums the five-item survey results and divides by 5 to equalize data for display next to the other two surveys.
 const computeAttitudeSurvey3 = () => {
 	console.log('computing Survey3 attitude');
 	let Survey3 = JSON.parse(localStorage.getItem('Survey3'));
@@ -65,7 +67,7 @@ const computeAttitudeSurvey3 = () => {
 };
 const survey3value = computeAttitudeSurvey3();
 
-
+//Calculate result of Survey 4 on Covid-19 Vaccine Intention from survey item values stored in local storage.  Code taken and lightly modified from surveyPage.component.jsx written by Arti.  Sums the four-item survey results and divides by 4 to equalize data for display next to the other two surveys.
 const computeAttitudeSurvey4 = () => {
 	console.log('computing Survey4 attitude');
 	let Survey4 = JSON.parse(localStorage.getItem('Survey4'));
@@ -92,7 +94,7 @@ const survey4value = computeAttitudeSurvey4();
 
 
 
-
+//Barchart code lightly modified and taken from CanvasJS https://canvasjs.com/react-charts/bar-chart/
 class BarChart extends Component {
 	addSymbols(e) {
 		var suffixes = ["", "K", "M", "B"];
@@ -106,6 +108,7 @@ class BarChart extends Component {
 		const options = {
 			animationEnabled: true,
 			theme: "light2",
+			//Sets chart labels
 			title: {
 				text: "Results"
 			},
@@ -117,6 +120,7 @@ class BarChart extends Component {
 				title: "Potential Harm (Higher Score = Healthier Mind)",
 				labelFormatter: this.addSymbols
 			},
+			//Inputs data calculated above into the chart.
 			data: [{
 				type: "bar",
 				dataPoints: [
@@ -139,5 +143,5 @@ class BarChart extends Component {
 		);
 	}
 }
-
+//Exports the barchart to be called and displayed
 export default BarChart;
