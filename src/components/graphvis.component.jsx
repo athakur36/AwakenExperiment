@@ -2,17 +2,6 @@
 //Imports that mention CanvasJS or react taken from example code from CanvasJS https://canvasjs.com/react-charts/bar-chart/
 import React, { Component } from 'react';
 import CanvasJSReact from '../constants/canvasjs.react.js';
-import { Link } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
-import { withRouter } from 'react-router-dom';
-import Sct from '../components/questionnaire-format/sct.component';
-import { IV_Surveys } from '../model/IV-Surveys-Data';
-import LikertMatrix from '../components/questionnaire-format/likertMatrix.component';
-import Stepper from '@material-ui/core/Stepper';
-import Step from '@material-ui/core/Step';
-import StepLabel from '@material-ui/core/StepLabel';
-import Button from '@material-ui/core/Button';
-import { useContext } from 'react';
 import firebase from '../firebase/firebase.utils';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 var CanvasJS = CanvasJSReact.CanvasJS;
@@ -31,13 +20,6 @@ const computeAttitudeSurvey2 = () => {
 	}
 	Survey2_attitude = sum / 5;
 	return Survey2_attitude;
-	localStorage.setItem('Survey2_attitude', JSON.stringify(Survey2_attitude));
-	localStorage.setItem(
-		'experiment_condition',
-		JSON.stringify(experimentCondition)
-	);
-	console.log(Survey2_attitude);
-	console.log(typeof Survey2);
 
 };
 const survey2value = computeAttitudeSurvey2();
@@ -56,13 +38,6 @@ const computeAttitudeSurvey3 = () => {
 	}
 	Survey3_attitude = sum / 5;
 	return Survey3_attitude;
-	localStorage.setItem('Survey3_attitude', JSON.stringify(Survey3_attitude));
-	localStorage.setItem(
-		'experiment_condition',
-		JSON.stringify(experimentCondition)
-	);
-	console.log(Survey3_attitude);
-	console.log(typeof Survey3);
 
 };
 const survey3value = computeAttitudeSurvey3();
@@ -81,13 +56,6 @@ const computeAttitudeSurvey4 = () => {
 	}
 	Survey4_attitude = sum / 4;
 	return Survey4_attitude;
-	localStorage.setItem('Survey4_attitude', JSON.stringify(Survey4_attitude));
-	localStorage.setItem(
-		'experiment_condition',
-		JSON.stringify(experimentCondition)
-	);
-	console.log(Survey4_attitude);
-	console.log(typeof Survey4);
 
 };
 const survey4value = computeAttitudeSurvey4();

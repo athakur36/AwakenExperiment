@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom';
 import VideoPlayer from '../components/video-player/videoplayer.component';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -104,57 +105,65 @@ const ExperimentsPage = () => {
             <div>
               Thank you! Now you will proceed to part-3 of the experiment.
             </div>
-          </div>
-        ) : (
-          <>
-            {renderSwitch(activeStep)}
-            <div className={classes.buttons}>
-              {activeStep !== 0 ? (
-                <Button
-                  variant='contained'
-                  color='primary'
-                  onClick={handleBack}
-                >
-                  Back
-                </Button>
-              ) : (
-                <div></div>
-              )}
+            <Link to='/dashboard'>
               <Button
                 variant='contained'
                 color='primary'
-                onClick={handleClickOpen}
               >
-                Proceed
-                {/* {activeStep === 4 - 1 ? 'Finish' : 'Proceed'} */}
+                PROCEED TO RESULT DASHBOARD
               </Button>
-              <Dialog
-                open={open}
-                onClose={handleClose}
-                aria-labelledby='form-dialog-title'
-              >
-                <DialogTitle id='form-dialog-title'>
-                  Please answer the following questions regarding the video you
-                  just watched:
-                </DialogTitle>
-                <DialogContent>
-                  {dvSurvey.surveyData.questions.map((question, index) => (
-                    <DVRadio key={'dvradio-' + index} questData={question} />
-                  ))}
-                </DialogContent>
-                <DialogActions>
+            </Link>
+          </div>
+        ) : (
+            <>
+              {renderSwitch(activeStep)}
+              <div className={classes.buttons}>
+                {activeStep !== 0 ? (
                   <Button
-                    onClick={handleNext}
                     variant='contained'
                     color='primary'
+                    onClick={handleBack}
                   >
-                    Submit
+                    Back
                   </Button>
-                </DialogActions>
-              </Dialog>
-            </div>
-          </>
-        )}
+                ) : (
+                    <div></div>
+                  )}
+                <Button
+                  variant='contained'
+                  color='primary'
+                  onClick={handleClickOpen}
+                >
+                  Proceed
+                {/* {activeStep === 4 - 1 ? 'Finish' : 'Proceed'} */}
+                </Button>
+                <Dialog
+                  open={open}
+                  onClose={handleClose}
+                  aria-labelledby='form-dialog-title'
+                >
+                  <DialogTitle id='form-dialog-title'>
+                    Please answer the following questions regarding the video you
+                    just watched:
+                </DialogTitle>
+                  <DialogContent>
+                    {dvSurvey.surveyData.questions.map((question, index) => (
+                      <DVRadio key={'dvradio-' + index} questData={question} />
+                    ))}
+                  </DialogContent>
+                  <DialogActions>
+                    <Button
+                      onClick={handleNext}
+                      variant='contained'
+                      color='primary'
+                    >
+                      Submit
+                  </Button>
+                  </DialogActions>
+                </Dialog>
+              </div>
+            </>
+          )}
       </div>
     </div>
   );
