@@ -95,7 +95,6 @@ const ExperimentsPage = () => {
 
   return (
     <div className={classes.experimentsRoot}>
-      #console.log({experimentCondition})
       <div className={classes.experimentsHeader}>STUDY PART 2</div>
       <Stepper activeStep={activeStep}>
         {[1, 2, 3, 4].map((stepNumber, index) => {
@@ -114,55 +113,55 @@ const ExperimentsPage = () => {
             </div>
           </div>
         ) : (
-          <>
-            {renderSwitch(activeStep)}
-            <div className={classes.buttons}>
-              {activeStep !== 0 ? (
+            <>
+              {renderSwitch(activeStep)}
+              <div className={classes.buttons}>
+                {activeStep !== 0 ? (
+                  <Button
+                    variant='contained'
+                    color='primary'
+                    onClick={handleBack}
+                  >
+                    Back
+                  </Button>
+                ) : (
+                    <div></div>
+                  )}
                 <Button
                   variant='contained'
                   color='primary'
-                  onClick={handleBack}
+                  onClick={handleClickOpen}
                 >
-                  Back
-                </Button>
-              ) : (
-                <div></div>
-              )}
-              <Button
-                variant='contained'
-                color='primary'
-                onClick={handleClickOpen}
-              >
-                Proceed
+                  Proceed
                 {/* {activeStep === 4 - 1 ? 'Finish' : 'Proceed'} */}
-              </Button>
-              <Dialog
-                open={open}
-                onClose={handleClose}
-                aria-labelledby='form-dialog-title'
-              >
-                <DialogTitle id='form-dialog-title'>
-                  Please answer the following questions regarding the video you
-                  just watched:
+                </Button>
+                <Dialog
+                  open={open}
+                  onClose={handleClose}
+                  aria-labelledby='form-dialog-title'
+                >
+                  <DialogTitle id='form-dialog-title'>
+                    Please answer the following questions regarding the video you
+                    just watched:
                 </DialogTitle>
-                <DialogContent>
-                  {dvSurvey.surveyData.questions.map((question, index) => (
-                    <DVRadio key={'dvradio-' + index} questData={question} />
-                  ))}
-                </DialogContent>
-                <DialogActions>
-                  <Button
-                    onClick={handleNext}
-                    variant='contained'
-                    color='primary'
-                  >
-                    Submit
+                  <DialogContent>
+                    {dvSurvey.surveyData.questions.map((question, index) => (
+                      <DVRadio key={'dvradio-' + index} questData={question} />
+                    ))}
+                  </DialogContent>
+                  <DialogActions>
+                    <Button
+                      onClick={handleNext}
+                      variant='contained'
+                      color='primary'
+                    >
+                      Submit
                   </Button>
-                </DialogActions>
-              </Dialog>
-            </div>
-          </>
-        )}
+                  </DialogActions>
+                </Dialog>
+              </div>
+            </>
+          )}
       </div>
     </div>
   );
