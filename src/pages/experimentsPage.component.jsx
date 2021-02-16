@@ -14,7 +14,10 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DVRadio from '../components/dv/dvRadio.component';
 import firebase from '../firebase/firebase.utils';
-import ConfirmationBiasExperiment from '../components/confirmationbias-experiment/confirmationbias-experiment.component';
+import ConfirmationBiasExperiment from '../components/exp-bussinessLogic/confirmationbias-experiment.component';
+import PopularityBiasExperiment from '../components/exp-bussinessLogic/popularitybias-experiment.component';
+import NegativityBiasExperiment from '../components/exp-bussinessLogic/negativitybias-experiment.component';
+import CognitiveDissonanceExperiment from '../components/exp-bussinessLogic/cognitivedissonance-experiment.component';
 
 const useStyles = makeStyles((theme) => ({
   experimentsRoot: {
@@ -84,10 +87,19 @@ const ExperimentsPage = () => {
   const renderSwitch = (activeStep) => {
     switch (activeStep) {
       case 0:
-        // return <VideoPlayer />;
         return <ConfirmationBiasExperiment />;
       case 1:
         return <VideoListPage />;
+      case 2:
+        return <PopularityBiasExperiment />;
+      case 3:
+        return <VideoListPage />;
+      case 4:
+        return <NegativityBiasExperiment />;
+      case 5:
+        return <VideoListPage />;
+      case 6:
+        return <CognitiveDissonanceExperiment />;
       default:
         return <div>Survey Type is Invalid</div>;
     }
@@ -98,7 +110,7 @@ const ExperimentsPage = () => {
       #console.log({experimentCondition})
       <div className={classes.experimentsHeader}>STUDY PART 2</div>
       <Stepper activeStep={activeStep}>
-        {[1, 2, 3, 4].map((stepNumber, index) => {
+        {[1, 2, 3, 4, 5, 6].map((stepNumber, index) => {
           return (
             <Step key={'step-' + index}>
               <StepLabel />
@@ -107,7 +119,7 @@ const ExperimentsPage = () => {
         })}
       </Stepper>
       <div className={classes.stepContent}>
-        {activeStep === 4 ? (
+        {activeStep === 7 ? (
           <div className={classes.instructions}>
             <div>
               Thank you! Now you will proceed to part-3 of the experiment.
