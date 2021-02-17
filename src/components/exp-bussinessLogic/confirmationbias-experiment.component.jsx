@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
 import NewComment from '../video-player/comments.component';
-import VideoReactions from '../video-player/reactions.component'
+import VideoReactions from '../video-player/reactions.component';
 import { makeStyles } from '@material-ui/core/styles';
-import { ProVaccineVideos } from '../../model/Pro-Vaccine-Videos';
+import { ExpVideosData } from '../../model/VideosData';
 import VideoPlayer from '../video-player/videoplayer.component';
 
 const useStyles = makeStyles({
@@ -52,7 +52,7 @@ const useStyles = makeStyles({
 });
 
 const ConfirmationBiasExperiment = () => {
-const classes = useStyles();
+  const classes = useStyles();
   const experimentCondition = JSON.parse(
     localStorage.getItem('experiment_condition')
   );
@@ -62,23 +62,23 @@ const classes = useStyles();
     if (vaccineAttitude === 0) {
       localStorage.setItem('commentType', JSON.stringify(0)); //show pro vaccine comments
       // show participant pro attitudinal vaccine video as participant is pro-vaccine
-      return <VideoPlayer videoData={ProVaccineVideos[0]} />
+      return <VideoPlayer videoData={ExpVideosData[0]} />;
     } else {
       localStorage.setItem('commentType', JSON.stringify(1)); //show anti vaccine comments
       // show participant anti vaccine video as participant is anti vaccine
-      return <VideoPlayer videoData={ProVaccineVideos[1]} />
+      return <VideoPlayer videoData={ExpVideosData[1]} />;
     }
   } else {
     if (vaccineAttitude === 0) {
       // show participant anti vaccine video and comments as participant is pro-vaccine
       localStorage.setItem('commentType', JSON.stringify(1));
-      return <VideoPlayer videoData={ProVaccineVideos[0]} />
+      return <VideoPlayer videoData={ExpVideosData[0]} />;
     } else {
       // show participant pro vaccine video and comments as participant is anti-vaccine
       localStorage.setItem('commentType', JSON.stringify(0));
-      return <VideoPlayer videoData={ProVaccineVideos[1]} />
+      return <VideoPlayer videoData={ExpVideosData[1]} />;
     }
   }
-}
+};
 
 export default ConfirmationBiasExperiment;
