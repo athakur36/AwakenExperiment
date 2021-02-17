@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom';
 import VideoPlayer from '../components/video-player/videoplayer.component';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -111,6 +112,14 @@ const ExperimentsPage = () => {
             <div>
               Thank you! Now you will proceed to part-3 of the experiment.
             </div>
+            <Link to='/dashboard'>
+              <Button
+                variant='contained'
+                color='primary'
+              >
+                PROCEED TO RESULT DASHBOARD
+              </Button>
+            </Link>
           </div>
         ) : (
             <>
