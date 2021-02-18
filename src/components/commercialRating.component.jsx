@@ -6,11 +6,11 @@ const useStyles = makeStyles((theme) => ({
     group: {
         display: "flex",
         flexDirection: "column",
-        paddingBottom: "20px",
         alignItems: "center",
     },
     ratingBox: {
         margin: "center",
+        paddingBottom: "15px",
     },
     heading: {
         textAlign: "center",
@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 const RatingBox = (props) => {
     const classes = useStyles();
     const tagName = props.name;
-    const source = props.src;
+    const source = props.photo;
 
     const [value, setValue] = React.useState(0);
 
