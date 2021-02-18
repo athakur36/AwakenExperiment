@@ -90,7 +90,7 @@ const VideoListPage = () => {
       <h1 className={classes.title}> Please Select A Video To Watch Next </h1>
       <div className={classes.videoWrapper}>
         {shuffled_list.map((video, index) => (
-          <div className={classes.thumbnailContainer}>
+          <div key={index} className={classes.thumbnailContainer}>
             <h3>{video.name}</h3>
             <div>
               <img src={video.logo} alt='video image' />
