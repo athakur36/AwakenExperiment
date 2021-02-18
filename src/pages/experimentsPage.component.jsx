@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import VideoPlayer from '../components/video-player/videoplayer.component';
@@ -59,6 +59,10 @@ const ExperimentsPage = () => {
   const [open, setOpen] = React.useState(false);
   const dvSurvey = DV_Survey[0];
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [activeStep]);
+
   const dbRef = firebase
     .database()
     .ref('users/' + JSON.parse(localStorage.getItem('userID')));
@@ -67,7 +71,11 @@ const ExperimentsPage = () => {
   );
 
   const handleClickOpen = () => {
-    setOpen(true);
+    if (activeStep !== 1) {
+      setOpen(true);
+    } else {
+      setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    }
   };
 
   const handleClose = () => {

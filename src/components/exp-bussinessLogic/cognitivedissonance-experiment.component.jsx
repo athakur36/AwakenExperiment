@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
-import NewComment from '../video-player/comments.component';
+import NewComment from '../video-player/commentlist.component';
 import VideoReactions from '../video-player/reactions.component';
 import { makeStyles } from '@material-ui/core/styles';
 import { ExpVideosData } from '../../model/VideosData';

@@ -18,6 +18,12 @@ const useStyles = makeStyles({
     display: 'flex',
     justifyContent: 'space-between',
     margin: '100px 0',
+    // padding: '0 100px 0 100px',
+  },
+  thumbnailContainer: {
+    flex: 1,
+    flexGrow: 1,
+    flexWrap: true,
   },
 });
 
