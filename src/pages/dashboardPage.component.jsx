@@ -9,10 +9,21 @@ const useStyles = makeStyles({});
 
 const Dash = () => {
   const classes = useStyles();
-//Calls the BarChart to be displayed
+  var didReload = 0
+
+  function refreshPage() {
+    if (didReload == 0) {
+      window.location.reload()
+      didReload = 1
+    }
+
+  }
+
+  //Calls the BarChart to be displayed
   return (
     <div>
       <BarChart />
+      <button onClick={refreshPage}>Click to show results!</button>
     </div>
   );
 };
