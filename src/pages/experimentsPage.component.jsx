@@ -94,12 +94,8 @@ const ExperimentsPage = () => {
       case 2:
         return <PopularityBiasExperiment />;
       case 3:
-        return <VideoListPage />;
-      case 4:
         return <NegativityBiasExperiment />;
-      case 5:
-        return <VideoListPage />;
-      case 6:
+      case 4:
         return <CognitiveDissonanceExperiment />;
       default:
         return <div>Survey Type is Invalid</div>;
@@ -110,7 +106,7 @@ const ExperimentsPage = () => {
     <div className={classes.experimentsRoot}>
       <div className={classes.experimentsHeader}>STUDY PART 2</div>
       <Stepper activeStep={activeStep}>
-        {[1, 2, 3, 4, 5, 6].map((stepNumber, index) => {
+        {[1, 2, 3, 4, 5].map((stepNumber, index) => {
           return (
             <Step key={'step-' + index}>
               <StepLabel />
@@ -119,7 +115,7 @@ const ExperimentsPage = () => {
         })}
       </Stepper>
       <div className={classes.stepContent}>
-        {activeStep === 7 ? (
+        {activeStep === 5 ? (
           <div className={classes.instructions}>
             <div>
               Thank you! Now you will proceed to part-3 of the experiment.
