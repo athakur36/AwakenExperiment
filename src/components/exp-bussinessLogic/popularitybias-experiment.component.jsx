@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
-import NewComment from '../video-player/comments.component';
+import NewComment from '../video-player/commentlist.component';
 import VideoReactions from '../video-player/reactions.component';
 import { makeStyles } from '@material-ui/core/styles';
 import { ExpVideosData } from '../../model/VideosData';
@@ -57,10 +57,10 @@ const PopularityBiasExperiment = () => {
     localStorage.getItem('experiment_condition')
   );
   if (experimentCondition === 0) {
-    return <VideoPlayer videoData={ExpVideosData[2]} />;
+    return <VideoPlayer videoData={ExpVideosData[2]} showComments={false} />;
   } else {
     localStorage.setItem('commentType', JSON.stringify(1));
-    return <VideoPlayer videoData={ExpVideosData[3]} />;
+    return <VideoPlayer videoData={ExpVideosData[3]} showComments={false} />;
   }
 };
 

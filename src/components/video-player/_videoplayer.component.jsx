@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
-import NewComment from './comments.component';
+import NewComment from './commentlist.component';
 import VideoReactions from './reactions.component';
 import { makeStyles } from '@material-ui/core/styles';
 

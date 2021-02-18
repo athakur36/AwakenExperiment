@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
-import NewComment from './comments.component';
+import CommentList from './commentlist.component';
 import VideoReactions from './reactions.component';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -49,7 +49,7 @@ const useStyles = makeStyles({
   comments: {},
 });
 
-const VideoPlayer = ({ videoData }) => {
+const VideoPlayer = ({ videoData, showComments = true }) => {
     const classes = useStyles();
     
         return (
@@ -71,9 +71,9 @@ const VideoPlayer = ({ videoData }) => {
                 <VideoReactions />
               </div>
             </div>
-            <div className={classes.comments}>
-              <NewComment />
-            </div>
+                <div className={classes.comments}>
+                  <CommentList showComments={showComments} />
+                </div>
           </div>
         );
 }
