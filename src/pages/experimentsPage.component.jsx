@@ -70,10 +70,10 @@ const ExperimentsPage = () => {
     localStorage.getItem('experiment_condition')
   );
 
-  const pushDataToDatabase = (ConfirmationBiasManipulationData) => {
+  const pushDataToDatabase = (ExperimentName, ExperimentData) => {
     // Push data into database on finish
     console.log('Pushing data to the firebase');
-    dbRef.child('ConfirmationBiasManipulationData').set(ConfirmationBiasManipulationData);
+    dbRef.child(ExperimentName).set(ExperimentData);
     console.log('Successfully submitted!');
   };
 
@@ -89,9 +89,10 @@ const ExperimentsPage = () => {
     setOpen(false);
     dbRef.child('commentType').set(localStorage.getItem('commentType'));
     // Save the DV measurements in the firebase including the condition information (pro or counter)
-    let ConfirmationBiasManipulationData = {"Flagged":localStorage.getItem('Flagged'), "Shared":localStorage.getItem('Shared'), "Reaction":localStorage.getItem('Reaction'), "VideoID":localStorage.getItem('VideoID'), "Link":localStorage.getItem('Link'), "dvData":localStorage.getItem('dvData')};
-    localStorage.setItem('ConfirmationBiasManipulationData', JSON.stringify(ConfirmationBiasManipulationData))
-    pushDataToDatabase(localStorage.getItem('ConfirmationBiasManipulationData'));
+    let ExperimentData = {"Flagged":localStorage.getItem('Flagged'), "Shared":localStorage.getItem('Shared'), "Reaction":localStorage.getItem('Reaction'), "VideoID":localStorage.getItem('VideoID'), "Link":localStorage.getItem('Link'), "dvData":localStorage.getItem('dvData')};
+    let ExperimentName = localStorage.getItem('Experiment')
+    //localStorage.setItem(ExperimentName+'Data', JSON.stringify(ExperimentData))
+    pushDataToDatabase(ExperimentName, JSON.stringify(ExperimentData))//localStorage.getItem(ExperimentName+'Data'));
   };
 
   const handleNext = () => {
