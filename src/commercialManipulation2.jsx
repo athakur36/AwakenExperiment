@@ -17,6 +17,8 @@ import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 //import classes from '*.module.css';
+import ScrollToTop from "react-scroll-to-top";
+import { ReactComponent as MySVG } from "./logo.png";
 
 const useStyles = makeStyles((theme) => ({
   comRoot: {
@@ -47,7 +49,7 @@ function getStepContent(stepIndex) {
   switch (stepIndex) {
     case 0:
       return (
-        <div>
+        <div> 
           <img src={Pen1} alt="pen1" height = '50%' width = '75%'/>
             <p>Please rate the price</p>
             <Rating key = '1'/>
@@ -78,26 +80,26 @@ function getStepContent(stepIndex) {
 
             <img src={Flash3} alt="flash3" height= "50%" width="75%" />
             <p>Please rate the price</p>
-            <Rating key = '5'/>
+            <Rating key = '6'/>
         </Box>
       );
     case 2:
       return (
-      <Box textAlign='center'>
+      <div>
         <img src={Oven1} alt="oven1" height= "50%" width="75%" />
-        <p>Please rate the price</p>
-        <Rating key = '6'/>
-        <p></p>
-
-        <img src={Oven2} alt="oven2" height= "50%" width="75%" />
         <p>Please rate the price</p>
         <Rating key = '7'/>
         <p></p>
 
-        <img src={Oven3} alt="oven3" height= "50%" width="75%" />
+        <img src={Oven2} alt="oven2" height= "50%" width="75%" />
         <p>Please rate the price</p>
         <Rating key = '8'/>
-      </Box>
+        <p></p>
+
+        <img src={Oven3} alt="oven3" height= "50%" width="75%" />
+        <p>Please rate the price</p>
+        <Rating key = '9'/>
+      </div>
     );
     default:
       return 'Unknown stepIndex';
@@ -125,7 +127,8 @@ export default function HorizontalLabelPositionBelowStepper() {
   };
 
   return (
-    <div className={classes.comRoot}>      
+    <div className={classes.comRoot}>   
+    <ScrollToTop /> 
     <Stepper activeStep={activeStep} alternativeLabel>
         {steps.map((label) => (
           <Step key={label}>
@@ -140,7 +143,7 @@ export default function HorizontalLabelPositionBelowStepper() {
             <Button onClick={handleReset}>Reset</Button>
           </div>
         ) : (
-          <div>
+          <div> 
             <Typography className={classes.comRoot}>{getStepContent(activeStep)}</Typography>
             <div>
                 <Box textAlign='right'>
