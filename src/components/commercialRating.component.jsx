@@ -26,16 +26,21 @@ const useStyles = makeStyles((theme) => ({
 const RatingBox = (props) => {
     const classes = useStyles();
     const tagName = props.name;
+    console.log(tagName);
     const source = props.photo;
-
+    
     const [value, setValue] = React.useState(0);
+    //const setValue = (value) => {
+    //    console.log(value);
+    //}
+    //const value = 0;
 
     return (
         <div className={classes.group}>
             <img className={classes.img} src={source}/>
             <h3 className={classes.heading}>The Price of the Product is High</h3>
             <div>
-                <Rating name={tagName} className={classes.ratingBox} value={value} onChange={(event, newValue) => {setValue(newValue); }}/>
+                <Rating defaultValue={0} name={tagName} className={classes.ratingBox}  onChange={(event, newValue) => {console.log(newValue) }}/>
             </div>
         </div>
     );
