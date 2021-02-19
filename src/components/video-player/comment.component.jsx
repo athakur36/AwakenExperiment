@@ -36,67 +36,67 @@ const useStyles = makeStyles({
 });
 
 const Comment = ({ comment }) => {
-    const classes = useStyles();
+  const classes = useStyles();
 
-    const [liked, setLiked] = useState(false);
-    const [disliked, setDisliked] = useState(false);
-    
-        return (
+  const [liked, setLiked] = useState(false);
+  const [disliked, setDisliked] = useState(false);
+
+  return (
+    <div>
+      {/* {console.log(comment.text)} */}
+      <ListItem key={comment.ID}>
+        <ListItemIcon>
+          <AccountCircleIcon />
           <div>
-                {/* {console.log(comment.text)} */}
-                <ListItem key={comment.ID}>
-                  <ListItemIcon>
-                    <AccountCircleIcon />
-                    <div>
-                      <div className={classes.NameWrapper}>
-                        {comment.commentorName}
-                      </div>
-                      <div>
-                        <ListItemText
-                          className={classes.CommentListItem}
-                          primary={comment.text}
-                        />
-                      </div>
-                      <div>
-                        <IconButton
-                          className={
-                            liked
-                              ? classes.LikedDislikedButton
-                              : classes.LikeDislikeButton
-                          }
-                          onClick={() => {
-                            console.log('like pressed on new component! ' + liked);
+            <div className={classes.NameWrapper}>
+              {comment.commentorName}
+            </div>
+            <div>
+              <ListItemText
+                className={classes.CommentListItem}
+                primary={comment.text}
+              />
+            </div>
+            <div>
+              <IconButton
+                className={
+                  liked
+                    ? classes.LikedDislikedButton
+                    : classes.LikeDislikeButton
+                }
+                onClick={() => {
+                  console.log('like pressed on new component: ' + !liked);
 
-                            setLiked(!liked);
-                            setDisliked(false);
-                            // if (comment.like === false) {
-                            //   comment.like = true;
-                            //   console.log('inside onclick');
-                            // }
-                          }}
-                        >
-                          <ThumbUp />
-                        </IconButton>
-                        <IconButton
-                          className={
-                            disliked
-                              ? classes.LikedDislikedButton
-                              : classes.LikeDislikeButton
-                          }
-                          onClick={() => {
-                            //save the interacion in the database
-                            setLiked(false);
-                            setDisliked(!disliked);
-                          }}
-                        >
-                          <ThumbDown />
-                        </IconButton>
-                      </div>
-                    </div>
-                  </ListItemIcon>
-                </ListItem>
-              </div>
-        );
+                  setLiked(!liked);
+                  setDisliked(false);
+                  // if (comment.like === false) {
+                  //   comment.like = true;
+                  //   console.log('inside onclick');
+                  // }
+                }}
+              >
+                <ThumbUp />
+              </IconButton>
+              <IconButton
+                className={
+                  disliked
+                    ? classes.LikedDislikedButton
+                    : classes.LikeDislikeButton
+                }
+                onClick={() => {
+                  //save the interacion in the database
+                  setLiked(false);
+                  setDisliked(!disliked);
+                }}
+              >
+                <ThumbDown />
+              </IconButton>
+            </div>
+          </div>
+        </ListItemIcon>
+      </ListItem>
+    </div>
+  );
 }
 
 export default Comment;

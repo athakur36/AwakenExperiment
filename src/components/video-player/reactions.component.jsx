@@ -46,7 +46,7 @@ class VideoReactions extends Component {
 
   toggleShareState() {
     //VideoReactionData['Shared'] = !this.state.shared
-    localStorage.setItem('Shared', this.state.shared)
+    localStorage.setItem('Shared', !this.state.shared)
     console.log(localStorage)
     this.setState({ shared: !this.state.shared });
   }
@@ -86,7 +86,7 @@ class VideoReactions extends Component {
       <div>
         <IconButton
           // className='iconHappy'
-          style={{color: this.state.reaction === "Happy" ? '#1565c0' : 'rgba(0, 0, 0, 0.54)'}}
+          style={{ color: this.state.reaction === "Happy" ? '#1565c0' : 'rgba(0, 0, 0, 0.54)' }}
           onClick={() => {
             this.handleActiveReaction('Happy');
           }}
@@ -95,7 +95,7 @@ class VideoReactions extends Component {
         </IconButton>
         <IconButton
           // className='iconSatisfied'
-          style={{color: this.state.reaction === "Satisfied" ? '#1565c0' : 'rgba(0, 0, 0, 0.54)'}}
+          style={{ color: this.state.reaction === "Satisfied" ? '#1565c0' : 'rgba(0, 0, 0, 0.54)' }}
           onClick={() => {
             this.handleActiveReaction('Satisfied');
           }}
@@ -104,7 +104,7 @@ class VideoReactions extends Component {
         </IconButton>
         <IconButton
           // className='iconDissatisfied'
-          style={{color: this.state.reaction === "Dissatisfied" ? '#1565c0' : 'rgba(0, 0, 0, 0.54)'}}
+          style={{ color: this.state.reaction === "Dissatisfied" ? '#1565c0' : 'rgba(0, 0, 0, 0.54)' }}
           onClick={() => {
             this.handleActiveReaction('Dissatisfied');
           }}
@@ -113,22 +113,22 @@ class VideoReactions extends Component {
         </IconButton>
         <IconButton
           // className='iconSad'
-          style={{color: this.state.reaction === "Sad" ? '#1565c0' : 'rgba(0, 0, 0, 0.54)'}}
+          style={{ color: this.state.reaction === "Sad" ? '#1565c0' : 'rgba(0, 0, 0, 0.54)' }}
           onClick={() => {
             this.handleActiveReaction('Sad');
           }}
         >
           <SadIcon />
         </IconButton>
-        <IconButton 
+        <IconButton
           // className='iconShare'
-          style={{color: this.state.shared ? '#1565c0' : 'rgba(0, 0, 0, 0.54)'}}
+          style={{ color: this.state.shared ? '#1565c0' : 'rgba(0, 0, 0, 0.54)' }}
           onClick={this.toggleShareState}>
           <ShareIcon />
         </IconButton>
         <IconButton
           // className='iconFlag'
-          style={{color: this.state.flagged ? '#1565c0' : 'rgba(0, 0, 0, 0.54)'}}
+          style={{ color: this.state.flagged ? '#1565c0' : 'rgba(0, 0, 0, 0.54)' }}
           onClick={this.toggleFlagState}>
           <FlagIcon />
         </IconButton>
