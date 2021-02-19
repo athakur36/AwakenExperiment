@@ -25,7 +25,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+//"dvData\":\"{\\\"Emotional valence (1-negative and 5-Positive)\\\":\\\"3\\\",\\\"Arousal (1-Low, 5-high)\\\":\\\"3\\\",\\\"How much do you agree with the information presented in the video?\\\":\\\"3\\\",\\\"How trustworthy is the information presented in the video?\\\":\\\"3\\\"}\"}"
 const dvData = {};
+// const dvIDs = ["Emotion", "Arousal", "Agreement", "Trustworthiness", "Credibility"];
+// for (i in dvIDSs) {
+//   dvData[id] = 3
+// }
+
+localStorage.setItem('dvData', JSON.stringify(dvData));
 // const dv2Data = {};
 // const dv3Data = {};
 
