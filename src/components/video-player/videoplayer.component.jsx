@@ -52,6 +52,7 @@ const useStyles = makeStyles({
 const VideoPlayer = ({ videoData, showComments = true }) => {
   const classes = useStyles();
   localStorage.setItem('Link', videoData.url); 
+  localStorage.setItem('VideoID', videoData.type); 
   return (
     <div className={classes.root}>
       <h2 className={classes.title}>{videoData.title}</h2>
