@@ -89,10 +89,18 @@ const ExperimentsPage = () => {
     setOpen(false);
     dbRef.child('commentType').set(localStorage.getItem('commentType'));
     // Save the DV measurements in the firebase including the condition information (pro or counter)
-    let ExperimentData = {"Flagged":localStorage.getItem('Flagged'), "Shared":localStorage.getItem('Shared'), "Reaction":localStorage.getItem('Reaction'), "VideoID":localStorage.getItem('VideoID'), "Link":localStorage.getItem('Link'), "dvData":localStorage.getItem('dvData')};
+    let ExperimentData = { "Shared": localStorage.getItem('Shared'), "Flagged": localStorage.getItem('Flagged'), "Reaction": localStorage.getItem('Reaction'), "VideoID": localStorage.getItem('VideoID'), "Link": localStorage.getItem('Link'), "dvData": localStorage.getItem('dvData') };
     let ExperimentName = localStorage.getItem('Experiment')
-    //localStorage.setItem(ExperimentName+'Data', JSON.stringify(ExperimentData))
     pushDataToDatabase(ExperimentName, JSON.stringify(ExperimentData))//localStorage.getItem(ExperimentName+'Data'));
+
+    // Clear localstorage of old data, ready for next experiement.
+    localStorage.removeItem('Shared')
+    localStorage.removeItem('Flagged')
+    localStorage.removeItem('Reaction')
+    localStorage.removeItem('VideoID')
+    localStorage.removeItem('Link')
+    localStorage.removeItem('dvData')
+
   };
 
   const handleNext = () => {
