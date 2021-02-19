@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
-import CommentList from './commentlist.component';
-import VideoReactions from './reactions.component';
+import NewComment from '../video-player/commentlist.component';
+import VideoReactions from '../video-player/reactions.component';
 import { makeStyles } from '@material-ui/core/styles';
+import { ExpVideosData } from '../../model/VideosData';
+import VideoPlayer from '../video-player/videoplayer.component';
 
 const useStyles = makeStyles({
   root: {
@@ -49,33 +51,17 @@ const useStyles = makeStyles({
   comments: {},
 });
 
-const VideoPlayer = ({ videoData, showComments = true }) => {
+const PopularityBiasExperiment = () => {
   const classes = useStyles();
-  localStorage.setItem('Link', videoData.url); 
-  return (
-    <div className={classes.root}>
-      <h2 className={classes.title}>{videoData.title}</h2>
-      <div className={classes.videoPlayerContainer}>
-        <ReactPlayer
-          className={classes.video}
-          url={videoData.url}
-          controls={true}
-          width='100%'
-          height='100%'
-          //height='56.25%'
-        />
-      </div>
-      <div className={classes.viewsAndIcons}>
-        <div className={classes.views}> Views: {videoData.numberOfViews}</div>
-        <div className={classes.icons}>
-          <VideoReactions />
-        </div>
-      </div>
-          <div className={classes.comments}>
-            <CommentList showComments={showComments} />
-          </div>
-    </div>
+  const experimentCondition = JSON.parse(
+    localStorage.getItem('experiment_condition')
   );
-}
+  if (experimentCondition === 0) {
+    return <VideoPlayer videoData={ExpVideosData[2]} showComments={false} />;
+  } else {
+    localStorage.setItem('commentType', JSON.stringify(1));
+    return <VideoPlayer videoData={ExpVideosData[3]} showComments={false} />;
+  }
+};
 
-export default VideoPlayer;
+export default PopularityBiasExperiment;

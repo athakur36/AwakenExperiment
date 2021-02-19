@@ -33,7 +33,13 @@ const useStyles = makeStyles({
   secondColumnItem: {
     flex: 1,
     lineBreak: 'auto',
+    textAlign: 'center',
   },
+  secondColumnItemRadio: {
+    flex: 1,
+    lineBreak: 'auto',
+  },
+
 });
 
 const survey2Data = {};
@@ -89,54 +95,58 @@ const LikertMatrix = ({ questData }) => {
           <div className={classes.firstColumn}>{question.text}</div>
           <div className={classes.secondColumn}>
             <div className={classes.secondColumnItem}>
-              <Radio
-                color='primary'
-                onChange={handleChange}
-                value='1'
-                id={question.id}
-                name='radio-button-demo'
-                inputProps={{ 'aria-label': 'A' }}
-              />
-            </div>
-            <div className={classes.secondColumnItem}>
-              <Radio
-                color='primary'
-                onChange={handleChange}
-                value='2'
-                id={question.id}
-                name='radio-button-demo'
-                inputProps={{ 'aria-label': 'B' }}
-              />
-            </div>
-            <div className={classes.secondColumnItem}>
-              <Radio
-                color='primary'
-                onChange={handleChange}
-                value='3'
-                id={question.id}
-                name='radio-button-demo'
-                inputProps={{ 'aria-label': 'C' }}
-              />
-            </div>
-            <div className={classes.secondColumnItem}>
-              <Radio
-                color='primary'
-                onChange={handleChange}
-                value='4'
-                id={question.id}
-                name='radio-button-demo'
-                inputProps={{ 'aria-label': 'D' }}
-              />
-            </div>
-            <div className={classes.secondColumnItem}>
-              <Radio
-                color='primary'
-                onChange={handleChange}
-                value='5'
-                id={question.id}
-                name='radio-button-demo'
-                inputProps={{ 'aria-label': 'E' }}
-              />
+              <RadioGroup row>
+                <div className={classes.secondColumnItemRadio}>
+                  <Radio
+                    color='primary'
+                    onChange={handleChange}
+                    value='1'
+                    id={question.id}
+                    name='radio-button-demo'
+                    inputProps={{ 'aria-label': 'A' }}
+                  />
+                </div>
+                <div className={classes.secondColumnItemRadio}>
+                  <Radio
+                    color='primary'
+                    onChange={handleChange}
+                    value='2'
+                    id={question.id}
+                    name='radio-button-demo'
+                    inputProps={{ 'aria-label': 'B' }}
+                  />
+                </div>
+                <div className={classes.secondColumnItemRadio}>
+                  <Radio
+                    color='primary'
+                    onChange={handleChange}
+                    value='3'
+                    id={question.id}
+                    name='radio-button-demo'
+                    inputProps={{ 'aria-label': 'C' }}
+                  />
+                </div>
+                <div className={classes.secondColumnItemRadio}>
+                  <Radio
+                    color='primary'
+                    onChange={handleChange}
+                    value='4'
+                    id={question.id}
+                    name='radio-button-demo'
+                    inputProps={{ 'aria-label': 'D' }}
+                  />
+                </div>
+                <div className={classes.secondColumnItemRadio}>
+                  <Radio
+                    color='primary'
+                    onChange={handleChange}
+                    value='5'
+                    id={question.id}
+                    name='radio-button-demo'
+                    inputProps={{ 'aria-label': 'E' }}
+                  />
+                </div>
+              </RadioGroup>
             </div>
           </div>
         </div>

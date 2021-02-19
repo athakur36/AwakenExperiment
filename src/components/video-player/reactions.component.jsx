@@ -8,7 +8,18 @@ import DisatisfiedIcon from '@material-ui/icons/SentimentDissatisfied';
 import ShareIcon from '@material-ui/icons/Share';
 import FlagIcon from '@material-ui/icons/Flag';
 
-//const VideoReactionData = {};
+// const useStyles = makeStyles({
+//   enabled: {
+//     fontSize: '1rem',
+//     // padding: '5px 10px',
+//     color: '#585858',
+//   },
+
+//   disabled: {
+//     fontWeight: 'bold',
+//     color: '#1565c0',
+//   },
+// });
 
 class VideoReactions extends Component {
   constructor(props) {
@@ -69,10 +80,13 @@ class VideoReactions extends Component {
   }
 
   render() {
+    // const classes = useStyles();
+
     return (
       <div>
         <IconButton
-          className='iconHappy'
+          // className='iconHappy'
+          style={{color: this.state.reaction === "Happy" ? '#1565c0' : 'rgba(0, 0, 0, 0.54)'}}
           onClick={() => {
             this.handleActiveReaction('Happy');
           }}
@@ -80,7 +94,8 @@ class VideoReactions extends Component {
           <HappyIcon />
         </IconButton>
         <IconButton
-          className='iconSatisfied'
+          // className='iconSatisfied'
+          style={{color: this.state.reaction === "Satisfied" ? '#1565c0' : 'rgba(0, 0, 0, 0.54)'}}
           onClick={() => {
             this.handleActiveReaction('Satisfied');
           }}
@@ -88,7 +103,8 @@ class VideoReactions extends Component {
           <SatisfiedIcon />
         </IconButton>
         <IconButton
-          className='iconDissatisfied'
+          // className='iconDissatisfied'
+          style={{color: this.state.reaction === "Dissatisfied" ? '#1565c0' : 'rgba(0, 0, 0, 0.54)'}}
           onClick={() => {
             this.handleActiveReaction('Dissatisfied');
           }}
@@ -96,17 +112,24 @@ class VideoReactions extends Component {
           <DisatisfiedIcon />
         </IconButton>
         <IconButton
-          className='iconSad'
+          // className='iconSad'
+          style={{color: this.state.reaction === "Sad" ? '#1565c0' : 'rgba(0, 0, 0, 0.54)'}}
           onClick={() => {
             this.handleActiveReaction('Sad');
           }}
         >
           <SadIcon />
         </IconButton>
-        <IconButton className='iconShare' onClick={this.toggleShareState}>
+        <IconButton 
+          // className='iconShare'
+          style={{color: this.state.shared ? '#1565c0' : 'rgba(0, 0, 0, 0.54)'}}
+          onClick={this.toggleShareState}>
           <ShareIcon />
         </IconButton>
-        <IconButton className='iconFlag' onClick={this.toggleFlagState}>
+        <IconButton
+          // className='iconFlag'
+          style={{color: this.state.flagged ? '#1565c0' : 'rgba(0, 0, 0, 0.54)'}}
+          onClick={this.toggleFlagState}>
           <FlagIcon />
         </IconButton>
       </div>

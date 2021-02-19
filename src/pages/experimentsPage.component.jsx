@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom';
 import VideoPlayer from '../components/video-player/videoplayer.component';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -14,6 +15,10 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DVRadio from '../components/dv/dvRadio.component';
 import firebase from '../firebase/firebase.utils';
+import ConfirmationBiasExperiment from '../components/exp-bussinessLogic/confirmationbias-experiment.component';
+import PopularityBiasExperiment from '../components/exp-bussinessLogic/popularitybias-experiment.component';
+import NegativityBiasExperiment from '../components/exp-bussinessLogic/negativitybias-experiment.component';
+import CognitiveDissonanceExperiment from '../components/exp-bussinessLogic/cognitivedissonance-experiment.component';
 
 const useStyles = makeStyles((theme) => ({
   experimentsRoot: {
@@ -54,6 +59,10 @@ const ExperimentsPage = () => {
   const [open, setOpen] = React.useState(false);
   const dvSurvey = DV_Survey[0];
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [activeStep]);
+
   const dbRef = firebase
     .database()
     .ref('users/' + JSON.parse(localStorage.getItem('userID')));
@@ -69,7 +78,11 @@ const ExperimentsPage = () => {
   };
 
   const handleClickOpen = () => {
-    setOpen(true);
+    if (activeStep !== 1) {
+      setOpen(true);
+    } else {
+      setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    }
   };
 
   const handleClose = () => {
@@ -93,9 +106,15 @@ const ExperimentsPage = () => {
   const renderSwitch = (activeStep) => {
     switch (activeStep) {
       case 0:
-        return <VideoPlayer />;
+        return <ConfirmationBiasExperiment />;
       case 1:
         return <VideoListPage />;
+      case 2:
+        return <PopularityBiasExperiment />;
+      case 3:
+        return <NegativityBiasExperiment />;
+      case 4:
+        return <CognitiveDissonanceExperiment />;
       default:
         return <div>Survey Type is Invalid</div>;
     }
@@ -103,10 +122,9 @@ const ExperimentsPage = () => {
 
   return (
     <div className={classes.experimentsRoot}>
-      #console.log({experimentCondition})
       <div className={classes.experimentsHeader}>STUDY PART 2</div>
       <Stepper activeStep={activeStep}>
-        {[1, 2, 3, 4].map((stepNumber, index) => {
+        {[1, 2, 3, 4, 5].map((stepNumber, index) => {
           return (
             <Step key={'step-' + index}>
               <StepLabel />
@@ -115,62 +133,70 @@ const ExperimentsPage = () => {
         })}
       </Stepper>
       <div className={classes.stepContent}>
-        {activeStep === 4 ? (
+        {activeStep === 5 ? (
           <div className={classes.instructions}>
             <div>
               Thank you! Now you will proceed to part-3 of the experiment.
             </div>
-          </div>
-        ) : (
-          <>
-            {renderSwitch(activeStep)}
-            <div className={classes.buttons}>
-              {activeStep !== 0 ? (
-                <Button
-                  variant='contained'
-                  color='primary'
-                  onClick={handleBack}
-                >
-                  Back
-                </Button>
-              ) : (
-                <div></div>
-              )}
+            <Link to='/dashboard'>
               <Button
                 variant='contained'
                 color='primary'
-                onClick={handleClickOpen}
               >
-                Proceed
-                {/* {activeStep === 4 - 1 ? 'Finish' : 'Proceed'} */}
+                PROCEED TO RESULT DASHBOARD
               </Button>
-              <Dialog
-                open={open}
-                onClose={handleClose}
-                aria-labelledby='form-dialog-title'
-              >
-                <DialogTitle id='form-dialog-title'>
-                  Please answer the following questions regarding the video you
-                  just watched:
-                </DialogTitle>
-                <DialogContent>
-                  {dvSurvey.surveyData.questions.map((question, index) => (
-                    <DVRadio key={'dvradio-' + index} questData={question} />
-                  ))}
-                </DialogContent>
-                <DialogActions>
+            </Link>
+          </div>
+        ) : (
+            <>
+              {renderSwitch(activeStep)}
+              <div className={classes.buttons}>
+                {activeStep !== 0 ? (
                   <Button
-                    onClick={handleNext}
                     variant='contained'
                     color='primary'
+                    onClick={handleBack}
                   >
-                    Submit
+                    Back
                   </Button>
-                </DialogActions>
-              </Dialog>
-            </div>
-          </>
-        )}
+                ) : (
+                    <div></div>
+                  )}
+                <Button
+                  variant='contained'
+                  color='primary'
+                  onClick={handleClickOpen}
+                >
+                  Proceed
+                {/* {activeStep === 4 - 1 ? 'Finish' : 'Proceed'} */}
+                </Button>
+                <Dialog
+                  open={open}
+                  onClose={handleClose}
+                  aria-labelledby='form-dialog-title'
+                >
+                  <DialogTitle id='form-dialog-title'>
+                    Please answer the following questions regarding the video you
+                    just watched:
+                </DialogTitle>
+                  <DialogContent>
+                    {dvSurvey.surveyData.questions.map((question, index) => (
+                      <DVRadio key={'dvradio-' + index} questData={question} />
+                    ))}
+                  </DialogContent>
+                  <DialogActions>
+                    <Button
+                      onClick={handleNext}
+                      variant='contained'
+                      color='primary'
+                    >
+                      Submit
+                  </Button>
+                  </DialogActions>
+                </Dialog>
+              </div>
+            </>
+          )}
       </div>
     </div>
   );

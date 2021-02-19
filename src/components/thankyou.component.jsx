@@ -4,6 +4,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Button, Card, CardContent } from '@material-ui/core';
 import * as Colors from '../constants/colors';
 import { Link } from 'react-router-dom';
+import BarChart from './graphvis.component.jsx';
+
+
 
 const useStyles = makeStyles({
   card: {
@@ -31,9 +34,46 @@ const useStyles = makeStyles({
   },
 });
 
+
 const createdashboard = () => {
-  //create dashboard here
+  //const Survey1 = localStorage.getItem('Part1FreeResponse');
+  //const Survey2 = localStorage.getItem('Survey2');
+  //const Survey3 = localStorage.getItem('Survey3');
+  //const Survey4 = localStorage.getItem('Survey4');
+  //const Graph2 = localStorage.getItem('GraphPart1');
+
+//look up how to pass data between components, put the above in the graphvis
+//shortcut is to put the const statements in the graphvis, pass data into the canvasjs component
+//Fix reverse coded items by subtracting from 6.  6-ReverseCode
+//Move the canvasjs.min.js to constants
+//Move cavasjs.react.js
+
+  //console.log(Survey2)
+  //BarChart.render()
+  //document.write(BarChart) 
+  return (
+    <div>
+      <BarChart />
+    </div>
+  );
+  //console.log(GraphPart1)
+  //setState({content: GraphPart1});
+
+  //document.getElementById('GraphPart1').style.display='block';
+  //init(GraphPart1);
+  //App.render();
+  //https://canvasjs.com/forums/topic/rendering-a-chart-with-a-button-click/
+  //https://stackoverflow.com/questions/62519770/react-display-chart-when-button-is-clicked
 };
+
+
+
+
+
+
+
+
+
 const ExperimentEnd = () => {
   const classes = useStyles();
 
@@ -54,6 +94,8 @@ const ExperimentEnd = () => {
               type='submit'
               variant='contained'
               onClick={createdashboard}
+
+              
             >
               Go to Dashboard
             </Button>
