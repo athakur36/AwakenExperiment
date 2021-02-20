@@ -20,27 +20,31 @@ const useStyles = makeStyles((theme) => ({
     img : {
         width: "95%",
         alignSelf: "center",
-      }
+      },
 }));
 
 const RatingBox = (props) => {
     const classes = useStyles();
     const tagName = props.name;
-    console.log(tagName);
     const source = props.photo;
-    
-    const [value, setValue] = React.useState(0);
-    //const setValue = (value) => {
-    //    console.log(value);
-    //}
-    //const value = 0;
+    const [value, setSelectedValue] = React.useState(0);
+
+    const handleChange = (event) => {
+        console.log(event.target.value);
+        setSelectedValue((event.target.value));
+      };
 
     return (
         <div className={classes.group}>
             <img className={classes.img} src={source}/>
             <h3 className={classes.heading}>The Price of the Product is High</h3>
             <div>
-                <Rating defaultValue={0} name={tagName} className={classes.ratingBox}  onChange={(event, newValue) => {console.log(newValue) }}/>
+                <Rating 
+                defaultValue={0} 
+                name={tagName} 
+                key={tagName}
+                className={classes.ratingBox} 
+                onChange={handleChange}/>
             </div>
         </div>
     );

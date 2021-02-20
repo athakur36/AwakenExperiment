@@ -23,18 +23,18 @@ export const Experiment_Image_List = [
     },
     {
         experiment: {
-            step: 4,
+            page: 3,
             type: 'RATING',
             images : [
+                { src: './images/oven439.png' },
                 { src: './images/oven147.png' },
                 { src: './images/oven199.png' },
-                { src: './images/oven439.png' },
-            ],
+            ]
         },
     },
     {
         experiment: {
-            step: 5,
+            page: 4,
             type: 'PICKUP',
             images : [
                 { src: './images/mileage15.png' },

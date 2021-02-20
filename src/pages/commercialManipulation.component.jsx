@@ -8,6 +8,7 @@ const useStyles = makeStyles((theme) => ({
   experimentsRoot: {
     width: '100%',
     height: '100%',
+    padding: '0 50px',
   },
   button: {
     float: 'right',
@@ -19,11 +20,6 @@ const CommercialManipPage = () => {
   const classes = useStyles();
   const [activeExper, setActiveExper] = React.useState(0);
   console.log(activeExper);
-  
-  /*for Experiment 1: if user should see the $5.00 pen, not the $4.99, set activeExper to 2
-  if(activeExper === 0 && user should be in group 2) {
-    setActiveExper((prevActiveExper) => prevActiveExper + 1);
-  }*/
 
   const handleNext = (activeExper) => {
     console.log(activeExper);
@@ -36,13 +32,14 @@ const CommercialManipPage = () => {
       case 'RATING':
         return (experiment.images.map((e, key) => (
           <RatingBox
-            name={'image' + key}
+            name={'image' + Math.floor(Math.random() * Math.floor(1000))}
             photo= {e.src}
-            key = {key}
+            key={key}
           />
         )))
         case 'PICKUP':
             return (
+              //change this to new component
               <RatingBox/>
             )
     }
@@ -57,7 +54,7 @@ const CommercialManipPage = () => {
         color='primary'
         onClick={handleNext}
         >
-        {activeExper === 3
+        {activeExper === Experiment_Image_List.length - 1
           ? 'Finish'
           : 'Proceed'}
       </Button>

@@ -28,14 +28,14 @@ function App() {
     <>
       <Header userName={currentUser} />
       <div className={classes.appBody}>
-        <Switch>
-          <Route exact path='/' component={HomePage} />
-          <Route exact path='/survey' component={SurveyPage} />
-          <Route path='/survey/:id' component={SurveyPage} />
-          <Route exact path='/experiments' component={ExperimentsPage} />
-          <Route exact path='/dashboard' component={DashboardPage} />
-          <Route exact path='/commercial' component={CommercialManipPage} />
-        </Switch>
+          <Switch>
+            <Route exact path='/' component={HomePage} />
+            <Route exact path='/survey' component={SurveyPage} />
+            <Route path='/survey/:id' component={SurveyPage} />
+            <Route exact path='/experiments' component={ExperimentsPage} />
+            <Route exact path='/dashboard' component={DashboardPage} />
+            <Route exact path='/commercial' component={CommercialManipPage} />
+          </Switch>
       </div>
     </>
   );
