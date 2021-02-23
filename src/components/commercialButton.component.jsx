@@ -1,5 +1,8 @@
 import React, { useEffect } from 'react';
-import Rating from '@material-ui/lab/Rating';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -13,8 +16,9 @@ const useStyles = makeStyles((theme) => ({
         paddingBottom: '30px',
     },
     heading: {
-        textAlign: 'center',
+        textAlign: 'left',
         margin: '0px',
+        width: '40%',
         paddingTop: '20px',
     },
     img: {
@@ -31,34 +35,27 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const RatingBox = (props) => {
+const ButtonBox = (props) => {
     const classes = useStyles();
     const tagName = props.name;
     const source = props.photo;
-    const [value, setSelectedValue] = React.useState(0);
+    const text = props.text;
+    const [value, setValue] = React.useState(0);
 
     const handleChange = (event) => {
-        //where to store rating view in database
-        console.log("rating: ", event.target.value);
-        setSelectedValue((event.target.value));
+        setValue(event.target.value);
     };
 
     return (
         <div className={classes.group}>
             <img className={classes.img} src={source} />
-            <h3 className={classes.heading}>The Price of the Product is High</h3>
-            <div className={classes.row}>
-                <h5 className={classes.wording}>Strongly Disagree</h5>
-                <Rating
-                    defaultValue={0}
-                    name={tagName}
-                    key={tagName}
-                    className={classes.ratingBox}
-                    onChange={handleChange} />
-                <h5 className={classes.wording}>Strongly Agree</h5>
-            </div>
+            <h3 className={classes.heading}>{text}</h3>
+            <RadioGroup row aria-label="YesNo" name="YesNo" value={value} onChange={handleChange}>
+                <FormControlLabel value="Yes" control={<Radio />} label="Yes" />
+                <FormControlLabel value="No" control={<Radio />} label="No" />
+            </RadioGroup>
         </div>
     );
 }
 
-export default RatingBox;
+export default ButtonBox;
