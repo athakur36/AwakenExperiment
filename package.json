@@ -5,11 +5,13 @@
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.57",
     "firebase": "^7.23.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-player": "^2.7.2",
-    "react-router-dom": "5.0.0"
+    "react-router-dom": "^5.0.0",
+    "react-scroll-to-top": "^1.0.5"
   },
   "devDependencies": {
     "react-scripts": "3.0.0"

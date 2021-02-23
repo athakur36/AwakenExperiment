@@ -148,45 +148,45 @@ const SurveyPage = ({ match }) => {
               Thank you! Now you will proceed to part-2 of the experiment.
             </div>
             <div>Please press Proceed To Part-2.</div>
-            <Link to='/experiments'>
-              <Button
-                variant='contained'
-                color='primary'
-                onClick={computeAttitudeandExpcondition}
-              >
-                PROCEED TO PART 2
+            {/*<Link to='/experiments'>*/}
+            <Button
+              variant='contained'
+              color='primary'
+              onClick={computeAttitudeandExpcondition}
+            >
+              PROCEED TO PART 2
               </Button>
-            </Link>
+            {/*</div></Link>*/}
           </div>
         ) : (
-          <>
-            {renderSwitch(activeStep)}
-            <div className={classes.buttons}>
-              {activeStep !== 0 ? (
-                <Button
-                  variant='contained'
-                  color='primary'
-                  onClick={handleBack}
-                >
-                  Back
-                </Button>
-              ) : (
-                <div></div>
-              )}
-              {
-                <Button
-                  variant='contained'
-                  color='primary'
-                  onClick={handleNext}
-                >
-                  {activeStep === IV_Surveys.length - 1
-                    ? 'Finish'
-                    : 'Submit & Proceed'}
-                </Button>
-              }
-            </div>
-          </>
-        )}
+            <>
+              {renderSwitch(activeStep)}
+              <div className={classes.buttons}>
+                {activeStep !== 0 ? (
+                  <Button
+                    variant='contained'
+                    color='primary'
+                    onClick={handleBack}
+                  >
+                    Back
+                  </Button>
+                ) : (
+                    <div></div>
+                  )}
+                {
+                  <Button
+                    variant='contained'
+                    color='primary'
+                    onClick={handleNext}
+                  >
+                    {activeStep === IV_Surveys.length - 1
+                      ? 'Finish'
+                      : 'Submit & Proceed'}
+                  </Button>
+                }
+              </div>
+            </>
+          )}
       </div>
     </div>
   );
