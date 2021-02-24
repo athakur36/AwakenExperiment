@@ -37,19 +37,19 @@ const useStyles = makeStyles((theme) => ({
 
 const ButtonBox = (props) => {
     const classes = useStyles();
-    const tagName = props.name;
     const source = props.photo;
     const text = props.text;
     const [value, setValue] = React.useState(0);
 
     const handleChange = (event) => {
+        console.log(event.target.value);
         setValue(event.target.value);
     };
 
     return (
         <div className={classes.group}>
             <img className={classes.img} src={source} />
-            <h3 className={classes.heading}>{text}</h3>
+            <h4 className={classes.heading}>{text}</h4>
             <RadioGroup row aria-label="YesNo" name="YesNo" value={value} onChange={handleChange}>
                 <FormControlLabel value="Yes" control={<Radio />} label="Yes" />
                 <FormControlLabel value="No" control={<Radio />} label="No" />

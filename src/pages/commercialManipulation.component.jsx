@@ -54,13 +54,12 @@ const CommercialManipPage = () => {
         )))
       case 'PICKUP':
         return (experiment.images.map((e, key) => (
-          //change this to new component
           <ButtonBox
             name={'image'}
             photo={e.src}
             text={e.text}
+            key={key}
           />
-          //<RatingBox />
         )))
     }
   }
