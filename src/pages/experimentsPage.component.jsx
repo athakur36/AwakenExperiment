@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import VideoPlayer from '../components/video-player/videoplayer.component';
@@ -59,8 +59,17 @@ const ExperimentsPage = () => {
   const [open, setOpen] = React.useState(false);
   const dvSurvey = DV_Survey[0];
 
+  // @Arti - I have used the "useRef" hook, that I can use to get the reference of
+  // a react component - in this case, I am associating this constant to the div
+  // container (line 125)
+  const container = useRef(null);
+
+  // @Arti - I have used the useEffect hook to execute a function whenever the activeStep variable
+  // is updated. So I use the div container reference and have called the "scrollIntoView()" function
+  // in order to "move" the top of page to that component. :)
   useEffect(() => {
-    window.scrollTo(0, 0)
+    console.log("Move to top");
+    container.current.scrollIntoView();
   }, [activeStep]);
 
   const dbRef = firebase
@@ -130,7 +139,9 @@ const ExperimentsPage = () => {
   };
 
   return (
-    <div className={classes.experimentsRoot}>
+    // @Arti - using the "ref" attribute we associate the "useRef" constant
+    // with the page component.
+    <div ref={container} className={classes.experimentsRoot}>
       <div className={classes.experimentsHeader}>STUDY PART 2</div>
       <Stepper activeStep={activeStep}>
         {[1, 2, 3, 4, 5].map((stepNumber, index) => {
