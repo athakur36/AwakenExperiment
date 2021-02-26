@@ -5,16 +5,30 @@ import Button from '@material-ui/core/Button';
 import { Experiment_Image_List } from '../model/Comm-Manip-Images';
 import { makeStyles } from '@material-ui/core/styles';
 import { shuffle } from 'lodash';
+import Stepper from '@material-ui/core/Stepper';
+import Step from '@material-ui/core/Step';
+import StepLabel from '@material-ui/core/StepLabel';
 
 const useStyles = makeStyles((theme) => ({
   experimentsRoot: {
     width: '100%',
     height: '100%',
-    paddingBottom: '50px',
+    padding: '0 50px',
+  },
+  experimentsHeader: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '50px',
+    fontSize: '22px',
+    fontWeight: 'bold',
   },
   button: {
     float: 'right',
     marginRight: '30px',
+  },
+  stepContent: {
+    paddingBottom: '70px',
   },
 }));
 
@@ -65,19 +79,31 @@ const CommercialManipPage = () => {
   }
   return (
     <div ref={picRef} className={classes.experimentsRoot}>
-      {renderSwitch(activeExper)}
-      {
-        <Button
-          className={classes.button}
-          variant='contained'
-          color='primary'
-          onClick={handleNext}
-        >
-          {activeExper === Experiment_Image_List[imageIndex].length - 1
-            ? 'Finish'
-            : 'Proceed'}
-        </Button>
-      }
+      <div className={classes.experimentsHeader}>STUDY PART </div>
+        <Stepper activeStep={activeExper}>
+          {Experiment_Image_List[imageIndex].map((experiment, index) => {
+            return (
+              <Step key={'step-' + activeExper + ':' + index}>
+                <StepLabel />
+              </Step>
+            );
+          })}
+        </Stepper>
+        <div className={classes.stepContent}>
+          {renderSwitch(activeExper)}
+          {
+            <Button
+              className={classes.button}
+              variant='contained'
+              color='primary'
+              onClick={handleNext}
+            >
+              {activeExper === Experiment_Image_List[imageIndex].length - 1
+                ? 'Finish'
+                : 'Proceed'}
+            </Button>
+          }
+      </div>
     </div>
   )
 }

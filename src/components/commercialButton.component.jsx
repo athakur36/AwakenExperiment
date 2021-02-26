@@ -22,8 +22,9 @@ const useStyles = makeStyles((theme) => ({
         paddingTop: '20px',
     },
     img: {
-        width: '95%',
+        width: '100%',
         alignSelf: 'center',
+        paddingTop: '30px',
     },
     row: {
         display: 'flex',
