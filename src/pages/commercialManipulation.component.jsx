@@ -66,6 +66,10 @@ const CommercialManipPage = () => {
   const handleNext = (activeExper) => {
     setActiveExper((prevActiveExper) => prevActiveExper + 1);
     pushDataToDatabase(localStorage.getItem('experiment'), localStorage.getItem('experimentData'))
+
+    // Clear localstorage of old data, ready for next experiement.
+    localStorage.removeItem('experiment')
+    localStorage.removeItem('experimentData')
   };
 
   const renderSwitch = (activeExper) => {

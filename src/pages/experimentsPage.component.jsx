@@ -103,6 +103,7 @@ const ExperimentsPage = () => {
     pushDataToDatabase(ExperimentName, JSON.stringify(ExperimentData))//localStorage.getItem(ExperimentName+'Data'));
 
     // Clear localstorage of old data, ready for next experiement.
+    localStorage.removeItem('Experiment')
     localStorage.removeItem('Shared')
     localStorage.removeItem('Flagged')
     localStorage.removeItem('Reaction')
