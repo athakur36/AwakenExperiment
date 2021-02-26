@@ -50,7 +50,7 @@ const RatingBox = (props) => {
         console.log("rating: ", event.target.value);
         setSelectedValue((event.target.value));
         //saveAnswer(event.target.value, id);//dvIDs[question]);
-        experimentData["rating"] = event.target.value
+        experimentData[source] = event.target.value
         localStorage.setItem('experimentData', JSON.stringify(experimentData));
     };
 
