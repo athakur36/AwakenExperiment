@@ -8,6 +8,7 @@ import { shuffle } from 'lodash';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
+import firebase from '../firebase/firebase.utils';
 
 const useStyles = makeStyles((theme) => ({
   experimentsRoot: {
@@ -38,6 +39,17 @@ const CommercialManipPage = () => {
     localStorage.getItem('experiment_condition')
   );
   const [activeExper, setActiveExper] = React.useState(0);
+  
+  const dbRef = firebase
+    .database()
+    .ref('users/' + JSON.parse(localStorage.getItem('userID')));
+  
+  const pushDataToDatabase = (ExperimentName, ExperimentData) => {
+    // Push data into database on finish
+    console.log('Pushing data to the firebase');
+    dbRef.child(ExperimentName).set(ExperimentData);
+    console.log('Successfully submitted!');
+  };
 
   //scroll to top of page on reload
   const picRef = React.createRef();
@@ -53,10 +65,12 @@ const CommercialManipPage = () => {
 
   const handleNext = (activeExper) => {
     setActiveExper((prevActiveExper) => prevActiveExper + 1);
+    pushDataToDatabase(localStorage.getItem('experiment'), localStorage.getItem('experimentData'))
   };
 
   const renderSwitch = (activeExper) => {
     const experiment = Experiment_Image_List[imageIndex][activeExper].experiment;
+    localStorage.setItem('experiment', experiment.name)
     switch (experiment.type) {
       case 'RATING':
         return (shuffle(experiment.images).map((e, key) => (

@@ -32,16 +32,26 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
+const experimentData = {};
+
 const RatingBox = (props) => {
     const classes = useStyles();
     const tagName = props.name;
     const source = props.photo;
     const [value, setSelectedValue] = React.useState(0);
 
+    // const saveAnswer = (answer, question) => {
+    //     experimentData[question] = answer;
+    //     localStorage.setItem('experimentData', JSON.stringify(experimentData));
+    // };
+
     const handleChange = (event) => {
         //where to store rating view in database
         console.log("rating: ", event.target.value);
         setSelectedValue((event.target.value));
+        //saveAnswer(event.target.value, id);//dvIDs[question]);
+        experimentData["rating"] = event.target.value
+        localStorage.setItem('experimentData', JSON.stringify(experimentData));
     };
 
     return (

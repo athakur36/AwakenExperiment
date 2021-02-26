@@ -36,6 +36,8 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
+const experimentData = {};
+
 const ButtonBox = (props) => {
     const classes = useStyles();
     const source = props.photo;
@@ -45,6 +47,8 @@ const ButtonBox = (props) => {
     const handleChange = (event) => {
         console.log(event.target.value);
         setValue(event.target.value);
+        experimentData["yesno"] = event.target.value
+        localStorage.setItem('experimentData', JSON.stringify(experimentData));
     };
 
     return (
