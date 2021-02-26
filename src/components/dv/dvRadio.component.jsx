@@ -25,19 +25,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-//"dvData\":\"{\\\"Emotional valence (1-negative and 5-Positive)\\\":\\\"3\\\",\\\"Arousal (1-Low, 5-high)\\\":\\\"3\\\",\\\"How much do you agree with the information presented in the video?\\\":\\\"3\\\",\\\"How trustworthy is the information presented in the video?\\\":\\\"3\\\"}\"}"
 const dvData = {};
-// const dvIDs = ["Emotion", "Arousal", "Agreement", "Trustworthiness", "Credibility"];
 // for (i in dvIDSs) {
 //   dvData[id] = 3
 // }
 
-localStorage.setItem('dvData', JSON.stringify(dvData));
+localStorage.setItem('dvData', dvData);
 // const dv2Data = {};
 // const dv3Data = {};
 
 const DVRadio = ({ questData }) => {
-  const { question, responses } = questData;
+  const { question, responses, id } = questData;
   const classes = useStyles();
   const [selectedValue, setSelectedValue] = React.useState(3);
 
@@ -48,7 +46,7 @@ const DVRadio = ({ questData }) => {
 
   const handleChange = (event) => {
     setSelectedValue(Number(event.target.value));
-    saveAnswer(event.target.value, question);
+    saveAnswer(event.target.value, id);//dvIDs[question]);
   };
 
   return (

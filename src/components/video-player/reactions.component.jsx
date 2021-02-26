@@ -35,9 +35,6 @@ class VideoReactions extends Component {
     this.toggleShareState = this.toggleShareState.bind(this);
     this.toggleFlagState = this.toggleFlagState.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    localStorage.setItem('Reaction', this.state.reaction)
-    localStorage.setItem('Shared', this.state.shared)
-    localStorage.setItem('Flagged', this.state.flagged);
   }
 
   handleActiveReaction(icon) {

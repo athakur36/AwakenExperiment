@@ -11,6 +11,7 @@ export const DV_Survey = [
             { value: 4, text: 'Positive' },
             { value: 5, text: 'Very Positive' },
           ],
+          id: 'Emotion'
         },
         {
           question: 'Arousal (1-Low, 5-high)',
@@ -21,6 +22,7 @@ export const DV_Survey = [
             { value: 4, text: 'Excited' },
             { value: 5, text: 'Very Excited' },
           ],
+          id: 'Arousal'
         },
         {
           question:
@@ -32,6 +34,7 @@ export const DV_Survey = [
             { value: 4, text: 'Little agree' },
             { value: 5, text: 'Not at all agree' },
           ],
+          id: 'Agreement'
         },
         {
           question:
@@ -43,6 +46,7 @@ export const DV_Survey = [
             { value: 4, text: 'Little Trustworthy' },
             { value: 5, text: 'Not Trustworthy at all' },
           ],
+          id: 'Trustworthiness'
         },
         {
           question: 'How credible is the information presented in the video?',
@@ -53,6 +57,7 @@ export const DV_Survey = [
             { value: 4, text: 'Little Credible' },
             { value: 5, text: 'Not credible at all' },
           ],
+          id: 'Credibility'
         },
       ],
     },
