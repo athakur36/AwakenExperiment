@@ -57,7 +57,7 @@ const ExperimentsPage = () => {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const [open, setOpen] = React.useState(false);
-  const dvSurvey = DV_Survey[0];
+  const dvSurvey = DV_Survey;
 
   // @Arti - I have used the "useRef" hook, that I can use to get the reference of
   // a react component - in this case, I am associating this constant to the div
@@ -119,6 +119,21 @@ const ExperimentsPage = () => {
     }
   };
 
+  const dialogSwitch = (activeStep) => {
+    let surveyIndex = 0;
+
+    if (activeStep >= 2) {
+      surveyIndex = activeStep-1;
+    }
+
+    const survey = dvSurvey[surveyIndex];
+    return (
+      survey.surveyData.questions.map((question, index) => (
+        <DVRadio key={'dvradio-' + index} questData={question} />
+      ))
+    );
+  }
+
   return (
     // @Arti - using the "ref" attribute we associate the "useRef" constant
     // with the page component.
@@ -175,15 +190,16 @@ const ExperimentsPage = () => {
                   open={open}
                   onClose={handleClose}
                   aria-labelledby='form-dialog-title'
+                  fullWidth={true} maxWidth="md"
                 >
                   <DialogTitle id='form-dialog-title'>
                     Please answer the following questions regarding the video you
                     just watched:
                 </DialogTitle>
                   <DialogContent>
-                    {dvSurvey.surveyData.questions.map((question, index) => (
-                      <DVRadio key={'dvradio-' + index} questData={question} />
-                    ))}
+                    {
+                      dialogSwitch(activeStep)
+                    }
                   </DialogContent>
                   <DialogActions>
                     <Button
