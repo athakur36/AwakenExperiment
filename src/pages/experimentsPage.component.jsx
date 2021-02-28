@@ -68,7 +68,7 @@ const ExperimentsPage = () => {
   // is updated. So I use the div container reference and have called the "scrollIntoView()" function
   // in order to "move" the top of page to that component. :)
   useEffect(() => {
-    console.log("Move to top");
+    console.log('Move to top');
     container.current.scrollIntoView();
   }, [activeStep]);
 
@@ -123,16 +123,18 @@ const ExperimentsPage = () => {
     let surveyIndex = 0;
 
     if (activeStep >= 2) {
-      surveyIndex = activeStep-1;
+      surveyIndex = activeStep - 1;
+    }
+    //conditional rendering of dialoue box for cognitive dissonance
+    if (activeStep === 4 && experimentCondition === 1) {
+      surveyIndex = activeStep;
     }
 
     const survey = dvSurvey[surveyIndex];
-    return (
-      survey.surveyData.questions.map((question, index) => (
-        <DVRadio key={'dvradio-' + index} questData={question} />
-      ))
-    );
-  }
+    return survey.surveyData.questions.map((question, index) => (
+      <DVRadio key={'dvradio-' + index} questData={question} />
+    ));
+  };
 
   return (
     // @Arti - using the "ref" attribute we associate the "useRef" constant
@@ -155,65 +157,59 @@ const ExperimentsPage = () => {
               Thank you! Now you will proceed to part-3 of the experiment.
             </div>
             <Link to='/dashboard'>
-              <Button
-                variant='contained'
-                color='primary'
-              >
+              <Button variant='contained' color='primary'>
                 PROCEED TO RESULT DASHBOARD
               </Button>
             </Link>
           </div>
         ) : (
-            <>
-              {renderSwitch(activeStep)}
-              <div className={classes.buttons}>
-                {activeStep !== 0 ? (
-                  <Button
-                    variant='contained'
-                    color='primary'
-                    onClick={handleBack}
-                  >
-                    Back
-                  </Button>
-                ) : (
-                    <div></div>
-                  )}
+          <>
+            {renderSwitch(activeStep)}
+            <div className={classes.buttons}>
+              {activeStep !== 0 ? (
                 <Button
                   variant='contained'
                   color='primary'
-                  onClick={handleClickOpen}
+                  onClick={handleBack}
                 >
-                  Proceed
-                {/* {activeStep === 4 - 1 ? 'Finish' : 'Proceed'} */}
+                  Back
                 </Button>
-                <Dialog
-                  open={open}
-                  onClose={handleClose}
-                  aria-labelledby='form-dialog-title'
-                  fullWidth={true} maxWidth="md"
-                >
-                  <DialogTitle id='form-dialog-title'>
-                    Please answer the following questions regarding the video you
-                    just watched:
+              ) : (
+                <div></div>
+              )}
+              <Button
+                variant='contained'
+                color='primary'
+                onClick={handleClickOpen}
+              >
+                Proceed
+                {/* {activeStep === 4 - 1 ? 'Finish' : 'Proceed'} */}
+              </Button>
+              <Dialog
+                open={open}
+                onClose={handleClose}
+                aria-labelledby='form-dialog-title'
+                fullWidth={true}
+                maxWidth='md'
+              >
+                <DialogTitle id='form-dialog-title'>
+                  Please answer the following questions regarding the video you
+                  just watched:
                 </DialogTitle>
-                  <DialogContent>
-                    {
-                      dialogSwitch(activeStep)
-                    }
-                  </DialogContent>
-                  <DialogActions>
-                    <Button
-                      onClick={handleNext}
-                      variant='contained'
-                      color='primary'
-                    >
-                      Submit
+                <DialogContent>{dialogSwitch(activeStep)}</DialogContent>
+                <DialogActions>
+                  <Button
+                    onClick={handleNext}
+                    variant='contained'
+                    color='primary'
+                  >
+                    Submit
                   </Button>
-                  </DialogActions>
-                </Dialog>
-              </div>
-            </>
-          )}
+                </DialogActions>
+              </Dialog>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

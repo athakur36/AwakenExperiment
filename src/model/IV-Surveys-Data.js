@@ -75,7 +75,9 @@ export const IV_Surveys = [
       intro: `Please select the option which appears closest to your answer`,
       questions: [
         {
-          text: 'In most ways my life is close to ideal', type: 'RADIO', scale: 5,
+          text: 'In most ways my life is close to ideal',
+          type: 'RADIO',
+          scale: 5,
           type: 'RADIO_MATRIX',
           id: '3-1',
         },
@@ -110,7 +112,7 @@ export const IV_Surveys = [
       questions: [
         {
           text:
-            'The modern scientific evidence confirms the connection of vaccines with chronic illnesses such as autism, diabetes and multiple sclerosis.',
+            'The modern scientific evidence does not confirm the connection of vaccines with chronic illnesses such as autism, diabetes and multiple sclerosis.',
           type: 'RADIO_MATRIX',
           id: '4-1',
         },
@@ -120,12 +122,7 @@ export const IV_Surveys = [
           id: '4-2',
         },
         {
-          text: 'I am satisfied with my life',
-          type: 'RADIO_MATRIX',
-          id: '4-3',
-        },
-        {
-          text: 'Covid-19 vaccination is safe to take',
+          text: 'Covid-19 vaccination is safe to take.',
           type: 'RADIO_MATRIX',
           id: '4-4',
         },
