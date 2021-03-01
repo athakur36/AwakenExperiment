@@ -13,6 +13,7 @@ export const DV_Survey = [
             { value: 4, text: 'Positive' },
             { value: 5, text: 'Very Positive' },
           ],
+          id: 'cb-emotion',
         },
         {
           question: 'How excited you you feel? (1-Low, 5-high)',
@@ -23,6 +24,7 @@ export const DV_Survey = [
             { value: 4, text: 'Excited' },
             { value: 5, text: 'Very Excited' },
           ],
+          id: 'cb-excitement',
         },
         {
           question:
@@ -34,6 +36,7 @@ export const DV_Survey = [
             { value: 4, text: 'Little agree' },
             { value: 5, text: 'Not at all agree' },
           ],
+          id: 'cb-agreement',
         },
         {
           question:
@@ -45,6 +48,7 @@ export const DV_Survey = [
             { value: 4, text: 'Little Trustworthy' },
             { value: 5, text: 'Not Trustworthy at all' },
           ],
+          id: 'cb-trustworthiness',
         },
         {
           question: 'How credible is the information presented in the video?',
@@ -55,6 +59,7 @@ export const DV_Survey = [
             { value: 4, text: 'Little Credible' },
             { value: 5, text: 'Not credible at all' },
           ],
+          id: 'cb-credibility',
         },
       ],
     },
@@ -73,6 +78,7 @@ export const DV_Survey = [
             { value: 4, text: 'a little' },
             { value: 5, text: 'Not at all' },
           ],
+          id: 'pb-rating',
         },
         {
           question: 'How likely are you to share/recommend the song?',
@@ -83,6 +89,7 @@ export const DV_Survey = [
             { value: 4, text: 'little likely' },
             { value: 5, text: 'Not at all' },
           ],
+          id: 'pb-sharerec',
         },
         {
           question: 'How likely are you going to watch the song again?',
@@ -93,6 +100,7 @@ export const DV_Survey = [
             { value: 4, text: 'little likely' },
             { value: 5, text: 'Not at all' },
           ],
+          id: 'pb-rewatch',
         },
       ],
     },
@@ -111,6 +119,7 @@ export const DV_Survey = [
             { value: 4, text: 'Fair' },
             { value: 5, text: 'Poor' },
           ],
+          id: 'nb-performancerating',
         },
         {
           question: 'How much you liked the video?',
@@ -121,6 +130,7 @@ export const DV_Survey = [
             { value: 4, text: 'a little' },
             { value: 5, text: 'Not at all' },
           ],
+          id: 'nb-rating',
         },
         {
           question: 'How likely are you to share/recommend the video?',
@@ -131,6 +141,7 @@ export const DV_Survey = [
             { value: 4, text: 'little likely' },
             { value: 5, text: 'Not at all' },
           ],
+          id: 'nb-sharerec',
         },
         {
           question: 'How likely are you going to watch the video again?',
@@ -141,6 +152,7 @@ export const DV_Survey = [
             { value: 4, text: 'little likely' },
             { value: 5, text: 'Not at all' },
           ],
+          id: 'nb-rewatch',
         },
       ],
     },
@@ -157,6 +169,7 @@ export const DV_Survey = [
             { value: 1, text: 'Yes' },
             { value: 2, text: 'No' },
           ],
+          id: 'cdt-revert'
         },
       ],
     },
@@ -173,6 +186,7 @@ export const DV_Survey = [
             { value: 1, text: 'Yes' },
             { value: 2, text: 'No' },
           ],
+          id: 'cdc-revert'
         },
       ],
     },

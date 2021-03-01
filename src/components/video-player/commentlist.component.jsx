@@ -132,6 +132,7 @@ const CommentList = ({ showComments = true }) => {
   const handleSubmit = (event) => {
     // submit comment to firebase
   };
+
   if (parseInt(commentType) === 0) {
     return (
       <section>

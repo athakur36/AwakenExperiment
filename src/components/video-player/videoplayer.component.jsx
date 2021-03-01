@@ -50,32 +50,34 @@ const useStyles = makeStyles({
 });
 
 const VideoPlayer = ({ videoData, showComments = true }) => {
-    const classes = useStyles();
-    
-        return (
-          <div className={classes.root}>
-            <h2 className={classes.title}>{videoData.title}</h2>
-            <div className={classes.videoPlayerContainer}>
-              <ReactPlayer
-                className={classes.video}
-                url={videoData.url}
-                controls={true}
-                width='100%'
-                height='100%'
-                //height='56.25%'
-              />
-            </div>
-            <div className={classes.viewsAndIcons}>
-              <div className={classes.views}> Views: {videoData.numberOfViews}</div>
-              <div className={classes.icons}>
-                <VideoReactions />
-              </div>
-            </div>
-                <div className={classes.comments}>
-                  <CommentList showComments={showComments} />
-                </div>
+  const classes = useStyles();
+  localStorage.setItem('Link', videoData.url); 
+  localStorage.setItem('VideoID', videoData.type); 
+  localStorage.setItem('Experiment', videoData.experiment)
+  return (
+    <div className={classes.root}>
+      <h2 className={classes.title}>{videoData.title}</h2>
+      <div className={classes.videoPlayerContainer}>
+        <ReactPlayer
+          className={classes.video}
+          url={videoData.url}
+          controls={true}
+          width='100%'
+          height='100%'
+          //height='56.25%'
+        />
+      </div>
+      <div className={classes.viewsAndIcons}>
+        <div className={classes.views}> Views: {videoData.numberOfViews}</div>
+        <div className={classes.icons}>
+          <VideoReactions />
+        </div>
+      </div>
+          <div className={classes.comments}>
+            <CommentList showComments={showComments} />
           </div>
-        );
+    </div>
+  );
 }
 
 export default VideoPlayer;
