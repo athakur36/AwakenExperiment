@@ -54,10 +54,10 @@ const NegativityBiasExperiment = () => {
     localStorage.getItem('experiment_condition')
   );
   if (experimentCondition === 0) {
-    return <VideoPlayer videoData={ExpVideosData[4]} />;
+    return <VideoPlayer videoData={ExpVideosData[4]} showComments={false} />;
   } else {
     localStorage.setItem('commentType', JSON.stringify(1));
-    return <VideoPlayer videoData={ExpVideosData[5]} />;
+    return <VideoPlayer videoData={ExpVideosData[5]} showComments={false} />;
   }
 };
 

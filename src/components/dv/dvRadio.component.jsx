@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 const DVRadio = ({ questData }) => {
   const { question, responses } = questData;
   const classes = useStyles();
-  const [selectedValue, setSelectedValue] = React.useState(3);
+  const [selectedValue, setSelectedValue] = React.useState();
 
   const handleChange = (event) => {
     setSelectedValue(Number(event.target.value));
@@ -46,7 +46,18 @@ const DVRadio = ({ questData }) => {
           onChange={handleChange}
           value={selectedValue}
         >
-          <FormControlLabel
+          {responses.map((resp) => {
+            return (
+              <FormControlLabel
+                value={resp.value}
+                control={<Radio color='primary' />}
+                label={resp.text}
+                labelPlacement='top'
+              />
+            );
+          })}
+
+          {/* <FormControlLabel
             value={responses[0].value}
             control={<Radio color='primary' />}
             label={responses[0].text}
@@ -75,7 +86,7 @@ const DVRadio = ({ questData }) => {
             control={<Radio color='primary' />}
             label={responses[4].text}
             labelPlacement='top'
-          />
+          /> */}
         </RadioGroup>
       </FormControl>
     </div>

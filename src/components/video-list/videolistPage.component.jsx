@@ -74,28 +74,28 @@ const VideoListPage = () => {
     },
     {
       name:
-        'Why Black and Latino communities are willing to take COVID-19 vaccine | GMA',
+        'Benefits of COVID-19 vaccine outweigh risks',
       description:
-        'One of the major hurdles facing the coronavirus vaccine is getting people to take it, and this issue of trust is especially present in Black and Latino communities.',
-      url: 'https://www.youtube.com/watch?v=MrmiEBmeumA',
+        'As with other vaccines, the experience of mild symptoms from side effects generally resolve within a few days. The benefits of the COVID-19 vaccination far outweigh the risk of any potential adverse effects. ',
+      url: 'https://youtu.be/C8Jsq7YW298',
       type: 'PRO',
-      logo: 'https://picsum.photos/150/150?1',
+      logo: process.env.PUBLIC_URL + './images/pro1.png',
     },
     {
-      name: 'Covid-19: why vaccine trust is growing | The Economist',
+      name: 'Single-dose vaccine effective against COVID-19 variants, data shows | WNT',
       description:
-        'One of the major hurdles facing the coronavirus vaccine is getting people to take it, and this issue of trust is especially present in Black and Latino communities.',
-      url: 'https://www.youtube.com/watch?v=BJ2rT7h70QM',
+        'The Food and Drug Administration announced that Johnson & Johnson’s one-shot vaccine meets the requirements of the emergency use authorization review process. Authorization could come on Friday.',
+      url: 'https://www.youtube.com/watch?v=VPswkhGNI5g',
       type: 'PRO',
-      logo: 'https://picsum.photos/150/150?2',
+      logo: process.env.PUBLIC_URL + './images/pro2.png',
     },
     {
-      name: 'Why white communities are willing to take COVID-19 vaccine | GMA',
+      name: 'Top Pfizer scientist discusses COVID-19 vaccine\'s efficacy and new variants',
       description:
-        'One of the major hurdles facing the coronavirus vaccine is getting people to take it, and this issue of trust is especially present in Black and Latino communities.',
-      url: 'https://www.youtube.com/watch?v=4DOWd04iNFM',
+        'Pfizer announced it will supply 200 million doses of its COVID-19 vaccine for the U.S. by the end of May and is aiming to ship 2 billion doses globally this year. The vaccine is over 90% effective according to clinical trials conducted in 2020, but more testing needs to be done to see how well it protects against the new variants. ',
+      url: 'https://www.youtube.com/watch?v=a6wiBP7N5yE',
       type: 'PRO',
-      logo: 'https://picsum.photos/150/150?3',
+      logo: process.env.PUBLIC_URL + './images/pro3.png',
     },
   ];
   const shuffled_list = shuffle(videoslist);
@@ -103,15 +103,15 @@ const VideoListPage = () => {
     <div className={classes.videoRoot}>
       <h1 className={classes.title}> Please Select A Video To Watch Next </h1>
       <div className={classes.videoWrapper}>
-     
-        {shuffled_list.map((video, index) => (
-            <div className={classes.thumbnailContainer}>
 
-            
-              <Box border={2} textAlign='center'>
-                <h3>{video.name}</h3>
+        {shuffled_list.map((video, index) => (
+          <div className={classes.thumbnailContainer}>
+
+
+            <Box border={2} textAlign='center'>
+              <h3>{video.name}</h3>
               <div>
-                <img src={video.logo} alt='video image' width = "150px" height="150px"/>
+                <img src={video.logo} alt='video image' width="150px" height="150px" />
               </div>
               <div>
                 <IconButton>
@@ -122,14 +122,14 @@ const VideoListPage = () => {
                 </IconButton>
               </div>
               <div>
-                  {video.description}
+                {video.description}
               </div>
-              </Box>
-              
-            
+            </Box>
+
+
           </div>
         ))}
-        
+
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import VideoPlayer from '../components/video-player/videoplayer.component';
@@ -57,10 +57,19 @@ const ExperimentsPage = () => {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const [open, setOpen] = React.useState(false);
-  const dvSurvey = DV_Survey[0];
+  const dvSurvey = DV_Survey;
 
+  // @Arti - I have used the "useRef" hook, that I can use to get the reference of
+  // a react component - in this case, I am associating this constant to the div
+  // container (line 125)
+  const container = useRef(null);
+
+  // @Arti - I have used the useEffect hook to execute a function whenever the activeStep variable
+  // is updated. So I use the div container reference and have called the "scrollIntoView()" function
+  // in order to "move" the top of page to that component. :)
   useEffect(() => {
-    window.scrollTo(0, 0)
+    console.log('Move to top');
+    container.current.scrollIntoView();
   }, [activeStep]);
 
   const dbRef = firebase
@@ -110,8 +119,27 @@ const ExperimentsPage = () => {
     }
   };
 
+  const dialogSwitch = (activeStep) => {
+    let surveyIndex = 0;
+
+    if (activeStep >= 2) {
+      surveyIndex = activeStep - 1;
+    }
+    //conditional rendering of dialoue box for cognitive dissonance
+    if (activeStep === 4 && experimentCondition === 1) {
+      surveyIndex = activeStep;
+    }
+
+    const survey = dvSurvey[surveyIndex];
+    return survey.surveyData.questions.map((question, index) => (
+      <DVRadio key={'dvradio-' + index} questData={question} />
+    ));
+  };
+
   return (
-    <div className={classes.experimentsRoot}>
+    // @Arti - using the "ref" attribute we associate the "useRef" constant
+    // with the page component.
+    <div ref={container} className={classes.experimentsRoot}>
       <div className={classes.experimentsHeader}>STUDY PART 2</div>
       <Stepper activeStep={activeStep}>
         {[1, 2, 3, 4, 5].map((stepNumber, index) => {
@@ -129,64 +157,59 @@ const ExperimentsPage = () => {
               Thank you! Now you will proceed to part-3 of the experiment.
             </div>
             <Link to='/dashboard'>
-              <Button
-                variant='contained'
-                color='primary'
-              >
+              <Button variant='contained' color='primary'>
                 PROCEED TO RESULT DASHBOARD
               </Button>
             </Link>
           </div>
         ) : (
-            <>
-              {renderSwitch(activeStep)}
-              <div className={classes.buttons}>
-                {activeStep !== 0 ? (
-                  <Button
-                    variant='contained'
-                    color='primary'
-                    onClick={handleBack}
-                  >
-                    Back
-                  </Button>
-                ) : (
-                    <div></div>
-                  )}
+          <>
+            {renderSwitch(activeStep)}
+            <div className={classes.buttons}>
+              {activeStep !== 0 ? (
                 <Button
                   variant='contained'
                   color='primary'
-                  onClick={handleClickOpen}
+                  onClick={handleBack}
                 >
-                  Proceed
-                {/* {activeStep === 4 - 1 ? 'Finish' : 'Proceed'} */}
+                  Back
                 </Button>
-                <Dialog
-                  open={open}
-                  onClose={handleClose}
-                  aria-labelledby='form-dialog-title'
-                >
-                  <DialogTitle id='form-dialog-title'>
-                    Please answer the following questions regarding the video you
-                    just watched:
+              ) : (
+                <div></div>
+              )}
+              <Button
+                variant='contained'
+                color='primary'
+                onClick={handleClickOpen}
+              >
+                Proceed
+                {/* {activeStep === 4 - 1 ? 'Finish' : 'Proceed'} */}
+              </Button>
+              <Dialog
+                open={open}
+                onClose={handleClose}
+                aria-labelledby='form-dialog-title'
+                fullWidth={true}
+                maxWidth='md'
+              >
+                <DialogTitle id='form-dialog-title'>
+                  Please answer the following questions regarding the video you
+                  just watched:
                 </DialogTitle>
-                  <DialogContent>
-                    {dvSurvey.surveyData.questions.map((question, index) => (
-                      <DVRadio key={'dvradio-' + index} questData={question} />
-                    ))}
-                  </DialogContent>
-                  <DialogActions>
-                    <Button
-                      onClick={handleNext}
-                      variant='contained'
-                      color='primary'
-                    >
-                      Submit
+                <DialogContent>{dialogSwitch(activeStep)}</DialogContent>
+                <DialogActions>
+                  <Button
+                    onClick={handleNext}
+                    variant='contained'
+                    color='primary'
+                  >
+                    Submit
                   </Button>
-                  </DialogActions>
-                </Dialog>
-              </div>
-            </>
-          )}
+                </DialogActions>
+              </Dialog>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
