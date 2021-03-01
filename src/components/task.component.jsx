@@ -6,6 +6,7 @@ import * as Colors from '../constants/colors';
 import { Link } from 'react-router-dom';
 import Box from '@material-ui/core/Box';
 
+//<img src={process.env.PUBLIC_URL + './images/emoticons.png'} width = "350px" height = "75px" />
 
 const useStyles = makeStyles({
     instructions: {
@@ -31,7 +32,7 @@ const Task = ({ history }) => {
         <>
             <div className={classes.instructions}>
                 <div >
-                    <Box p={2}>
+                    <Box p={2} >
                     Thank you for agreeing to participate in this study. This study examines your media behaviors in two parts. In the first part,
                     you are required to answer a few questions; afterwards, you will proceed to the second part. In the second part, we will present you with three videos.
                     You are required to watch the video and then answer a few questions regarding the video you just watched. Please answer the questions to the best
@@ -40,10 +41,10 @@ const Task = ({ history }) => {
                     
                     </Box>
                     <Box textAlign='center'>  
-                        <img src={process.env.PUBLIC_URL + './images/emoticons.png'} width = "350px" height = "75px" />
+                        <img src={process.env.PUBLIC_URL + './images/taskImage.png'} width = "40%" height = "40%" />
                     </Box>
                     
-                    <Box p={2}>
+                    <Box p={2} >
                         Lastly, to end the experiment, we will present you a final video that may or may not contain misinformation. We expect you to evaluate the information
                     and choose to flag or not flag the video. After you submit your evaluation we give you another chance to revert your action
                     of flagging or not flagging the video. Press proceed to start the study. 
