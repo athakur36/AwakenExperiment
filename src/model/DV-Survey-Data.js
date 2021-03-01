@@ -78,6 +78,7 @@ export const DV_Survey = [
             { value: 4, text: 'a little' },
             { value: 5, text: 'Not at all' },
           ],
+          id: 'Rating'
         },
         {
           question: 'How likely are you to share/recommend the song?',
@@ -88,6 +89,7 @@ export const DV_Survey = [
             { value: 4, text: 'little likely' },
             { value: 5, text: 'Not at all' },
           ],
+          id: 'Share/Recommend Likelihood'
         },
         {
           question: 'How likely are you going to watch the song again?',
@@ -98,6 +100,7 @@ export const DV_Survey = [
             { value: 4, text: 'little likely' },
             { value: 5, text: 'Not at all' },
           ],
+          id: 'Rewatch Likelihood'
         },
       ],
     },
@@ -116,6 +119,7 @@ export const DV_Survey = [
             { value: 4, text: 'Fair' },
             { value: 5, text: 'Poor' },
           ],
+          id: 'Performance Rating'
         },
         {
           question: 'How much you liked the video?',
@@ -126,6 +130,7 @@ export const DV_Survey = [
             { value: 4, text: 'a little' },
             { value: 5, text: 'Not at all' },
           ],
+          id: 'Rating'
         },
         {
           question: 'How likely are you to share/recommend the video?',
@@ -136,6 +141,7 @@ export const DV_Survey = [
             { value: 4, text: 'little likely' },
             { value: 5, text: 'Not at all' },
           ],
+          id: 'Share/Recommend Likelihood'
         },
         {
           question: 'How likely are you going to watch the video again?',
@@ -146,6 +152,7 @@ export const DV_Survey = [
             { value: 4, text: 'little likely' },
             { value: 5, text: 'Not at all' },
           ],
+          id: 'Rewatch Likelihood'
         },
       ],
     },
@@ -162,6 +169,7 @@ export const DV_Survey = [
             { value: 1, text: 'Yes' },
             { value: 2, text: 'No' },
           ],
+          id: 'Revert'
         },
       ],
     },
@@ -178,6 +186,7 @@ export const DV_Survey = [
             { value: 1, text: 'Yes' },
             { value: 2, text: 'No' },
           ],
+          id: 'Revert'
         },
       ],
     },
