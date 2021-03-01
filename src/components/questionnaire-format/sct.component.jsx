@@ -38,6 +38,7 @@ const saveAnswer = (answer, id) => {
   //console.log(answer);
 
   survey1Data[id] = answer;
+  
   localStorage.setItem('Part1FreeResponse', JSON.stringify(survey1Data));
 };
 

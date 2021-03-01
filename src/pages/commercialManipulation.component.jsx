@@ -34,11 +34,15 @@ const useStyles = makeStyles((theme) => ({
 
 const CommercialManipPage = () => {
   const classes = useStyles();
+
   const experimentCondition = JSON.parse(
     localStorage.getItem('experiment_condition')
   );
   const [activeExper, setActiveExper] = React.useState(0);
+  const [disabled, setDisabled] = React.useState(true);
+  
 
+  
   //scroll to top of page on reload
   const picRef = React.createRef();
   useEffect(() => {
@@ -64,6 +68,8 @@ const CommercialManipPage = () => {
             name={'image' + Math.floor(Math.random() * Math.floor(1000))}
             photo={e.src}
             key={key}
+            setDisabled={setDisabled}
+            disabled={disabled}
           />
         )))
       case 'PICKUP':
@@ -97,6 +103,7 @@ const CommercialManipPage = () => {
               variant='contained'
               color='primary'
               onClick={handleNext}
+              disabled={disabled}
             >
               {activeExper === Experiment_Image_List[imageIndex].length - 1
                 ? 'Finish'
