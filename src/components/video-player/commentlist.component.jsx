@@ -80,7 +80,7 @@ const vaccinecommentsArray_pro = [
 
 const vaccinecommentsArray_anti = [
   {
-    text: 'This is anti test comment',
+    text: 'These vaccines does not seem to be safe.',
     ID: 'pro_cmnt1',
     commentorName: 'adam',
     like: false,
@@ -122,8 +122,6 @@ const vaccinecommentsArray_anti = [
 ];
 
 const CommentList = ({ showComments = true }) => {
-
-
   // const classes = useStyles();
   const commentType = JSON.parse(localStorage.getItem('commentType'));
 
@@ -139,14 +137,13 @@ const CommentList = ({ showComments = true }) => {
     return (
       <section>
         <form onSubmit={handleSubmit}>
-          {
-            showComments &&
+          {showComments && (
             <List>
               {vaccinecommentsArray_pro.map((comment, index) => (
                 <Comment key={comment.ID} comment={comment} />
               ))}
             </List>
-          }
+          )}
           {/* add classes and give padding for submit button */}
           <div>
             <TextField
@@ -165,14 +162,13 @@ const CommentList = ({ showComments = true }) => {
     return (
       <section>
         <form onSubmit={handleSubmit}>
-          {
-            showComments &&
+          {showComments && (
             <List>
               {vaccinecommentsArray_anti.map((comment, index) => (
                 <Comment key={comment.ID} comment={comment} />
               ))}
             </List>
-          }
+          )}
           {/* add classes and give padding for submit button */}
           <div>
             <TextField
