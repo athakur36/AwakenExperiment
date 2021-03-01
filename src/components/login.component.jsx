@@ -1,73 +1,72 @@
-import React from 'react';
-import { withRouter } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
-import { Button, TextField, Card, CardContent } from '@material-ui/core';
-import * as Colors from '../constants/colors';
-import firebase from '../firebase/firebase.utils';
+import React from "react";
+import { withRouter } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
+import { Button, TextField, Card, CardContent } from "@material-ui/core";
+import * as Colors from "../constants/colors";
+import firebase from "../firebase/firebase.utils";
 //look for library which provides a bar chart component in react
 const useStyles = makeStyles({
   card: {
     minWidth: 500,
     minHeight: 350,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
   cardContent: {
     minWidth: 500,
     minHeight: 300,
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
   },
   loginTitle: {
     fontSize: 24,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     color: Colors.PRIMARY,
   },
   login: {
-    width: '100%',
+    width: "100%",
   },
   error: {
-    color: 'red',
-    fontSize: '20px',
-    fontWeight: '600',
+    color: "red",
+    fontSize: "20px",
+    fontWeight: "600",
   },
 });
 
 const Login = ({ history, match }) => {
   const classes = useStyles();
-  const [userId, setUserId] = React.useState('');
+  const [username, setUserName] = React.useState("");
   const [showUserLoginError, setShowUserLoginError] = React.useState(false);
   const [
     showUserDuplicateLoginError,
     setShowDuplicateUserLoginError,
   ] = React.useState(false);
 
-  const handleUserIdChange = (event) => {
-    setUserId(event.target.value);
+  const handleUserNameChange = (event) => {
+    setUserName(event.target.value);
   };
 
-  const checkUserValidity = () => {
-    const dbRef = firebase.database().ref('users/' + userId);
-    console.log('users/' + userId);
+  const createNewUser = () => {
+    var userId = (((1 + Math.random()) * 0x10000) | 0)
+      .toString(16)
+      .substring(1);
 
-    dbRef.once('value').then(function (snapshot) {
-      var doesIDExist = snapshot.exists();
-      console.log(doesIDExist);
-      if (doesIDExist === true) {
-        setShowUserLoginError(false);
-        console.log(userId);
-        localStorage.setItem('userID', JSON.stringify(userId));
-        history.push(`/task`);
-      } else {
-        setShowUserLoginError(true);
-      }
-    });
+    var timeNow = Date().toLocaleString();
+
+    const dbRef = firebase.database().ref("users/" + userId);
+    dbRef.child("username").set(username);
+    dbRef.child("already_submitted").set(false);
+    dbRef.child("date_created").set(timeNow);
+
+    localStorage.setItem("userID", JSON.stringify(userId));
   };
 
   const onLoginClicked = () => {
-    checkUserValidity();
+    //checkUserValidity();
+    createNewUser();
+    history.push(`/task`);
     // will need to update submit flag at the end of survey to prevent from relogin.
   };
 
@@ -80,12 +79,12 @@ const Login = ({ history, match }) => {
           <TextField
             fullWidth
             required
-            label='User ID'
-            margin='normal'
-            type='text'
-            variant='outlined'
-            onChange={handleUserIdChange}
-            value={userId}
+            label="Username"
+            margin="normal"
+            type="text"
+            variant="outlined"
+            onChange={handleUserNameChange}
+            value={username}
           />
           {showUserLoginError && (
             <div className={classes.error}>Invalid User ID</div>
@@ -97,10 +96,10 @@ const Login = ({ history, match }) => {
           )}
           <Button
             className={classes.login}
-            color='primary'
-            size='large'
-            type='submit'
-            variant='contained'
+            color="primary"
+            size="large"
+            type="submit"
+            variant="contained"
             onClick={onLoginClicked}
           >
             Log In

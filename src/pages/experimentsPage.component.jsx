@@ -1,56 +1,56 @@
-import React, { useEffect, useRef } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { Link } from 'react-router-dom';
-import VideoPlayer from '../components/video-player/videoplayer.component';
-import Stepper from '@material-ui/core/Stepper';
-import Step from '@material-ui/core/Step';
-import StepLabel from '@material-ui/core/StepLabel';
-import Button from '@material-ui/core/Button';
-import { DV_Survey } from '../model/DV-Survey-Data';
-import VideoListPage from '../components/video-list/videolistPage.component';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import DVRadio from '../components/dv/dvRadio.component';
-import firebase from '../firebase/firebase.utils';
-import ConfirmationBiasExperiment from '../components/exp-bussinessLogic/confirmationbias-experiment.component';
-import PopularityBiasExperiment from '../components/exp-bussinessLogic/popularitybias-experiment.component';
-import NegativityBiasExperiment from '../components/exp-bussinessLogic/negativitybias-experiment.component';
-import CognitiveDissonanceExperiment from '../components/exp-bussinessLogic/cognitivedissonance-experiment.component';
-import Task2 from '../components/task2.component';
+import React, { useEffect, useRef } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import { Link } from "react-router-dom";
+import VideoPlayer from "../components/video-player/videoplayer.component";
+import Stepper from "@material-ui/core/Stepper";
+import Step from "@material-ui/core/Step";
+import StepLabel from "@material-ui/core/StepLabel";
+import Button from "@material-ui/core/Button";
+import { DV_Survey } from "../model/DV-Survey-Data";
+import VideoListPage from "../components/video-list/videolistPage.component";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DVRadio from "../components/dv/dvRadio.component";
+import firebase from "../firebase/firebase.utils";
+import ConfirmationBiasExperiment from "../components/exp-bussinessLogic/confirmationbias-experiment.component";
+import PopularityBiasExperiment from "../components/exp-bussinessLogic/popularitybias-experiment.component";
+import NegativityBiasExperiment from "../components/exp-bussinessLogic/negativitybias-experiment.component";
+import CognitiveDissonanceExperiment from "../components/exp-bussinessLogic/cognitivedissonance-experiment.component";
+import Task2 from "../components/task2.component";
 
 const useStyles = makeStyles((theme) => ({
   experimentsRoot: {
-    width: '100%',
-    height: '100%',
-    padding: '0 50px',
+    width: "100%",
+    height: "100%",
+    padding: "0 50px",
   },
   experimentsHeader: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '50px',
-    fontSize: '22px',
-    fontWeight: 'bold',
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    height: "50px",
+    fontSize: "22px",
+    fontWeight: "bold",
   },
   stepContent: {
-    paddingBottom: '50px',
+    paddingBottom: "50px",
   },
   buttons: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    marginTop: '50px',
+    display: "flex",
+    justifyContent: "space-between",
+    marginTop: "50px",
   },
   instructions: {
-    height: '300px',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
-    fontSize: '24px',
-    marginTop: '100px',
+    height: "300px",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-evenly",
+    alignItems: "center",
+    fontSize: "24px",
+    marginTop: "100px",
   },
 }));
 
@@ -69,15 +69,15 @@ const ExperimentsPage = () => {
   // is updated. So I use the div container reference and have called the "scrollIntoView()" function
   // in order to "move" the top of page to that component. :)
   useEffect(() => {
-    console.log('Move to top');
+    console.log("Move to top");
     container.current.scrollIntoView();
   }, [activeStep]);
 
   const dbRef = firebase
     .database()
-    .ref('users/' + JSON.parse(localStorage.getItem('userID')));
+    .ref("users/" + JSON.parse(localStorage.getItem("userID")));
   const experimentCondition = JSON.parse(
-    localStorage.getItem('experiment_condition')
+    localStorage.getItem("experiment_condition")
   );
 
   const handleClickOpen = () => {
@@ -90,7 +90,7 @@ const ExperimentsPage = () => {
 
   const handleClose = () => {
     setOpen(false);
-    dbRef.child('commentType').set(localStorage.getItem('commentType'));
+    dbRef.child("commentType").set(localStorage.getItem("commentType"));
     // Save the DV measurements in the firebase including the condition information (pro or counter)
   };
 
@@ -135,7 +135,7 @@ const ExperimentsPage = () => {
 
     const survey = dvSurvey[surveyIndex];
     return survey.surveyData.questions.map((question, index) => (
-      <DVRadio key={'dvradio-' + index} questData={question} />
+      <DVRadio key={"dvradio-" + index} questData={question} />
     ));
   };
 
@@ -147,7 +147,7 @@ const ExperimentsPage = () => {
       <Stepper activeStep={activeStep}>
         {[1, 2, 3, 4, 5, 6].map((stepNumber, index) => {
           return (
-            <Step key={'step-' + index}>
+            <Step key={"step-" + index}>
               <StepLabel />
             </Step>
           );
@@ -159,60 +159,60 @@ const ExperimentsPage = () => {
             <div>
               Thank you! Now you will proceed to part-3 of the experiment.
             </div>
-            <Link to='/dashboard'>
-              <Button variant='contained' color='primary'>
+            <Link to="/dashboard">
+              <Button variant="contained" color="primary">
                 PROCEED TO RESULT DASHBOARD
               </Button>
             </Link>
           </div>
         ) : (
-            <>
-              {renderSwitch(activeStep)}
-              <div className={classes.buttons}>
-                {activeStep !== 0 ? (
-                  <Button
-                    variant='contained'
-                    color='primary'
-                    onClick={handleBack}
-                  >
-                    Back
-                  </Button>
-                ) : (
-                    <div></div>
-                  )}
+          <>
+            {renderSwitch(activeStep)}
+            <div className={classes.buttons}>
+              {activeStep !== 0 ? (
                 <Button
-                  variant='contained'
-                  color='primary'
-                  onClick={handleClickOpen}
+                  variant="contained"
+                  color="primary"
+                  onClick={handleBack}
                 >
-                  Proceed
-                {/* {activeStep === 4 - 1 ? 'Finish' : 'Proceed'} */}
+                  Back
                 </Button>
-                <Dialog
-                  open={open}
-                  onClose={handleClose}
-                  aria-labelledby='form-dialog-title'
-                  fullWidth={true}
-                  maxWidth='md'
-                >
-                  <DialogTitle id='form-dialog-title'>
-                    Please answer the following questions regarding the video you
-                    just watched:
+              ) : (
+                <div></div>
+              )}
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={handleClickOpen}
+              >
+                Proceed
+                {/* {activeStep === 4 - 1 ? 'Finish' : 'Proceed'} */}
+              </Button>
+              <Dialog
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="form-dialog-title"
+                fullWidth={true}
+                maxWidth="md"
+              >
+                <DialogTitle id="form-dialog-title">
+                  Please answer the following questions regarding the video you
+                  just watched:
                 </DialogTitle>
-                  <DialogContent>{dialogSwitch(activeStep)}</DialogContent>
-                  <DialogActions>
-                    <Button
-                      onClick={handleNext}
-                      variant='contained'
-                      color='primary'
-                    >
-                      Submit
+                <DialogContent>{dialogSwitch(activeStep)}</DialogContent>
+                <DialogActions>
+                  <Button
+                    onClick={handleNext}
+                    variant="contained"
+                    color="primary"
+                  >
+                    Submit
                   </Button>
-                  </DialogActions>
-                </Dialog>
-              </div>
-            </>
-          )}
+                </DialogActions>
+              </Dialog>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
