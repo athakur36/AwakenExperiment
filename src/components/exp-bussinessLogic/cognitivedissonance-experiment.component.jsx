@@ -56,12 +56,15 @@ const CognitiveDissonanceExperiment = () => {
   const experimentCondition = JSON.parse(
     localStorage.getItem('experiment_condition')
   );
+
+
   if (experimentCondition === 0) {
-    return <VideoPlayer videoData={ExpVideosData[6]} showComments={false} />;
+    return <div> Survey Type is Invalid </div> && <VideoPlayer videoData={ExpVideosData[6]} showComments={false} />;
   } else {
     localStorage.setItem('commentType', JSON.stringify(1));
-    return <VideoPlayer videoData={ExpVideosData[7]} showComments={false} />;
+    return <div> Survey Type is Invalid </div> && <VideoPlayer videoData={ExpVideosData[7]} showComments={false} />;
   }
+
 };
 
 export default CognitiveDissonanceExperiment;
