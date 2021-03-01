@@ -17,23 +17,23 @@ import Comment from './comment.component';
 //   NameWrapper: {
 //     fontWeight: 'bold',
 //   },
-  // CommentListItem: {
-  //   fontSize: '1rem',
-  //   fontWeight: '400',
-  //   lineHeight: '1.5',
-  //   letterSpacing: '0.00938em',
-  //   width: '700px',
-  // },
-  // LikeDislikeButton: {
-  //   fontSize: '1rem',
-  //   padding: '5px 10px',
-  //   color: '#585858',
-  // },
+// CommentListItem: {
+//   fontSize: '1rem',
+//   fontWeight: '400',
+//   lineHeight: '1.5',
+//   letterSpacing: '0.00938em',
+//   width: '700px',
+// },
+// LikeDislikeButton: {
+//   fontSize: '1rem',
+//   padding: '5px 10px',
+//   color: '#585858',
+// },
 
-  // LikedDislikedButton: {
-  //   fontWeight: 'bold',
-  //   color: '#1565c0',
-  // },
+// LikedDislikedButton: {
+//   fontWeight: 'bold',
+//   color: '#1565c0',
+// },
 // });
 const vaccinecommentsArray_pro = [
   {
@@ -80,7 +80,7 @@ const vaccinecommentsArray_pro = [
 
 const vaccinecommentsArray_anti = [
   {
-    text: 'This is anti test comment',
+    text: 'These vaccines does not seem to be safe.',
     ID: 'pro_cmnt1',
     commentorName: 'adam',
     like: false,
@@ -121,9 +121,7 @@ const vaccinecommentsArray_anti = [
   },
 ];
 
-const CommentList = ({showComments = true}) => {
-  
-
+const CommentList = ({ showComments = true }) => {
   // const classes = useStyles();
   const commentType = JSON.parse(localStorage.getItem('commentType'));
 
@@ -138,14 +136,13 @@ const CommentList = ({showComments = true}) => {
     return (
       <section>
         <form onSubmit={handleSubmit}>
-          {
-            showComments &&
+          {showComments && (
             <List>
               {vaccinecommentsArray_pro.map((comment, index) => (
                 <Comment key={comment.ID} comment={comment} />
               ))}
             </List>
-          }
+          )}
           {/* add classes and give padding for submit button */}
           <div>
             <TextField
@@ -164,14 +161,13 @@ const CommentList = ({showComments = true}) => {
     return (
       <section>
         <form onSubmit={handleSubmit}>
-          {
-              showComments &&
-              <List>
-                {vaccinecommentsArray_anti.map((comment, index) => (
-                  <Comment key={comment.ID} comment={comment} />
-                ))}
-              </List>
-          }
+          {showComments && (
+            <List>
+              {vaccinecommentsArray_anti.map((comment, index) => (
+                <Comment key={comment.ID} comment={comment} />
+              ))}
+            </List>
+          )}
           {/* add classes and give padding for submit button */}
           <div>
             <TextField
