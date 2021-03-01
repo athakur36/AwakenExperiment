@@ -19,6 +19,7 @@ import ConfirmationBiasExperiment from '../components/exp-bussinessLogic/confirm
 import PopularityBiasExperiment from '../components/exp-bussinessLogic/popularitybias-experiment.component';
 import NegativityBiasExperiment from '../components/exp-bussinessLogic/negativitybias-experiment.component';
 import CognitiveDissonanceExperiment from '../components/exp-bussinessLogic/cognitivedissonance-experiment.component';
+import Task2 from '../components/task2.component';
 
 const useStyles = makeStyles((theme) => ({
   experimentsRoot: {
@@ -113,6 +114,8 @@ const ExperimentsPage = () => {
       case 3:
         return <NegativityBiasExperiment />;
       case 4:
+        return <Task2 />;
+      case 5:
         return <CognitiveDissonanceExperiment />;
       default:
         return <div>Survey Type is Invalid</div>;
@@ -126,7 +129,7 @@ const ExperimentsPage = () => {
       surveyIndex = activeStep - 1;
     }
     //conditional rendering of dialoue box for cognitive dissonance
-    if (activeStep === 4 && experimentCondition === 1) {
+    if (activeStep === 5 && experimentCondition === 1) {
       surveyIndex = activeStep;
     }
 
@@ -142,7 +145,7 @@ const ExperimentsPage = () => {
     <div ref={container} className={classes.experimentsRoot}>
       <div className={classes.experimentsHeader}>STUDY PART 2</div>
       <Stepper activeStep={activeStep}>
-        {[1, 2, 3, 4, 5].map((stepNumber, index) => {
+        {[1, 2, 3, 4, 5, 6].map((stepNumber, index) => {
           return (
             <Step key={'step-' + index}>
               <StepLabel />
@@ -151,7 +154,7 @@ const ExperimentsPage = () => {
         })}
       </Stepper>
       <div className={classes.stepContent}>
-        {activeStep === 5 ? (
+        {activeStep === 6 ? (
           <div className={classes.instructions}>
             <div>
               Thank you! Now you will proceed to part-3 of the experiment.
@@ -163,53 +166,53 @@ const ExperimentsPage = () => {
             </Link>
           </div>
         ) : (
-          <>
-            {renderSwitch(activeStep)}
-            <div className={classes.buttons}>
-              {activeStep !== 0 ? (
+            <>
+              {renderSwitch(activeStep)}
+              <div className={classes.buttons}>
+                {activeStep !== 0 ? (
+                  <Button
+                    variant='contained'
+                    color='primary'
+                    onClick={handleBack}
+                  >
+                    Back
+                  </Button>
+                ) : (
+                    <div></div>
+                  )}
                 <Button
                   variant='contained'
                   color='primary'
-                  onClick={handleBack}
+                  onClick={handleClickOpen}
                 >
-                  Back
-                </Button>
-              ) : (
-                <div></div>
-              )}
-              <Button
-                variant='contained'
-                color='primary'
-                onClick={handleClickOpen}
-              >
-                Proceed
+                  Proceed
                 {/* {activeStep === 4 - 1 ? 'Finish' : 'Proceed'} */}
-              </Button>
-              <Dialog
-                open={open}
-                onClose={handleClose}
-                aria-labelledby='form-dialog-title'
-                fullWidth={true}
-                maxWidth='md'
-              >
-                <DialogTitle id='form-dialog-title'>
-                  Please answer the following questions regarding the video you
-                  just watched:
+                </Button>
+                <Dialog
+                  open={open}
+                  onClose={handleClose}
+                  aria-labelledby='form-dialog-title'
+                  fullWidth={true}
+                  maxWidth='md'
+                >
+                  <DialogTitle id='form-dialog-title'>
+                    Please answer the following questions regarding the video you
+                    just watched:
                 </DialogTitle>
-                <DialogContent>{dialogSwitch(activeStep)}</DialogContent>
-                <DialogActions>
-                  <Button
-                    onClick={handleNext}
-                    variant='contained'
-                    color='primary'
-                  >
-                    Submit
+                  <DialogContent>{dialogSwitch(activeStep)}</DialogContent>
+                  <DialogActions>
+                    <Button
+                      onClick={handleNext}
+                      variant='contained'
+                      color='primary'
+                    >
+                      Submit
                   </Button>
-                </DialogActions>
-              </Dialog>
-            </div>
-          </>
-        )}
+                  </DialogActions>
+                </Dialog>
+              </div>
+            </>
+          )}
       </div>
     </div>
   );

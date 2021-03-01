@@ -37,12 +37,6 @@ const Task = ({ history }) => {
                     buttons provided below the player. In addition, you can also flag the video only if you think the video contains some misinformation.
                 </div>
 
-                <div >
-                    Lastly, to end the experiment, we will present you a final video that may or may not contain misinformation. We expect you to evaluate the information
-                    and choose to flag or not flag the video. After you submit your evaluation we give you another chance to revert your action
-                    of flagging or not flagging the video. Press proceed to start the study.
-                </div>
-
             </div>
 
             <Link to='/survey'>
