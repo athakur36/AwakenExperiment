@@ -22,16 +22,16 @@ const useStyles = makeStyles((theme) => ({
     //marginRight: '30px',
     marginRight: theme.spacing(1),
   },
-  instructions: {
-    marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(1),
-    height: '300px',
+  experimentsHeader: {
     display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-evenly',
     alignItems: 'center',
-    fontSize: '24px',
-    marginTop: '100px',
+    justifyContent: 'center',
+    height: '50px',
+    fontSize: '22px',
+    fontWeight: 'bold',
+  },
+  stepContent: {
+    paddingBottom: '70px',
   },
 }));
 
@@ -90,47 +90,30 @@ const CommercialManipPage = () => {
   }
   return (
     <div ref={picRef} className={classes.experimentsRoot}>
-        <Stepper activeExper={activeExper}>
-        {steps.map((label)  => {
-          return (
-            <Step key={label}>
-              <StepLabel>{label}</StepLabel>
-          </Step>
-          );
-        })}
+        <div className={classes.experimentsHeader}>STUDY PART </div>
+        <Stepper activeStep={activeExper}>
+          {Experiment_Image_List[imageIndex].map((experiment, index) => {
+            return (
+              <Step key={'step-' + activeExper + ':' + index}>
+                <StepLabel />
+              </Step>
+            );
+          })}
       </Stepper>
-      <div className={classes.experimentsRoot}>
-        {activeExper === steps.length ? (
-          <div>
-            <Typography className={classes.instructions}>All steps completed</Typography>
-            <Link to='/commercialRating'>
-              <Button
-                variant='contained'
-                color='primary'
-              >
-                PROCEED
-              </Button>
-            </Link>
-  
-          </div>
-        ):(
-          <>
-             {renderSwitch(activeExper)}
-             <div className={classes.button}>
-        <Button
-          className={classes.button}
-          variant='contained'
-          color='primary'
-          onClick={handleNext}
-        >
-          {activeExper === Experiment_Image_List[imageIndex].length - 1
-            ? 'Finish'
-            : 'Proceed'}
-        </Button>
-            </div>
-      </>
-
-        )}
+      <div className={classes.stepContent}>
+          {renderSwitch(activeExper)}
+          {
+            <Button
+              className={classes.button}
+              variant='contained'
+              color='primary'
+              onClick={handleNext}
+            >
+              {activeExper === Experiment_Image_List[imageIndex].length - 1
+                ? 'Finish'
+                : 'Proceed'}
+            </Button>
+          }
 
       </div>
     </div>
