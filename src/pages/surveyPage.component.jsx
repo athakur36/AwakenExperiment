@@ -76,7 +76,7 @@ const SurveyPage = ({ match }) => {
       }
     }
     // vaccine attitude(pro: 0, anti: 1)
-    vaccine_attitude = sum / 4 >= 3 ? 0 : 1;
+    vaccine_attitude = sum / 3 >= 3 ? 0 : 1;
     localStorage.setItem('vaccine_attitude', JSON.stringify(vaccine_attitude));
     localStorage.setItem(
       'experiment_condition',
