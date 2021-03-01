@@ -14,7 +14,7 @@ export const ExpVideosData = [
     type: 'COUNTER',
     title: 'Dwayne Johnson opposing Covid-19 Vaccines',
     description: 'test description kjsaksa sjgfjkas jhsagkjas',
-    numberOfViews: 2000,
+    numberOfViews: 1000,
     experiment: 'ConfirmationBias',
   },
   {
