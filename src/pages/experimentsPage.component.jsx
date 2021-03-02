@@ -59,13 +59,11 @@ const ExperimentsPage = () => {
   const [activeStep, setActiveStep] = React.useState(0);
   const [open, setOpen] = React.useState(false);
   const dvSurvey = DV_Survey;
-
-  // @Arti - I have used the "useRef" hook, that I can use to get the reference of
+  // @Arti Thakur - I have used the "useRef" hook, that I can use to get the reference of
   // a react component - in this case, I am associating this constant to the div
   // container (line 125)
   const container = useRef(null);
-
-  // @Arti - I have used the useEffect hook to execute a function whenever the activeStep variable
+  // @Arti Thakur - I have used the useEffect hook to execute a function whenever the activeStep variable
   // is updated. So I use the div container reference and have called the "scrollIntoView()" function
   // in order to "move" the top of page to that component. :)
   useEffect(() => {
@@ -81,7 +79,8 @@ const ExperimentsPage = () => {
   );
 
   const handleClickOpen = () => {
-    if (activeStep !== 1) {
+    console.log(activeStep);
+    if (activeStep !== 4 && activeStep !== 1) {
       setOpen(true);
     } else {
       setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -124,15 +123,13 @@ const ExperimentsPage = () => {
 
   const dialogSwitch = (activeStep) => {
     let surveyIndex = 0;
-
-    if (activeStep >= 2) {
+    if (activeStep === 2 || activeStep === 3 || activeStep === 5) {
       surveyIndex = activeStep - 1;
     }
     //conditional rendering of dialoue box for cognitive dissonance
     if (activeStep === 5 && experimentCondition === 1) {
       surveyIndex = activeStep;
     }
-
     const survey = dvSurvey[surveyIndex];
     return survey.surveyData.questions.map((question, index) => (
       <DVRadio key={"dvradio-" + index} questData={question} />
@@ -140,7 +137,7 @@ const ExperimentsPage = () => {
   };
 
   return (
-    // @Arti - using the "ref" attribute we associate the "useRef" constant
+    // @Arti Thakur - using the "ref" attribute we associate the "useRef" constant
     // with the page component.
     <div ref={container} className={classes.experimentsRoot}>
       <div className={classes.experimentsHeader}>STUDY PART 2</div>
