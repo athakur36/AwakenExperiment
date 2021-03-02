@@ -46,7 +46,7 @@ export const ExpVideosData = [
   },
   {
     step: 3,
-    url: 'https://youtu.be/hoNb6HuNmU0',
+    url: 'https://vimeo.com/518724844',
     type: 'Objective',
     title: 'Some of the interesting moments during the game',
     description: 'test description kjsaksa sjgfjkas jhsagkjas',

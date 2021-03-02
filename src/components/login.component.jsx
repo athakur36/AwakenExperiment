@@ -67,6 +67,7 @@ const Login = ({ history, match }) => {
   };
 
   const onLoginClicked = () => {
+    localStorage.clear()
     checkUserValidity();
     // will need to update submit flag at the end of survey to prevent from relogin.
   };
