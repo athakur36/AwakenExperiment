@@ -126,10 +126,12 @@ const ExperimentsPage = () => {
     if (activeStep === 2 || activeStep === 3 || activeStep === 5) {
       surveyIndex = activeStep - 1;
     }
+
     //conditional rendering of dialoue box for cognitive dissonance
     if (activeStep === 5 && experimentCondition === 1) {
       surveyIndex = activeStep;
     }
+
     const survey = dvSurvey[surveyIndex];
     return survey.surveyData.questions.map((question, index) => (
       <DVRadio key={"dvradio-" + index} questData={question} />

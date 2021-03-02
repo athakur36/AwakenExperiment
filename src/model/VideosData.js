@@ -6,7 +6,7 @@ export const ExpVideosData = [
     title: 'Dwayne Johnson promoting Covid-19 Vaccines',
     description: 'test description kjsaksa sjgfjkas jhsagkjas',
     numberOfViews: 1000,
-    experiment: 'ConfirmationBias',
+    experiment: 'ConfirmationBias-T',
   },
   {
     step: 1,
@@ -15,7 +15,7 @@ export const ExpVideosData = [
     title: 'Dwayne Johnson opposing Covid-19 Vaccines',
     description: 'test description kjsaksa sjgfjkas jhsagkjas',
     numberOfViews: 1000,
-    experiment: 'ConfirmationBias',
+    experiment: 'ConfirmationBias-C',
   },
   {
     step: 2,
@@ -24,7 +24,7 @@ export const ExpVideosData = [
     title: 'The most liked and shared Indian song in 2020: Ramleela',
     description: 'test description kjsaksa sjgfjkas jhsagkjas',
     numberOfViews: 8000000,
-    experiment: 'PopularityBias-A',
+    experiment: 'PopularityBias-T',
   },
   {
     step: 2,
@@ -33,7 +33,7 @@ export const ExpVideosData = [
     title: 'Ramleela: catchy title track of the Indian movie released in 2019',
     description: 'test description kjsaksa sjgfjkas jhsagkjas',
     numberOfViews: 2000,
-    experiment: 'PopularityBias-B',
+    experiment: 'PopularityBias-C',
   },
   {
     step: 3,
@@ -42,7 +42,7 @@ export const ExpVideosData = [
     title: 'Announcer loosing it during the game',
     description: 'test description kjsaksa sjgfjkas jhsagkjas',
     numberOfViews: 2000,
-    experiment: 'NegativityBias-A',
+    experiment: 'NegativityBias-T',
   },
   {
     step: 3,
@@ -51,7 +51,7 @@ export const ExpVideosData = [
     title: 'Some of the interesting moments during the game',
     description: 'test description kjsaksa sjgfjkas jhsagkjas',
     numberOfViews: 2000,
-    experiment: 'NegativityBias-B',
+    experiment: 'NegativityBias-C',
   },
   {
     step: 4,
@@ -60,7 +60,7 @@ export const ExpVideosData = [
     title: 'Dwayne Johnson introducing himself',
     description: 'test description kjsaksa sjgfjkas jhsagkjas',
     numberOfViews: 2000,
-    experiment: 'CognitiveDissonance-A',
+    experiment: 'CognitiveDissonance-T',
   },
   {
     step: 4,
@@ -69,6 +69,6 @@ export const ExpVideosData = [
     title: 'Dwayne Johnson introducing himself',
     description: 'test description kjsaksa sjgfjkas jhsagkjas',
     numberOfViews: 2000,
-    experiment: 'CognitiveDissonance-B',
+    experiment: 'CognitiveDissonance-C',
   },
 ];
