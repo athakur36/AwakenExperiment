@@ -7,7 +7,10 @@ import HomePage from "./pages/homePage.component";
 import SurveyPage from "./pages/surveyPage.component";
 import ExperimentsPage from "./pages/experimentsPage.component";
 import DashboardPage from "./pages/dashboardPage.component";
+import Commercial from "./commercialManipulation";
+import Commercial2 from "./commercialManipulation2";
 import CommercialManipPage from "./pages/commercialManipulation.component";
+import commercialButton from "./components/commercialButton.component";
 import TaskPage from "./pages/taskdescriptionPage.component";
 
 const useStyles = makeStyles({
