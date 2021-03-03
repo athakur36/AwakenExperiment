@@ -25,12 +25,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
-const ConfirmationBias = {}
-const PopularityBias = {}
-const NegativityBias = {}
-const CognitiveDissonanceTreatment = {}
-const CognitiveDissonanceControl = {}
+const ConfirmationBias = {};
+const PopularityBias = {};
+const NegativityBias = {};
+const CognitiveDissonanceTreatment = {};
+const CognitiveDissonanceControl = {};
 // const dvData = {};
 // for (i in dvIDSs) {
 //   dvData[id] = 3
@@ -43,7 +42,7 @@ const CognitiveDissonanceControl = {}
 const DVRadio = ({ questData }) => {
   const { question, responses, id } = questData;
   const classes = useStyles();
-  const [selectedValue, setSelectedValue] = React.useState();
+  const [selectedValue, setSelectedValue] = React.useState(0);
 
   const saveAnswer = (answer, id) => {
     // dvData[id] = answer;
@@ -60,16 +59,22 @@ const DVRadio = ({ questData }) => {
       localStorage.setItem('dvData', JSON.stringify(NegativityBias));
     } else if (id.startsWith('cdt-')) {
       CognitiveDissonanceTreatment[id] = answer;
-      localStorage.setItem('dvData', JSON.stringify(CognitiveDissonanceTreatment));
+      localStorage.setItem(
+        'dvData',
+        JSON.stringify(CognitiveDissonanceTreatment)
+      );
     } else if (id.startsWith('cdc-')) {
       CognitiveDissonanceControl[id] = answer;
-      localStorage.setItem('dvData', JSON.stringify(CognitiveDissonanceControl));
+      localStorage.setItem(
+        'dvData',
+        JSON.stringify(CognitiveDissonanceControl)
+      );
     }
   };
 
   const handleChange = (event) => {
     setSelectedValue(Number(event.target.value));
-    saveAnswer(event.target.value, id);//dvIDs[question]);
+    saveAnswer(event.target.value, id); //dvIDs[question]);
   };
 
   return (
