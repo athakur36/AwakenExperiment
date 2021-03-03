@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Rating from '@material-ui/lab/Rating';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -18,8 +18,9 @@ const useStyles = makeStyles((theme) => ({
         paddingTop: '20px',
     },
     img: {
-        width: '95%',
+        width: '100%',
         alignSelf: 'center',
+        paddingTop: '30px',
     },
     row: {
         display: 'flex',
@@ -36,11 +37,34 @@ const RatingBox = (props) => {
     const tagName = props.name;
     const source = props.photo;
     const [value, setSelectedValue] = React.useState(0);
+    //let setDisabled  = props.setDisabled;
+    let disabled = props.disabled;
+
+    React.useEffect(() => {
+        setSelectedValue(value);
+        if (value !== 0) {
+            props.setDisabled(false);
+        }
+        else {
+            props.setDisabled(true);
+        }
+        console.log("in use Effect");
+    }, [value]);
 
     const handleChange = (event) => {
         //where to store rating view in database
         console.log("rating: ", event.target.value);
+        //setDisabled(false);
         setSelectedValue((event.target.value));
+
+        /*if (event.target.value !== 0) {
+            console.log("false");
+            props.setDisabled(false);
+        }
+        else {
+            props.setDisabled(true);
+        }*/
+        
     };
 
     return (
@@ -54,7 +78,7 @@ const RatingBox = (props) => {
                     name={tagName}
                     key={tagName}
                     className={classes.ratingBox}
-                    onChange={handleChange} />
+                    onChange={handleChange}/>
                 <h5 className={classes.wording}>Strongly Agree</h5>
             </div>
         </div>

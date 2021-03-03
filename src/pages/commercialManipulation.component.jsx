@@ -5,17 +5,23 @@ import Button from '@material-ui/core/Button';
 import { Experiment_Image_List } from '../model/Comm-Manip-Images';
 import { makeStyles } from '@material-ui/core/styles';
 import { shuffle } from 'lodash';
-import { Link } from 'react-router-dom';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
-import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
   experimentsRoot: {
     width: '100%',
     height: '100%',
     padding: '0 50px',
+  },
+  experimentsHeader: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '50px',
+    fontSize: '22px',
+    fontWeight: 'bold',
   },
   button: {
     float: 'right',
@@ -33,15 +39,23 @@ const useStyles = makeStyles((theme) => ({
   stepContent: {
     paddingBottom: '70px',
   },
+  stepContent: {
+    paddingBottom: '70px',
+  },
 }));
 
 const CommercialManipPage = () => {
   const classes = useStyles();
+
   const experimentCondition = JSON.parse(
     localStorage.getItem('experiment_condition')
   );
   const [activeExper, setActiveExper] = React.useState(0);
   const steps = getSteps();
+  const [disabled, setDisabled] = React.useState(true);
+  
+
+  
   //scroll to top of page on reload
   const picRef = React.createRef();
   useEffect(() => {
@@ -73,24 +87,24 @@ const CommercialManipPage = () => {
             name={'image' + Math.floor(Math.random() * Math.floor(1000))}
             photo={e.src}
             key={key}
+            setDisabled={setDisabled}
+            disabled={disabled}
           />
         )))
       case 'PICKUP':
         return (experiment.images.map((e, key) => (
-          //change this to new component
           <ButtonBox
             name={'image'}
             photo={e.src}
             text={e.text}
             key={key}
           />
-          //<RatingBox />
         )))
     }
   }
   return (
     <div ref={picRef} className={classes.experimentsRoot}>
-        <div className={classes.experimentsHeader}>STUDY PART </div>
+      <div className={classes.experimentsHeader}>STUDY PART </div>
         <Stepper activeStep={activeExper}>
           {Experiment_Image_List[imageIndex].map((experiment, index) => {
             return (
@@ -99,8 +113,8 @@ const CommercialManipPage = () => {
               </Step>
             );
           })}
-      </Stepper>
-      <div className={classes.stepContent}>
+        </Stepper>
+        <div className={classes.stepContent}>
           {renderSwitch(activeExper)}
           {
             <Button
@@ -108,13 +122,13 @@ const CommercialManipPage = () => {
               variant='contained'
               color='primary'
               onClick={handleNext}
+              disabled={disabled}
             >
               {activeExper === Experiment_Image_List[imageIndex].length - 1
                 ? 'Finish'
                 : 'Proceed'}
             </Button>
           }
-
       </div>
     </div>
   )

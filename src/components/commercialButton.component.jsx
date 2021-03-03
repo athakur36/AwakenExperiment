@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -22,8 +22,9 @@ const useStyles = makeStyles((theme) => ({
         paddingTop: '20px',
     },
     img: {
-        width: '95%',
+        width: '100%',
         alignSelf: 'center',
+        paddingTop: '30px',
     },
     row: {
         display: 'flex',
