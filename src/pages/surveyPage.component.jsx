@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { withRouter } from 'react-router-dom';
 import Sct from '../components/questionnaire-format/sct.component';
-import { IV_Surveys } from '../model/IV-Surveys-Data';
+import { IV_Surveys } from '../model/IV-Survey-Data-Only4';
 import LikertMatrix from '../components/questionnaire-format/likertMatrix.component';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -52,14 +52,14 @@ const SurveyPage = ({ match }) => {
     .database()
     .ref('users/' + JSON.parse(localStorage.getItem('userID')));
 
-  const pushDataToDatabase = (Survey1, Survey2, Survey3, Survey4) => {
+  const pushDataToDatabase = (Survey4) => {
     // Push user answers into database on finish
     if (activeStep === IV_Surveys.length - 1) {
       // compute vaccine attitue and push data to db
       console.log('Pushing data to the firebase');
-      dbRef.child('Survey1').set(Survey1);
-      dbRef.child('Survey2').set(Survey2);
-      dbRef.child('Survey3').set(Survey3);
+      //dbRef.child('Survey1').set(Survey1);
+      //dbRef.child('Survey2').set(Survey2);
+      //dbRef.child('Survey3').set(Survey3);
       dbRef.child('Survey4').set(Survey4);
       console.log('Successfully submitted!');
     }
@@ -89,16 +89,18 @@ const SurveyPage = ({ match }) => {
     console.log(vaccine_attitude);
     console.log(typeof Survey4);
   };
+
   const handleNext = (activeStep) => {
-    let Survey1 = localStorage.getItem('Part1FreeResponse');
-    let Survey2 = localStorage.getItem('Survey2');
-    let Survey3 = localStorage.getItem('Survey3');
+    //let Survey1 = localStorage.getItem('Part1FreeResponse');
+    //let Survey2 = localStorage.getItem('Survey2');
+    //let Survey3 = localStorage.getItem('Survey3');
     let Survey4 = localStorage.getItem('Survey4');
 
     console.log(activeStep);
     console.log('IV_Surveys.length:' + IV_Surveys.length);
 
-    pushDataToDatabase(Survey1, Survey2, Survey3, Survey4);
+    //pushDataToDatabase(Survey1, Survey2, Survey3, Survey4);
+    pushDataToDatabase(Survey4);
 
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
@@ -159,34 +161,34 @@ const SurveyPage = ({ match }) => {
             </Link>
           </div>
         ) : (
-          <>
-            {renderSwitch(activeStep)}
-            <div className={classes.buttons}>
-              {activeStep !== 0 ? (
-                <Button
-                  variant='contained'
-                  color='primary'
-                  onClick={handleBack}
-                >
-                  Back
-                </Button>
-              ) : (
-                <div></div>
-              )}
-              {
-                <Button
-                  variant='contained'
-                  color='primary'
-                  onClick={handleNext}
-                >
-                  {activeStep === IV_Surveys.length - 1
-                    ? 'Finish'
-                    : 'Submit & Proceed'}
-                </Button>
-              }
-            </div>
-          </>
-        )}
+            <>
+              {renderSwitch(activeStep)}
+              <div className={classes.buttons}>
+                {activeStep !== 0 ? (
+                  <Button
+                    variant='contained'
+                    color='primary'
+                    onClick={handleBack}
+                  >
+                    Back
+                  </Button>
+                ) : (
+                    <div></div>
+                  )}
+                {
+                  <Button
+                    variant='contained'
+                    color='primary'
+                    onClick={handleNext}
+                  >
+                    {activeStep === IV_Surveys.length - 1
+                      ? 'Finish'
+                      : 'Submit & Proceed'}
+                  </Button>
+                }
+              </div>
+            </>
+          )}
       </div>
     </div>
   );

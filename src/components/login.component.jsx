@@ -59,7 +59,7 @@ const Login = ({ history, match }) => {
         setShowUserLoginError(false);
         console.log(userId);
         localStorage.setItem('userID', JSON.stringify(userId));
-        history.push(`/survey/${userId}`);
+        history.push(`/task`);
       } else {
         setShowUserLoginError(true);
       }

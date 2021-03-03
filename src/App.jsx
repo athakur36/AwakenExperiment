@@ -7,7 +7,11 @@ import HomePage from './pages/homePage.component';
 import SurveyPage from './pages/surveyPage.component';
 import ExperimentsPage from './pages/experimentsPage.component';
 import DashboardPage from './pages/dashboardPage.component';
+import Commercial from './commercialManipulation'
+import Commercial2 from './commercialManipulation2'
 import CommercialManipPage from './pages/commercialManipulation.component';
+import commercialButton from './components/commercialButton.component'
+import TaskPage from './pages/taskdescriptionPage.component';
 
 const useStyles = makeStyles({
   appBody: {
@@ -28,14 +32,14 @@ function App() {
     <>
       <Header userName={currentUser} />
       <div className={classes.appBody}>
-          <Switch>
-            <Route exact path='/' component={HomePage} />
-            <Route exact path='/survey' component={SurveyPage} />
-            <Route path='/survey/:id' component={SurveyPage} />
-            <Route exact path='/experiments' component={ExperimentsPage} />
-            <Route exact path='/dashboard' component={DashboardPage} />
-            <Route exact path='/commercial' component={CommercialManipPage} />
-          </Switch>
+        <Switch>
+          <Route exact path='/' component={HomePage} />
+          <Route exact path='/task' component={TaskPage} />
+          <Route exact path='/survey' component={SurveyPage} />
+          <Route path='/survey/:id' component={SurveyPage} />
+          <Route exact path='/experiments' component={ExperimentsPage} />
+          <Route exact path='/dashboard' component={DashboardPage} />
+        </Switch>
       </div>
     </>
   );

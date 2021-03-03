@@ -37,6 +37,7 @@ export const Experiment_Image_List = [
                 images: [
                     { src: './images/mileage15.png', text: 'Imagine that you are about to purchase a jacket for $125 and a tablet for $15. The e-commerce platforms informs you that the tablet you wish to buy is on sale for $10 at the store, located 20 minutes drive away. Would you make the trip to the other store?' },
                     { src: './images/mileage125.png', text: 'Imagine that you are about to purchase a jacket for $15 and a tablet for $125. The e-commerce platforms informs you that the tablet you wish to buy is on sale for $120 at the store, located 20 minutes drive away. Would you make the trip to the other store?' },
+                
                 ],
             },
         },

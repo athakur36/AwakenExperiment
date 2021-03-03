@@ -25,7 +25,19 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     float: 'right',
-    marginRight: '30px',
+    //marginRight: '30px',
+    marginRight: theme.spacing(1),
+  },
+  experimentsHeader: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '50px',
+    fontSize: '22px',
+    fontWeight: 'bold',
+  },
+  stepContent: {
+    paddingBottom: '70px',
   },
   stepContent: {
     paddingBottom: '70px',
@@ -39,6 +51,7 @@ const CommercialManipPage = () => {
     localStorage.getItem('experiment_condition')
   );
   const [activeExper, setActiveExper] = React.useState(0);
+  const steps = getSteps();
   const [disabled, setDisabled] = React.useState(true);
   
 
@@ -54,6 +67,12 @@ const CommercialManipPage = () => {
   if (experimentCondition === 1) {
     imageIndex = 1;
   }
+  function getSteps() {
+    return ['', '', ''];
+  }
+  const handleBack = () => {
+    setActiveExper((prevActiveStep) => prevActiveStep - 1);
+  };
 
   const handleNext = (activeExper) => {
     setActiveExper((prevActiveExper) => prevActiveExper + 1);
