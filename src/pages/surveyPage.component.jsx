@@ -98,9 +98,13 @@ const SurveyPage = ({ match }) => {
     let Survey4Check = JSON.parse(localStorage.getItem("Survey4"));
 
     console.log(Survey4);
-    console.log(Object.keys(Survey4).length);
 
-    if (Object.keys(Survey4Check).length === 6) {
+    if (
+      Survey4 !== null &&
+      Survey4.includes("4-1") &&
+      Survey4.includes("4-2") &&
+      Survey4.includes("4-4")
+    ) {
       pushDataToDatabase(Survey4);
       setActiveStep((prevActiveStep) => prevActiveStep + 1);
     } else {

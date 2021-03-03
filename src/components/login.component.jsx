@@ -65,6 +65,7 @@ const Login = ({ history, match }) => {
 
   const onLoginClicked = () => {
     //checkUserValidity();
+    localStorage.clear();
     createNewUser();
     history.push(`/task`);
     // will need to update submit flag at the end of survey to prevent from relogin.
