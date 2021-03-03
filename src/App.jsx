@@ -8,6 +8,7 @@ import SurveyPage from "./pages/surveyPage.component";
 import ExperimentsPage from "./pages/experimentsPage.component";
 import DashboardPage from "./pages/dashboardPage.component";
 import CommercialManipPage from "./pages/commercialManipulation.component";
+import TaskPage from "./pages/taskdescriptionPage.component";
 
 const useStyles = makeStyles({
   appBody: {
@@ -30,6 +31,7 @@ function App() {
       <div className={classes.appBody}>
         <Switch>
           <Route exact path="/" component={HomePage} />
+          <Route exact path="/task" component={TaskPage} />
           <Route exact path="/survey" component={SurveyPage} />
           <Route path="/survey/:id" component={SurveyPage} />
           <Route exact path="/experiments" component={ExperimentsPage} />
