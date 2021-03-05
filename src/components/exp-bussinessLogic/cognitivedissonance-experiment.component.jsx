@@ -64,14 +64,22 @@ const CognitiveDissonanceExperiment = (props) => {
   if (experimentCondition === 0) {
     return (
       <div> Survey Type is Invalid </div> && (
-        <VideoPlayer videoData={ExpVideosData[6]} showComments={false} />
+        <VideoPlayer
+          videoData={ExpVideosData[6]}
+          proceedButtonEnable={proceedButtonEnable}
+          showComments={false}
+        />
       )
     );
   } else {
     // localStorage.setItem('commentType', JSON.stringify(1));
     return (
       <div> Survey Type is Invalid </div> && (
-        <VideoPlayer videoData={ExpVideosData[7]} showComments={false} />
+        <VideoPlayer
+          videoData={ExpVideosData[7]}
+          proceedButtonEnable={proceedButtonEnable}
+          showComments={false}
+        />
       )
     );
   }
