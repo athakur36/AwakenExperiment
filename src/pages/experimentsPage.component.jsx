@@ -180,6 +180,9 @@ const ExperimentsPage = () => {
     if (activeStep === 5 && experimentCondition === 1) {
       surveyIndex = activeStep - 1;
     }
+    if (activeStep === 5 && experimentCondition === 0) {
+      surveyIndex = activeStep - 2;
+    }
 
     const survey = dvSurvey[surveyIndex];
     console.log('surveyIndex:', surveyIndex);
