@@ -63,18 +63,24 @@ const useStyles = makeStyles((theme) => ({
 }));
 const VideoListItem = ({ video }) => {
   const classes = useStyles();
-  const [clicked, setClicked] = useState(false);
+  //   const [clicked, setClicked] = useState(false);
+  //   const [v1clicked, setv1Clicked] = useState(false);
+  //   const [v2clicked, setv2Clicked] = useState(false);
+  //   const [v3clicked, setv3Clicked] = useState(false);
+  //   const [v4clicked, setv4Clicked] = useState(false);
+  //   const [v5clicked, setv5Clicked] = useState(false);
+  //   const [v6clicked, setv6Clicked] = useState(false);
   const [liked, setLiked] = useState(false);
-  const [disliked, setDisliked] = useState(false);
+  //   const [disliked, setDisliked] = useState(false);
   console.log('video item:', video.id);
   return (
     <div
-      className={clicked ? classes.videoClicked : classes.videoClick}
-      onClick={() => {
-        console.log('video box pressed on new component! ' + clicked);
+    //   className={clicked ? classes.videoClicked : classes.videoClick}
+    //   onClick={() => {
+    //     console.log('video box pressed on new component! ' + clicked);
 
-        setClicked(!clicked);
-      }}
+    //     setClicked(!clicked);
+    //   }}
     >
       <div className={classes.root}>
         <Paper className={classes.paper}>
@@ -111,12 +117,12 @@ const VideoListItem = ({ video }) => {
                       console.log('like pressed on new component! ' + liked);
 
                       setLiked(!liked);
-                      setDisliked(false);
+                      //   setDisliked(false);
                     }}
                   >
                     <ThumbUp />
                   </IconButton>
-                  <IconButton
+                  {/* <IconButton
                     className={
                       disliked
                         ? classes.LikedDislikedButton
@@ -129,7 +135,7 @@ const VideoListItem = ({ video }) => {
                     }}
                   >
                     <ThumbDown />
-                  </IconButton>
+                  </IconButton> */}
                 </Grid>
               </Grid>
             </Grid>

@@ -145,7 +145,7 @@ const CommentList = ({ showComments = true }) => {
             </List>
           )}
           {/* add classes and give padding for submit button */}
-          <div>
+          {/* <div>
             <TextField
               variant='outlined'
               fullWidth
@@ -154,7 +154,7 @@ const CommentList = ({ showComments = true }) => {
             <Button variant='contained' color='primary'>
               Submit
             </Button>
-          </div>
+          </div> */}
         </form>
       </section>
     );
@@ -170,7 +170,7 @@ const CommentList = ({ showComments = true }) => {
             </List>
           )}
           {/* add classes and give padding for submit button */}
-          <div>
+          {/* <div>
             <TextField
               variant='outlined'
               fullWidth
@@ -179,7 +179,7 @@ const CommentList = ({ showComments = true }) => {
             <Button variant='contained' color='primary'>
               Submit
             </Button>
-          </div>
+          </div> */}
         </form>
       </section>
     );

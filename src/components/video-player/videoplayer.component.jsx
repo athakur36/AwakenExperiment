@@ -49,11 +49,20 @@ const useStyles = makeStyles({
   comments: {},
 });
 
-const VideoPlayer = ({ videoData, showComments = true }) => {
+const VideoPlayer = ({
+  videoData,
+  proceedButtonEnable,
+  showComments = true,
+}) => {
   const classes = useStyles();
-  localStorage.setItem('Link', videoData.url); 
-  localStorage.setItem('VideoID', videoData.type); 
-  localStorage.setItem('Experiment', videoData.experiment)
+  localStorage.setItem('Link', videoData.url);
+  localStorage.setItem('VideoID', videoData.type);
+  localStorage.setItem('Experiment', videoData.experiment);
+  // const handleEnded = () => {
+  //   console.log('onEnded');
+  //   // callback to parent function
+  //   proceedButtonEnable();
+  // };
   return (
     <div className={classes.root}>
       <h2 className={classes.title}>{videoData.title}</h2>
@@ -61,7 +70,9 @@ const VideoPlayer = ({ videoData, showComments = true }) => {
         <ReactPlayer
           className={classes.video}
           url={videoData.url}
+          playing={true}
           controls={true}
+          onEnded={proceedButtonEnable}
           width='100%'
           height='100%'
           //height='56.25%'
@@ -73,11 +84,11 @@ const VideoPlayer = ({ videoData, showComments = true }) => {
           <VideoReactions />
         </div>
       </div>
-          <div className={classes.comments}>
-            <CommentList showComments={showComments} />
-          </div>
+      <div className={classes.comments}>
+        <CommentList showComments={showComments} />
+      </div>
     </div>
   );
-}
+};
 
 export default VideoPlayer;
