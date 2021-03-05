@@ -19,6 +19,7 @@ import ConfirmationBiasExperiment from '../components/exp-bussinessLogic/confirm
 import PopularityBiasExperiment from '../components/exp-bussinessLogic/popularitybias-experiment.component';
 import NegativityBiasExperiment from '../components/exp-bussinessLogic/negativitybias-experiment.component';
 import CognitiveDissonanceExperiment from '../components/exp-bussinessLogic/cognitivedissonance-experiment.component';
+import Task2 from '../components/task2.component';
 
 const useStyles = makeStyles((theme) => ({
   experimentsRoot: {
@@ -58,13 +59,11 @@ const ExperimentsPage = () => {
   const [activeStep, setActiveStep] = React.useState(0);
   const [open, setOpen] = React.useState(false);
   const dvSurvey = DV_Survey;
-
-  // @Arti - I have used the "useRef" hook, that I can use to get the reference of
+  // @Arti Thakur - I have used the "useRef" hook, that I can use to get the reference of
   // a react component - in this case, I am associating this constant to the div
   // container (line 125)
   const container = useRef(null);
-
-  // @Arti - I have used the useEffect hook to execute a function whenever the activeStep variable
+  // @Arti Thakur - I have used the useEffect hook to execute a function whenever the activeStep variable
   // is updated. So I use the div container reference and have called the "scrollIntoView()" function
   // in order to "move" the top of page to that component. :)
   useEffect(() => {
@@ -79,15 +78,9 @@ const ExperimentsPage = () => {
     localStorage.getItem('experiment_condition')
   );
 
-  const pushDataToDatabase = (ExperimentName, ExperimentData) => {
-    // Push data into database on finish
-    console.log('Pushing data to the firebase');
-    dbRef.child(ExperimentName).set(ExperimentData);
-    console.log('Successfully submitted!');
-  };
-
   const handleClickOpen = () => {
-    if (activeStep !== 1) {
+    console.log(activeStep);
+    if (activeStep !== 4 && activeStep !== 1) {
       setOpen(true);
     } else {
       setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -98,18 +91,6 @@ const ExperimentsPage = () => {
     setOpen(false);
     dbRef.child('commentType').set(localStorage.getItem('commentType'));
     // Save the DV measurements in the firebase including the condition information (pro or counter)
-    let ExperimentData = { "Shared": localStorage.getItem('Shared'), "Flagged": localStorage.getItem('Flagged'), "Reaction": localStorage.getItem('Reaction'), "VideoID": localStorage.getItem('VideoID'), "Link": localStorage.getItem('Link'), "dvData": localStorage.getItem('dvData') };
-    let ExperimentName = localStorage.getItem('Experiment')
-    pushDataToDatabase(ExperimentName, JSON.stringify(ExperimentData))//localStorage.getItem(ExperimentName+'Data'));
-
-    // Clear localstorage of old data, ready for next experiement.
-    localStorage.removeItem('Shared')
-    localStorage.removeItem('Flagged')
-    localStorage.removeItem('Reaction')
-    localStorage.removeItem('VideoID')
-    localStorage.removeItem('Link')
-    localStorage.removeItem('dvData')
-
   };
 
   const handleNext = () => {
@@ -132,6 +113,8 @@ const ExperimentsPage = () => {
       case 3:
         return <NegativityBiasExperiment />;
       case 4:
+        return <Task2 />;
+      case 5:
         return <CognitiveDissonanceExperiment />;
       default:
         return <div>Survey Type is Invalid</div>;
@@ -140,28 +123,29 @@ const ExperimentsPage = () => {
 
   const dialogSwitch = (activeStep) => {
     let surveyIndex = 0;
-
-    if (activeStep >= 2) {
+    if (activeStep === 2 || activeStep === 3 || activeStep === 5) {
       surveyIndex = activeStep - 1;
     }
+
     //conditional rendering of dialoue box for cognitive dissonance
-    if (activeStep === 4 && experimentCondition === 1) {
-      surveyIndex = activeStep;
+    if (activeStep === 5 && experimentCondition === 1) {
+      surveyIndex = activeStep - 1;
     }
 
     const survey = dvSurvey[surveyIndex];
+    console.log('surveyIndex:', surveyIndex);
     return survey.surveyData.questions.map((question, index) => (
       <DVRadio key={'dvradio-' + index} questData={question} />
     ));
   };
 
   return (
-    // @Arti - using the "ref" attribute we associate the "useRef" constant
+    // @Arti Thakur - using the "ref" attribute we associate the "useRef" constant
     // with the page component.
     <div ref={container} className={classes.experimentsRoot}>
       <div className={classes.experimentsHeader}>STUDY PART 2</div>
       <Stepper activeStep={activeStep}>
-        {[1, 2, 3, 4, 5].map((stepNumber, index) => {
+        {[1, 2, 3, 4, 5, 6].map((stepNumber, index) => {
           return (
             <Step key={'step-' + index}>
               <StepLabel />
@@ -170,7 +154,7 @@ const ExperimentsPage = () => {
         })}
       </Stepper>
       <div className={classes.stepContent}>
-        {activeStep === 5 ? (
+        {activeStep === 6 ? (
           <div className={classes.instructions}>
             <div>
               Thank you! Now you will proceed to part-3 of the experiment.
