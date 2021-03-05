@@ -60,6 +60,9 @@ const ExperimentsPage = () => {
   const [open, setOpen] = React.useState(false);
   const dvSurvey = DV_Survey;
   // @Arti Thakur - I have used the "useRef" hook, that I can use to get the reference of
+  const [btnProceedDisabled, setBtnProceedDisabled] = React.useState(true);
+
+  // @Arti - I have used the "useRef" hook, that I can use to get the reference of
   // a react component - in this case, I am associating this constant to the div
   // container (line 125)
   const container = useRef(null);
@@ -69,6 +72,9 @@ const ExperimentsPage = () => {
   useEffect(() => {
     console.log('Move to top');
     container.current.scrollIntoView();
+    if (activeStep !== 1 && activeStep !== 4) {
+      setBtnProceedDisabled(true);
+    }
   }, [activeStep]);
 
   const dbRef = firebase
@@ -77,6 +83,19 @@ const ExperimentsPage = () => {
   const experimentCondition = JSON.parse(
     localStorage.getItem('experiment_condition')
   );
+
+  const enableProceedButton = () => {
+    console.log('button enabled called');
+    // this enables the button
+    setBtnProceedDisabled(false);
+  };
+
+  const pushDataToDatabase = (ExperimentName, ExperimentData) => {
+    // Push data into database on finish
+    console.log('Pushing data to the firebase');
+    dbRef.child(ExperimentName).set(ExperimentData);
+    console.log('Successfully submitted!');
+  };
 
   const handleClickOpen = () => {
     console.log(activeStep);
@@ -91,6 +110,24 @@ const ExperimentsPage = () => {
     setOpen(false);
     dbRef.child('commentType').set(localStorage.getItem('commentType'));
     // Save the DV measurements in the firebase including the condition information (pro or counter)
+    let ExperimentData = {
+      Shared: localStorage.getItem('Shared'),
+      Flagged: localStorage.getItem('Flagged'),
+      Reaction: localStorage.getItem('Reaction'),
+      VideoID: localStorage.getItem('VideoID'),
+      Link: localStorage.getItem('Link'),
+      dvData: localStorage.getItem('dvData'),
+    };
+    let ExperimentName = localStorage.getItem('Experiment');
+    pushDataToDatabase(ExperimentName, JSON.stringify(ExperimentData)); //localStorage.getItem(ExperimentName+'Data'));
+
+    // Clear localstorage of old data, ready for next experiement.
+    localStorage.removeItem('Shared');
+    localStorage.removeItem('Flagged');
+    localStorage.removeItem('Reaction');
+    localStorage.removeItem('VideoID');
+    localStorage.removeItem('Link');
+    localStorage.removeItem('dvData');
   };
 
   const handleNext = () => {
@@ -105,17 +142,29 @@ const ExperimentsPage = () => {
   const renderSwitch = (activeStep) => {
     switch (activeStep) {
       case 0:
-        return <ConfirmationBiasExperiment />;
+        return (
+          <ConfirmationBiasExperiment
+            enableProceedButton={enableProceedButton}
+          />
+        );
       case 1:
-        return <VideoListPage />;
+        return <VideoListPage enableProceedButton={enableProceedButton} />;
       case 2:
-        return <PopularityBiasExperiment />;
+        return (
+          <PopularityBiasExperiment enableProceedButton={enableProceedButton} />
+        );
       case 3:
-        return <NegativityBiasExperiment />;
+        return (
+          <NegativityBiasExperiment enableProceedButton={enableProceedButton} />
+        );
       case 4:
         return <Task2 />;
       case 5:
-        return <CognitiveDissonanceExperiment />;
+        return (
+          <CognitiveDissonanceExperiment
+            enableProceedButton={enableProceedButton}
+          />
+        );
       default:
         return <div>Survey Type is Invalid</div>;
     }
@@ -174,6 +223,7 @@ const ExperimentsPage = () => {
                   variant='contained'
                   color='primary'
                   onClick={handleBack}
+                  disabled
                 >
                   Back
                 </Button>
@@ -181,6 +231,7 @@ const ExperimentsPage = () => {
                 <div></div>
               )}
               <Button
+                disabled={btnProceedDisabled}
                 variant='contained'
                 color='primary'
                 onClick={handleClickOpen}

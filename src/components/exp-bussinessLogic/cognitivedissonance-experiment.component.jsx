@@ -51,8 +51,12 @@ const useStyles = makeStyles({
   comments: {},
 });
 
-const CognitiveDissonanceExperiment = () => {
+const CognitiveDissonanceExperiment = (props) => {
   const classes = useStyles();
+  const proceedButtonEnable = () => {
+    console.log('bussinesslogic function');
+    props.enableProceedButton();
+  };
   const experimentCondition = JSON.parse(
     localStorage.getItem('experiment_condition')
   );

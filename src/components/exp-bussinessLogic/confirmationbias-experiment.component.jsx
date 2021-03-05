@@ -51,32 +51,57 @@ const useStyles = makeStyles({
   comments: {},
 });
 
-const ConfirmationBiasExperiment = () => {
+const ConfirmationBiasExperiment = (props) => {
   const classes = useStyles();
   const experimentCondition = JSON.parse(
     localStorage.getItem('experiment_condition')
   );
   const vaccineAttitude = JSON.parse(localStorage.getItem('vaccine_attitude'));
+
+  const proceedButtonEnable = () => {
+    console.log('bussinesslogic function');
+    props.enableProceedButton();
+  };
   console.log(experimentCondition);
   if (experimentCondition === 0) {
     if (vaccineAttitude === 0) {
       localStorage.setItem('commentType', JSON.stringify(0)); //show pro vaccine comments
       // show participant pro attitudinal vaccine video as participant is pro-vaccine
-      return <VideoPlayer videoData={ExpVideosData[0]} />;
+      return (
+        <VideoPlayer
+          videoData={ExpVideosData[0]}
+          proceedButtonEnable={proceedButtonEnable}
+        />
+      );
     } else {
       localStorage.setItem('commentType', JSON.stringify(1)); //show anti vaccine comments
       // show participant anti vaccine video as participant is anti vaccine
-      return <VideoPlayer videoData={ExpVideosData[1]} />;
+      return (
+        <VideoPlayer
+          videoData={ExpVideosData[1]}
+          proceedButtonEnable={proceedButtonEnable}
+        />
+      );
     }
   } else {
     if (vaccineAttitude === 0) {
       // show participant anti vaccine video and comments as participant is pro-vaccine
       localStorage.setItem('commentType', JSON.stringify(1));
-      return <VideoPlayer videoData={ExpVideosData[0]} />;
+      return (
+        <VideoPlayer
+          videoData={ExpVideosData[0]}
+          proceedButtonEnable={proceedButtonEnable}
+        />
+      );
     } else {
       // show participant pro vaccine video and comments as participant is anti-vaccine
       localStorage.setItem('commentType', JSON.stringify(0));
-      return <VideoPlayer videoData={ExpVideosData[1]} />;
+      return (
+        <VideoPlayer
+          videoData={ExpVideosData[1]}
+          proceedButtonEnable={proceedButtonEnable}
+        />
+      );
     }
   }
 };

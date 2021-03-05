@@ -51,16 +51,32 @@ const useStyles = makeStyles({
   comments: {},
 });
 
-const PopularityBiasExperiment = () => {
+const PopularityBiasExperiment = (props) => {
   const classes = useStyles();
+  const proceedButtonEnable = () => {
+    console.log('bussinesslogic function');
+    props.enableProceedButton();
+  };
   const experimentCondition = JSON.parse(
     localStorage.getItem('experiment_condition')
   );
   if (experimentCondition === 0) {
-    return <VideoPlayer videoData={ExpVideosData[2]} showComments={false} />;
+    return (
+      <VideoPlayer
+        videoData={ExpVideosData[2]}
+        proceedButtonEnable={proceedButtonEnable}
+        showComments={false}
+      />
+    );
   } else {
     localStorage.setItem('commentType', JSON.stringify(1));
-    return <VideoPlayer videoData={ExpVideosData[3]} showComments={false} />;
+    return (
+      <VideoPlayer
+        videoData={ExpVideosData[3]}
+        proceedButtonEnable={proceedButtonEnable}
+        showComments={false}
+      />
+    );
   }
 };
 
