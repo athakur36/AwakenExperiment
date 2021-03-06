@@ -92,7 +92,7 @@ const VideoListPage = () => {
       name:
         "Top Pfizer scientist discusses COVID-19 vaccine's efficacy and new variants",
       description:
-        'Pfizer announced it will supply 200 million doses of its COVID-19 vaccine for the U.S. by the end of May and is aiming to ship 2 billion doses globally this year. The vaccine is over 90% effective according to clinical trials conducted in 2020, but more testing needs to be done to see how well it protects against the new variants. ',
+        'Pfizer announced COVID-19 vaccine is over 90% effective according to clinical trials conducted in 2020, but more testing needs to be done to see how well it protects against the new variants. ',
       url: 'https://www.youtube.com/watch?v=a6wiBP7N5yE',
       type: 'PRO',
       logo: process.env.PUBLIC_URL + './images/pro3.png',
@@ -104,8 +104,8 @@ const VideoListPage = () => {
     <div className={classes.videoRoot}>
       <h1 className={classes.title}>
         {' '}
-        Please Select A Video To Watch Next. Note that you can also like or
-        dislike the videos here.{' '}
+        Please read the tiltle and description of each video. Carefully evaluate
+        the information and like ATLEAST THREE videos here.{' '}
       </h1>
 
       <div className={classes.videoWrapper}>

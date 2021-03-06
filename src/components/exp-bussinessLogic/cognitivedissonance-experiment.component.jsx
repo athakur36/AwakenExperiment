@@ -51,20 +51,38 @@ const useStyles = makeStyles({
   comments: {},
 });
 
-const CognitiveDissonanceExperiment = () => {
+const CognitiveDissonanceExperiment = (props) => {
   const classes = useStyles();
+  const proceedButtonEnable = () => {
+    console.log('bussinesslogic function');
+    props.enableProceedButton();
+  };
   const experimentCondition = JSON.parse(
     localStorage.getItem('experiment_condition')
   );
 
-
   if (experimentCondition === 0) {
-    return <div> Survey Type is Invalid </div> && <VideoPlayer videoData={ExpVideosData[6]} showComments={false} />;
+    return (
+      <div> Survey Type is Invalid </div> && (
+        <VideoPlayer
+          videoData={ExpVideosData[6]}
+          proceedButtonEnable={proceedButtonEnable}
+          showComments={false}
+        />
+      )
+    );
   } else {
-    localStorage.setItem('commentType', JSON.stringify(1));
-    return <div> Survey Type is Invalid </div> && <VideoPlayer videoData={ExpVideosData[7]} showComments={false} />;
+    // localStorage.setItem('commentType', JSON.stringify(1));
+    return (
+      <div> Survey Type is Invalid </div> && (
+        <VideoPlayer
+          videoData={ExpVideosData[7]}
+          proceedButtonEnable={proceedButtonEnable}
+          showComments={false}
+        />
+      )
+    );
   }
-
 };
 
 export default CognitiveDissonanceExperiment;

@@ -48,16 +48,32 @@ const useStyles = makeStyles({
   comments: {},
 });
 
-const NegativityBiasExperiment = () => {
+const NegativityBiasExperiment = (props) => {
   const classes = useStyles();
+  const proceedButtonEnable = () => {
+    console.log('bussinesslogic function');
+    props.enableProceedButton();
+  };
   const experimentCondition = JSON.parse(
     localStorage.getItem('experiment_condition')
   );
   if (experimentCondition === 0) {
-    return <VideoPlayer videoData={ExpVideosData[4]} showComments={false} />;
+    return (
+      <VideoPlayer
+        videoData={ExpVideosData[4]}
+        proceedButtonEnable={proceedButtonEnable}
+        showComments={false}
+      />
+    );
   } else {
     localStorage.setItem('commentType', JSON.stringify(1));
-    return <VideoPlayer videoData={ExpVideosData[5]} showComments={false} />;
+    return (
+      <VideoPlayer
+        videoData={ExpVideosData[5]}
+        proceedButtonEnable={proceedButtonEnable}
+        showComments={false}
+      />
+    );
   }
 };
 
