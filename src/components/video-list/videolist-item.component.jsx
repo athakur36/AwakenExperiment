@@ -79,18 +79,8 @@ const VideoListItem = ({ video }) => {
     //   onClick={() => {
     //     console.log('video box pressed on new component! ' + clicked);
 
-<<<<<<< HEAD
-        if (!clicked){
-          localStorage.setItem("video1", JSON.stringify({"id": video.id, "type": video.type}))
-        } else if (localStorage.getItem("video1") == JSON.stringify({"id": video.id, "type": video.type})){
-          localStorage.setItem("video1", null)
-        }
-        setClicked(!clicked);
-      }}
-=======
     //     setClicked(!clicked);
     //   }}
->>>>>>> main
     >
       <div className={classes.root}>
         <Paper className={classes.paper}>
