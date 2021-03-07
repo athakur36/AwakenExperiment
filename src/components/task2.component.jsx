@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Button, Card, CardContent } from '@material-ui/core';
 import * as Colors from '../constants/colors';
 import { Link } from 'react-router-dom';
+import Box from "@material-ui/core/Box";
 
 
 const useStyles = makeStyles({
@@ -28,6 +29,13 @@ const Task2 = ({ history }) => {
                     In the next video, we present you the video that may or may not contain misinformation. We expect you to
                     evaluate the information and choose to flag or not flag the video. After you submit your evaluation we give
                     you another chance to revert your action of flagging or not flagging the video. Press proceed to move to the video.
+                    <Box textAlign="center" p={2}>
+                        <img
+                        src={process.env.PUBLIC_URL + "./images/taskImage2.png"}
+                        width="40%"
+                        height="40%"
+                        />
+                    </Box>
                 </div>
 
             </div>
