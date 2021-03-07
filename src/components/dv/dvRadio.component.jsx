@@ -39,10 +39,11 @@ const CognitiveDissonanceControl = {};
 // const dv2Data = {};
 // const dv3Data = {};
 
-const DVRadio = ({ questData }) => {
+const DVRadio = ({ questData, enableSubmitButton }) => {
   const { question, responses, id } = questData;
   const classes = useStyles();
   const [selectedValue, setSelectedValue] = React.useState(0);
+  // var [radiCheckCounter, setRadiCheckCounter] = React.useState(0);
 
   const saveAnswer = (answer, id) => {
     // dvData[id] = answer;
@@ -75,6 +76,7 @@ const DVRadio = ({ questData }) => {
   const handleChange = (event) => {
     setSelectedValue(Number(event.target.value));
     saveAnswer(event.target.value, id); //dvIDs[question]);
+    enableSubmitButton();
   };
 
   return (
@@ -96,6 +98,7 @@ const DVRadio = ({ questData }) => {
                 control={<Radio color='primary' />}
                 label={resp.text}
                 labelPlacement='top'
+                // onChange={handleChange}
               />
             );
           })}
