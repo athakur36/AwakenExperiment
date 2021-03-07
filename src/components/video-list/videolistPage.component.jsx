@@ -101,6 +101,14 @@ const VideoListPage = () => {
     },
   ];
   const shuffled_list = shuffle(videoslist);
+  // let noOfVideosLiked = 0;
+  // const videoliked = () => {
+  //   noOfVideosLiked++;
+  //   if (noOfVideosLiked == 3) {
+  //     console.log('inside videolist liked');
+  //     proceedButtonEnable();
+  //   }
+  // };
   return (
     <div className={classes.videoRoot}>
       <h1 className={classes.title}>
