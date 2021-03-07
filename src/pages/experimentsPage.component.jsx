@@ -59,8 +59,12 @@ const ExperimentsPage = () => {
   const [activeStep, setActiveStep] = React.useState(0);
   const [open, setOpen] = React.useState(false);
   const dvSurvey = DV_Survey;
+  let noOfDVQuestions = 0;
   // @Arti Thakur - I have used the "useRef" hook, that I can use to get the reference of
   const [btnProceedDisabled, setBtnProceedDisabled] = React.useState(true);
+  const [btnSubmitDisabled, setBtnSubmitDisabled] = React.useState(true);
+  //const [radiCheckCounter, setRadiCheckCounter] = React.useState(0);
+  let radiCheckCounter = 0;
 
   // @Arti - I have used the "useRef" hook, that I can use to get the reference of
   // a react component - in this case, I am associating this constant to the div
@@ -72,8 +76,9 @@ const ExperimentsPage = () => {
   useEffect(() => {
     console.log('Move to top');
     container.current.scrollIntoView();
-    if (activeStep !== 1 && activeStep !== 4) {
+    if (activeStep !== 4 && activeStep !== 1) {
       setBtnProceedDisabled(true);
+      setBtnSubmitDisabled(true);
     }
   }, [activeStep]);
 
@@ -88,6 +93,15 @@ const ExperimentsPage = () => {
     console.log('button enabled called');
     // this enables the button
     setBtnProceedDisabled(false);
+  };
+  const enableSubmitButton = () => {
+    console.log('button enabled called');
+    // this enables the button
+    radiCheckCounter++;
+    if (radiCheckCounter === noOfDVQuestions) {
+      console.log('inside');
+      setBtnSubmitDisabled(false);
+    }
   };
 
   const pushDataToDatabase = (ExperimentName, ExperimentData) => {
@@ -148,7 +162,7 @@ const ExperimentsPage = () => {
           />
         );
       case 1:
-        return <VideoListPage enableProceedButton={enableProceedButton} />;
+        return <VideoListPage />;
       case 2:
         return (
           <PopularityBiasExperiment enableProceedButton={enableProceedButton} />
@@ -186,8 +200,14 @@ const ExperimentsPage = () => {
 
     const survey = dvSurvey[surveyIndex];
     console.log('surveyIndex:', surveyIndex);
+    noOfDVQuestions = Object.keys(survey.surveyData.questions).length;
+    console.log('noOfDVQuestions:', noOfDVQuestions);
     return survey.surveyData.questions.map((question, index) => (
-      <DVRadio key={'dvradio-' + index} questData={question} />
+      <DVRadio
+        key={'dvradio-' + index}
+        questData={question}
+        enableSubmitButton={enableSubmitButton}
+      />
     ));
   };
 
@@ -256,6 +276,7 @@ const ExperimentsPage = () => {
                 <DialogContent>{dialogSwitch(activeStep)}</DialogContent>
                 <DialogActions>
                   <Button
+                    disabled={btnSubmitDisabled}
                     onClick={handleNext}
                     variant='contained'
                     color='primary'

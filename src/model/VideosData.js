@@ -20,7 +20,7 @@ export const ExpVideosData = [
   {
     step: 2,
     url: 'https://vimeo.com/518004500',
-    type: 'Objective',
+    type: 'Popular',
     title: 'The most liked and shared Indian song in 2020: Ramleela',
     description: 'test description kjsaksa sjgfjkas jhsagkjas',
     numberOfViews: '8,000,000',
@@ -29,7 +29,7 @@ export const ExpVideosData = [
   {
     step: 2,
     url: 'https://vimeo.com/518000225',
-    type: 'Objective',
+    type: 'Non-popular',
     title: 'Ramleela: catchy title track of the Indian movie released in 2019',
     description: 'test description kjsaksa sjgfjkas jhsagkjas',
     numberOfViews: '2,000',
@@ -56,7 +56,7 @@ export const ExpVideosData = [
   {
     step: 4,
     url: 'https://vimeo.com/517997817',
-    type: 'Negative',
+    type: 'CB',
     title: 'Dwayne Johnson introducing himself',
     description: 'test description kjsaksa sjgfjkas jhsagkjas',
     numberOfViews: '2,000',
@@ -65,7 +65,7 @@ export const ExpVideosData = [
   {
     step: 4,
     url: 'https://vimeo.com/517997817',
-    type: 'Objective',
+    type: 'CB',
     title: 'Dwayne Johnson introducing himself',
     description: 'test description kjsaksa sjgfjkas jhsagkjas',
     numberOfViews: '2,000',
