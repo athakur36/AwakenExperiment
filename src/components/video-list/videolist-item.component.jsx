@@ -71,6 +71,7 @@ const VideoListItem = ({ video }) => {
   //   const [v5clicked, setv5Clicked] = useState(false);
   //   const [v6clicked, setv6Clicked] = useState(false);
   const [liked, setLiked] = useState(false);
+
   //   const [disliked, setDisliked] = useState(false);
   console.log('video item:', video.id);
   return (
@@ -116,7 +117,17 @@ const VideoListItem = ({ video }) => {
                     onClick={() => {
                       console.log('like pressed on new component! ' + liked);
 
+                      var likedVids = JSON.parse(localStorage.getItem("LikedVideos"))
                       setLiked(!liked);
+                      if(!liked){
+                        //add to localStorage
+                        likedVids[video.id] = {"name":video.name, "type": video.type}
+                        localStorage.setItem("LikedVideos", JSON.stringify(likedVids))
+                      }else{
+                        //remove from localStorage
+                        delete likedVids[video.id]
+                        localStorage.setItem("LikedVideos", JSON.stringify(likedVids))
+                      }
                       //   setDisliked(false);
                     }}
                   >

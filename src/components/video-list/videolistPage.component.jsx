@@ -36,7 +36,8 @@ const useStyles = makeStyles({
 const { useState } = React;
 
 const VideoListPage = () => {
-  localStorage.setItem("video1", null)
+  //localStorage.setItem("video1", null)
+  localStorage.setItem("LikedVideos", JSON.stringify({}))
   const classes = useStyles();
   const imgIndex = React.useState(Math.floor(Math.random(6)));
   let numRows = 3;

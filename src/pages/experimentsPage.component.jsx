@@ -120,7 +120,11 @@ const ExperimentsPage = () => {
     };
     let ExperimentName = localStorage.getItem('Experiment');
     pushDataToDatabase(ExperimentName, JSON.stringify(ExperimentData)); //localStorage.getItem(ExperimentName+'Data'));
-
+    
+    let likedVideosData = localStorage.getItem('LikedVideos')
+    if (likedVideosData != {} && likedVideosData != null){
+      pushDataToDatabase("LikedVideos", JSON.stringify(likedVideosData));
+    }
     // Clear localstorage of old data, ready for next experiement.
     localStorage.removeItem('Shared');
     localStorage.removeItem('Flagged');
@@ -128,6 +132,8 @@ const ExperimentsPage = () => {
     localStorage.removeItem('VideoID');
     localStorage.removeItem('Link');
     localStorage.removeItem('dvData');
+    //localStorage.removeItem('video1');
+    localStorage.removeItem('LikedVideos');
   };
 
   const handleNext = () => {
