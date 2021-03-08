@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom';
 import VideoPlayer from '../components/video-player/videoplayer.component';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -14,6 +15,11 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DVRadio from '../components/dv/dvRadio.component';
 import firebase from '../firebase/firebase.utils';
+import ConfirmationBiasExperiment from '../components/exp-bussinessLogic/confirmationbias-experiment.component';
+import PopularityBiasExperiment from '../components/exp-bussinessLogic/popularitybias-experiment.component';
+import NegativityBiasExperiment from '../components/exp-bussinessLogic/negativitybias-experiment.component';
+import CognitiveDissonanceExperiment from '../components/exp-bussinessLogic/cognitivedissonance-experiment.component';
+import Task2 from '../components/task2.component';
 
 const useStyles = makeStyles((theme) => ({
   experimentsRoot: {
@@ -52,7 +58,29 @@ const ExperimentsPage = () => {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const [open, setOpen] = React.useState(false);
-  const dvSurvey = DV_Survey[0];
+  const dvSurvey = DV_Survey;
+  let noOfDVQuestions = 0;
+  // @Arti Thakur - I have used the "useRef" hook, that I can use to get the reference of
+  const [btnProceedDisabled, setBtnProceedDisabled] = React.useState(true);
+  const [btnSubmitDisabled, setBtnSubmitDisabled] = React.useState(true);
+  //const [radiCheckCounter, setRadiCheckCounter] = React.useState(0);
+  let radiCheckCounter = 0;
+
+  // @Arti - I have used the "useRef" hook, that I can use to get the reference of
+  // a react component - in this case, I am associating this constant to the div
+  // container (line 125)
+  const container = useRef(null);
+  // @Arti Thakur - I have used the useEffect hook to execute a function whenever the activeStep variable
+  // is updated. So I use the div container reference and have called the "scrollIntoView()" function
+  // in order to "move" the top of page to that component. :)
+  useEffect(() => {
+    console.log('Move to top');
+    container.current.scrollIntoView();
+    if (activeStep !== 4 && activeStep !== 1) {
+      setBtnProceedDisabled(true);
+      setBtnSubmitDisabled(true);
+    }
+  }, [activeStep]);
 
   const dbRef = firebase
     .database()
@@ -61,14 +89,65 @@ const ExperimentsPage = () => {
     localStorage.getItem('experiment_condition')
   );
 
+  const enableProceedButton = () => {
+    console.log('button enabled called');
+    // this enables the button
+    setBtnProceedDisabled(false);
+  };
+  const enableSubmitButton = () => {
+    console.log('button enabled called');
+    // this enables the button
+    radiCheckCounter++;
+    if (radiCheckCounter === noOfDVQuestions) {
+      console.log('inside');
+      setBtnSubmitDisabled(false);
+    }
+  };
+
+  const pushDataToDatabase = (ExperimentName, ExperimentData) => {
+    // Push data into database on finish
+    console.log('Pushing data to the firebase');
+    dbRef.child(ExperimentName).set(ExperimentData);
+    console.log('Successfully submitted!');
+  };
+
   const handleClickOpen = () => {
-    setOpen(true);
+    console.log(activeStep);
+    if (activeStep !== 4 && activeStep !== 1) {
+      setOpen(true);
+    } else {
+      setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    }
   };
 
   const handleClose = () => {
     setOpen(false);
     dbRef.child('commentType').set(localStorage.getItem('commentType'));
     // Save the DV measurements in the firebase including the condition information (pro or counter)
+    let ExperimentData = {
+      Shared: localStorage.getItem('Shared'),
+      Flagged: localStorage.getItem('Flagged'),
+      Reaction: localStorage.getItem('Reaction'),
+      VideoID: localStorage.getItem('VideoID'),
+      Link: localStorage.getItem('Link'),
+      dvData: localStorage.getItem('dvData'),
+    };
+    let ExperimentName = localStorage.getItem('Experiment');
+    pushDataToDatabase(ExperimentName, JSON.stringify(ExperimentData)); //localStorage.getItem(ExperimentName+'Data'));
+    
+    let likedVideosData = localStorage.getItem('LikedVideos')
+    if (likedVideosData != {} && likedVideosData != null){
+      pushDataToDatabase("LikedVideos", JSON.stringify(likedVideosData));
+    }
+    // Clear localstorage of old data, ready for next experiement.
+    localStorage.removeItem('Shared');
+    localStorage.removeItem('Flagged');
+    localStorage.removeItem('Reaction');
+    localStorage.removeItem('VideoID');
+    localStorage.removeItem('Link');
+    localStorage.removeItem('dvData');
+    //localStorage.removeItem('video1');
+    localStorage.removeItem('LikedVideos');
   };
 
   const handleNext = () => {
@@ -83,20 +162,68 @@ const ExperimentsPage = () => {
   const renderSwitch = (activeStep) => {
     switch (activeStep) {
       case 0:
-        return <VideoPlayer />;
+        return (
+          <ConfirmationBiasExperiment
+            enableProceedButton={enableProceedButton}
+          />
+        );
       case 1:
         return <VideoListPage />;
+      case 2:
+        return (
+          <PopularityBiasExperiment enableProceedButton={enableProceedButton} />
+        );
+      case 3:
+        return (
+          <NegativityBiasExperiment enableProceedButton={enableProceedButton} />
+        );
+      case 4:
+        return <Task2 />;
+      case 5:
+        return (
+          <CognitiveDissonanceExperiment
+            enableProceedButton={enableProceedButton}
+          />
+        );
       default:
         return <div>Survey Type is Invalid</div>;
     }
   };
 
+  const dialogSwitch = (activeStep) => {
+    let surveyIndex = 0;
+    if (activeStep === 2 || activeStep === 3 || activeStep === 5) {
+      surveyIndex = activeStep - 1;
+    }
+
+    //conditional rendering of dialoue box for cognitive dissonance
+    if (activeStep === 5 && experimentCondition === 1) {
+      surveyIndex = activeStep - 1;
+    }
+    if (activeStep === 5 && experimentCondition === 0) {
+      surveyIndex = activeStep - 2;
+    }
+
+    const survey = dvSurvey[surveyIndex];
+    console.log('surveyIndex:', surveyIndex);
+    noOfDVQuestions = Object.keys(survey.surveyData.questions).length;
+    console.log('noOfDVQuestions:', noOfDVQuestions);
+    return survey.surveyData.questions.map((question, index) => (
+      <DVRadio
+        key={'dvradio-' + index}
+        questData={question}
+        enableSubmitButton={enableSubmitButton}
+      />
+    ));
+  };
+
   return (
-    <div className={classes.experimentsRoot}>
-      #console.log({experimentCondition})
+    // @Arti Thakur - using the "ref" attribute we associate the "useRef" constant
+    // with the page component.
+    <div ref={container} className={classes.experimentsRoot}>
       <div className={classes.experimentsHeader}>STUDY PART 2</div>
       <Stepper activeStep={activeStep}>
-        {[1, 2, 3, 4].map((stepNumber, index) => {
+        {[1, 2, 3, 4, 5, 6].map((stepNumber, index) => {
           return (
             <Step key={'step-' + index}>
               <StepLabel />
@@ -105,11 +232,16 @@ const ExperimentsPage = () => {
         })}
       </Stepper>
       <div className={classes.stepContent}>
-        {activeStep === 4 ? (
+        {activeStep === 6 ? (
           <div className={classes.instructions}>
             <div>
               Thank you! Now you will proceed to part-3 of the experiment.
             </div>
+            <Link to='/dashboard'>
+              <Button variant='contained' color='primary'>
+                PROCEED TO RESULT DASHBOARD
+              </Button>
+            </Link>
           </div>
         ) : (
           <>
@@ -120,6 +252,7 @@ const ExperimentsPage = () => {
                   variant='contained'
                   color='primary'
                   onClick={handleBack}
+                  disabled
                 >
                   Back
                 </Button>
@@ -127,6 +260,7 @@ const ExperimentsPage = () => {
                 <div></div>
               )}
               <Button
+                disabled={btnProceedDisabled}
                 variant='contained'
                 color='primary'
                 onClick={handleClickOpen}
@@ -138,18 +272,17 @@ const ExperimentsPage = () => {
                 open={open}
                 onClose={handleClose}
                 aria-labelledby='form-dialog-title'
+                fullWidth={true}
+                maxWidth='md'
               >
                 <DialogTitle id='form-dialog-title'>
                   Please answer the following questions regarding the video you
                   just watched:
                 </DialogTitle>
-                <DialogContent>
-                  {dvSurvey.surveyData.questions.map((question, index) => (
-                    <DVRadio key={'dvradio-' + index} questData={question} />
-                  ))}
-                </DialogContent>
+                <DialogContent>{dialogSwitch(activeStep)}</DialogContent>
                 <DialogActions>
                   <Button
+                    disabled={btnSubmitDisabled}
                     onClick={handleNext}
                     variant='contained'
                     color='primary'

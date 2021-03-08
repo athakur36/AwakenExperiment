@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { WrapText } from '@material-ui/icons';
 import { shuffle } from 'lodash';
-import { IconButton } from '@material-ui/core';
-import { ThumbUp, ThumbDown } from '@material-ui/icons';
+import VideoListItem from './videolist-item.component';
+import { List } from '@material-ui/core';
 
 const useStyles = makeStyles({
   videoRoot: {
@@ -18,113 +18,115 @@ const useStyles = makeStyles({
     display: 'flex',
     justifyContent: 'space-between',
     margin: '100px 0',
+    flexWrap: 'wrap',
+    '& > div': {
+      flexBasis: '30%',
+      marginBottom: '30px',
+    },
+    // padding: '0 100px 0 100px',
+  },
+  thumbnailContainer: {
+    flex: 1,
+    flexGrow: 1,
+    flexWrap: true,
+  },
+  paper: {
+    //padding: theme.spacing(2),
+    textAlign: 'center',
+    //color: theme.palette.text.secondary,
   },
 });
 
 const { useState } = React;
 
 const VideoListPage = () => {
+  //localStorage.setItem("video1", null)
+  localStorage.setItem("LikedVideos", JSON.stringify({}))
   const classes = useStyles();
   const imgIndex = React.useState(Math.floor(Math.random(6)));
+  let numRows = 3;
   const videoslist = [
     {
-      name:
-        'Why Black and Latino communities are hesitant to take COVID-19 vaccine | GMA',
+      name: "Covid-19 Vaccine: It's Not Just Anti-Vaxxers That Are Worried",
       description:
-        'One of the major hurdles facing the coronavirus vaccine is getting people to take it, and this issue of trust is especially present in Black and Latino communities.',
-      url: 'https://www.youtube.com/watch?v=MrmiEBmeumA',
+        "Would you take a Covid-19 vaccine? Bloomberg Opinion's Therese Raphael, below, explains why it is not just anti-vaxxers that may be worried",
+      url: 'https://www.youtube.com/watch?v=Qgk9ofpMN34',
       type: 'COUNTER',
-      logo: 'https://picsum.photos/150/150?1',
+      logo: process.env.PUBLIC_URL + './images/counter1.png',
+      id: 'v1',
     },
     {
       name: 'Covid-19: why vaccine mistrust is growing | The Economist',
       description:
-        'One of the major hurdles facing the coronavirus vaccine is getting people to take it, and this issue of trust is especially present in Black and Latino communities.',
+        'A vaccine for covid-19 could be rolled out before the end of the year. But a worrying rise in mistrust of vaccines threatens its effectiveness. Now & Next is a series from The Economist Films',
       url: 'https://www.youtube.com/watch?v=BJ2rT7h70QM',
       type: 'COUNTER',
-      logo: 'https://picsum.photos/150/150?2',
-    },
-    {
-      name: 'Why white communities are hesitant to take COVID-19 vaccine | GMA',
-      description:
-        'One of the major hurdles facing the coronavirus vaccine is getting people to take it, and this issue of trust is especially present in Black and Latino communities.',
-      url: 'https://www.youtube.com/watch?v=4DOWd04iNFM',
-      type: 'COUNTER',
-      logo: 'https://picsum.photos/150/150?3',
+      logo: process.env.PUBLIC_URL + './images/counter3.png',
+      id: 'v2',
     },
     {
       name:
-        'Why Black and Latino communities are willing to take COVID-19 vaccine | GMA',
+        'COVID-19: Why are some people hesitant about taking the coronavirus vaccine?',
       description:
-        'One of the major hurdles facing the coronavirus vaccine is getting people to take it, and this issue of trust is especially present in Black and Latino communities.',
-      url: 'https://www.youtube.com/watch?v=MrmiEBmeumA',
-      type: 'PRO',
-      logo: 'https://picsum.photos/150/150?1',
+        'The government campaign to vaccinate the population relies on people having immunity against COVID-19. But up to 12% of people will delay or avoid having the vaccine ',
+      url: 'https://www.youtube.com/watch?v=mfG-fBYYAiM',
+      type: 'COUNTER',
+      logo: process.env.PUBLIC_URL + './images/counter2.png',
+      id: 'v3',
     },
     {
-      name: 'Covid-19: why vaccine trust is growing | The Economist',
+      name: 'Benefits of COVID-19 vaccine outweigh risks',
       description:
-        'One of the major hurdles facing the coronavirus vaccine is getting people to take it, and this issue of trust is especially present in Black and Latino communities.',
-      url: 'https://www.youtube.com/watch?v=BJ2rT7h70QM',
+        'As with other vaccines, the experience of mild symptoms from side effects generally resolve within a few days. The benefits of the COVID-19 vaccination far outweigh the risk of any potential adverse effects. ',
+      url: 'https://youtu.be/C8Jsq7YW298',
       type: 'PRO',
-      logo: 'https://picsum.photos/150/150?2',
+      logo: process.env.PUBLIC_URL + './images/pro1.png',
+      id: 'v4',
     },
     {
-      name: 'Why white communities are willing to take COVID-19 vaccine | GMA',
+      name:
+        'Single-dose vaccine effective against COVID-19 variants, data shows | WNT',
       description:
-        'One of the major hurdles facing the coronavirus vaccine is getting people to take it, and this issue of trust is especially present in Black and Latino communities.',
-      url: 'https://www.youtube.com/watch?v=4DOWd04iNFM',
+        'The Food and Drug Administration announced that Johnson & Johnson’s one-shot vaccine meets the requirements of the emergency use authorization review process. Authorization could come on Friday.',
+      url: 'https://www.youtube.com/watch?v=VPswkhGNI5g',
       type: 'PRO',
-      logo: 'https://picsum.photos/150/150?3',
+      logo: process.env.PUBLIC_URL + './images/pro2.png',
+      id: 'v5',
+    },
+    {
+      name:
+        "Top Pfizer scientist discusses COVID-19 vaccine's efficacy and new variants",
+      description:
+        'Pfizer announced COVID-19 vaccine is over 90% effective according to clinical trials conducted in 2020, but more testing needs to be done to see how well it protects against the new variants. ',
+      url: 'https://www.youtube.com/watch?v=a6wiBP7N5yE',
+      type: 'PRO',
+      logo: process.env.PUBLIC_URL + './images/pro3.png',
+      id: 'v6',
     },
   ];
   const shuffled_list = shuffle(videoslist);
+  // let noOfVideosLiked = 0;
+  // const videoliked = () => {
+  //   noOfVideosLiked++;
+  //   if (noOfVideosLiked == 3) {
+  //     console.log('inside videolist liked');
+  //     proceedButtonEnable();
+  //   }
+  // };
   return (
     <div className={classes.videoRoot}>
-      <h1 className={classes.title}> Please Select A Video To Watch Next </h1>
+      <h1 className={classes.title}>
+        {' '}
+        Please read the tiltle and description of each video. Carefully evaluate
+        the information and like AT LEAST THREE videos here.{' '}
+      </h1>
+
       <div className={classes.videoWrapper}>
+        {/* <List> */}
         {shuffled_list.map((video, index) => (
-          <div className={classes.thumbnailContainer}>
-            <h3>{video.name}</h3>
-            <div>
-              <img src={video.logo} alt='video image' />
-            </div>
-            <div>
-              <IconButton
-              // className={
-              //   video.like
-              //     ? classes.LikedDislikedButton
-              //     : classes.LikeDislikeButton
-              // }
-              // onClick={() => {
-              //   console.log('like pressed!');
-              //   if (video.like === false) {
-              //     video.like = true;
-              //     console.log('inside onclick');
-              //   }
-              // }}
-              >
-                <ThumbUp />
-              </IconButton>
-              <IconButton
-              // className={
-              //   video.dislike
-              //     ? classes.LikedDislikedButton
-              //     : classes.LikeDislikeButton
-              // }
-              // onClick={() => {
-              //   //save the interacion in the database
-              //   if (video.dislike === false) {
-              //     video.dislike = true;
-              //   }
-              // }}
-              >
-                <ThumbDown />
-              </IconButton>
-            </div>
-            <div>{video.description}</div>
-          </div>
+          <VideoListItem key={video.id} video={video} />
         ))}
+        {/* </List> */}
       </div>
     </div>
   );

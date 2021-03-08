@@ -22,16 +22,66 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     display: 'flex',
     justifyContent: 'space-between',
+    alignItems: 'center',
+    '& > label': {
+      minWidth: '100px',
+      maxWidth: '100px',
+    },
   },
 }));
 
-const DVRadio = ({ questData }) => {
-  const { question, responses } = questData;
+const ConfirmationBias = {};
+const PopularityBias = {};
+const NegativityBias = {};
+const CognitiveDissonanceTreatment = {};
+const CognitiveDissonanceControl = {};
+// const dvData = {};
+// for (i in dvIDSs) {
+//   dvData[id] = 3
+// }
+
+// localStorage.setItem('dvData', dvData);
+// const dv2Data = {};
+// const dv3Data = {};
+
+const DVRadio = ({ questData, enableSubmitButton }) => {
+  const { question, responses, id } = questData;
   const classes = useStyles();
-  const [selectedValue, setSelectedValue] = React.useState(3);
+  const [selectedValue, setSelectedValue] = React.useState(0);
+  // var [radiCheckCounter, setRadiCheckCounter] = React.useState(0);
+
+  const saveAnswer = (answer, id) => {
+    // dvData[id] = answer;
+    // localStorage.setItem('dvData', JSON.stringify(dvData));
+
+    if (id.startsWith('cb-')) {
+      ConfirmationBias[id] = answer;
+      localStorage.setItem('dvData', JSON.stringify(ConfirmationBias));
+    } else if (id.startsWith('pb-')) {
+      PopularityBias[id] = answer;
+      localStorage.setItem('dvData', JSON.stringify(PopularityBias));
+    } else if (id.startsWith('nb-')) {
+      NegativityBias[id] = answer;
+      localStorage.setItem('dvData', JSON.stringify(NegativityBias));
+    } else if (id.startsWith('cdt-')) {
+      CognitiveDissonanceTreatment[id] = answer;
+      localStorage.setItem(
+        'dvData',
+        JSON.stringify(CognitiveDissonanceTreatment)
+      );
+    } else if (id.startsWith('cdc-')) {
+      CognitiveDissonanceControl[id] = answer;
+      localStorage.setItem(
+        'dvData',
+        JSON.stringify(CognitiveDissonanceControl)
+      );
+    }
+  };
 
   const handleChange = (event) => {
     setSelectedValue(Number(event.target.value));
+    saveAnswer(event.target.value, id); //dvIDs[question]);
+    enableSubmitButton();
   };
 
   return (
@@ -46,7 +96,19 @@ const DVRadio = ({ questData }) => {
           onChange={handleChange}
           value={selectedValue}
         >
-          <FormControlLabel
+          {responses.map((resp) => {
+            return (
+              <FormControlLabel
+                value={resp.value}
+                control={<Radio color='primary' />}
+                label={resp.text}
+                labelPlacement='top'
+                // onChange={handleChange}
+              />
+            );
+          })}
+
+          {/* <FormControlLabel
             value={responses[0].value}
             control={<Radio color='primary' />}
             label={responses[0].text}
@@ -75,7 +137,7 @@ const DVRadio = ({ questData }) => {
             control={<Radio color='primary' />}
             label={responses[4].text}
             labelPlacement='top'
-          />
+          /> */}
         </RadioGroup>
       </FormControl>
     </div>
