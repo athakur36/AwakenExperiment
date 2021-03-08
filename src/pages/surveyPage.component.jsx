@@ -199,8 +199,7 @@ const SurveyPage = ({ match }) => {
             </>
         )}
           </div>
-    </div>
-  );
+        );
 };
 
 export default withRouter(SurveyPage);
