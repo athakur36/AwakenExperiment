@@ -65,7 +65,7 @@ const ConfirmationBiasExperiment = (props) => {
   console.log(experimentCondition);
   if (experimentCondition === 0) {
     if (vaccineAttitude === 0) {
-      localStorage.setItem('commentType', JSON.stringify(0)); //show pro vaccine comments
+      //localStorage.setItem('commentType', JSON.stringify('C0')); //show pro vaccine comments
       // show participant pro attitudinal vaccine video as participant is pro-vaccine
       return (
         <VideoPlayer
@@ -74,7 +74,7 @@ const ConfirmationBiasExperiment = (props) => {
         />
       );
     } else {
-      localStorage.setItem('commentType', JSON.stringify(1)); //show anti vaccine comments
+      //localStorage.setItem('commentType', JSON.stringify('C1')); //show anti vaccine comments
       // show participant anti vaccine video as participant is anti vaccine
       return (
         <VideoPlayer
@@ -86,19 +86,19 @@ const ConfirmationBiasExperiment = (props) => {
   } else {
     if (vaccineAttitude === 0) {
       // show participant anti vaccine video and comments as participant is pro-vaccine
-      localStorage.setItem('commentType', JSON.stringify(1));
+      //localStorage.setItem('commentType', JSON.stringify(1));
       return (
         <VideoPlayer
-          videoData={ExpVideosData[0]}
+          videoData={ExpVideosData[1]}
           proceedButtonEnable={proceedButtonEnable}
         />
       );
     } else {
       // show participant pro vaccine video and comments as participant is anti-vaccine
-      localStorage.setItem('commentType', JSON.stringify(0));
+      //localStorage.setItem('commentType', JSON.stringify(0));
       return (
         <VideoPlayer
-          videoData={ExpVideosData[1]}
+          videoData={ExpVideosData[0]}
           proceedButtonEnable={proceedButtonEnable}
         />
       );
