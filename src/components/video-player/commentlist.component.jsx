@@ -61,7 +61,7 @@ const vaccinecommentsArray_pro = [
     dislike: false,
   },
   {
-    text: 'People with severe allergies should definitely be more careful.',
+    text: 'People should definitely get these vaccines.',
     ID: 'pro_cmnt4',
     commentorName: 'Martin',
     like: false,
@@ -80,7 +80,8 @@ const vaccinecommentsArray_pro = [
 
 const vaccinecommentsArray_anti = [
   {
-    text: 'These vaccines does not seem to be safe.',
+    text:
+      'These vaccines does not seem to be safe. One of my known person had to put in ICU after taking the vaccine.',
     ID: 'pro_cmnt1',
     commentorName: 'adam',
     like: false,
@@ -88,7 +89,7 @@ const vaccinecommentsArray_anti = [
   },
   {
     text:
-      'I have really crazy allergies and I will STILL get it. I’ll make sure to have my epinephrine ready...maybe take a dose of Benadryl beforehand, if my doc okays it. Still absolutely worth the risk.',
+      'I have really crazy allergies and I will NOT get it. I’ll make sure nobody in my family take these, evenif my doc okays it. Not worth the risk.',
     ID: 'pro_cmnt2',
     commentorName: 'William',
     like: false,
@@ -97,7 +98,7 @@ const vaccinecommentsArray_anti = [
 
   {
     text:
-      'I understand the concern. However, if you watch US television you are inundated with medical commercials. Many of them life saving treatments for cancer and other serious ailments.',
+      'I understand the concerns. At this stage they are still risky to take.',
     ID: 'pro_cmnt3',
     commentorName: 'Rashi',
     like: false,
@@ -123,7 +124,8 @@ const vaccinecommentsArray_anti = [
 
 const CommentList = ({ showComments = true }) => {
   // const classes = useStyles();
-  const commentType = JSON.parse(localStorage.getItem('commentType'));
+  const PB_commentType = JSON.parse(localStorage.getItem('PB_commentType'));
+  const CB_commentType = JSON.parse(localStorage.getItem('CB_commentType'));
 
   const handleActiveReaction = (icon) => {
     // toggle like-dislike button and save to firebase
@@ -133,7 +135,7 @@ const CommentList = ({ showComments = true }) => {
     // submit comment to firebase
   };
 
-  if (parseInt(commentType) === 0) {
+  if (CB_commentType === 'C0') {
     return (
       <section>
         <form onSubmit={handleSubmit}>
@@ -158,7 +160,7 @@ const CommentList = ({ showComments = true }) => {
         </form>
       </section>
     );
-  } else {
+  } else if (CB_commentType === 'C1') {
     return (
       <section>
         <form onSubmit={handleSubmit}>
