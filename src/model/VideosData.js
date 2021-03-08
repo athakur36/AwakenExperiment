@@ -1,18 +1,20 @@
+//import confirmation_pro from './../resources/videos/dwayne_pro_vaccine_sub.mp4';
 export const ExpVideosData = [
   {
     step: 1,
-    url: 'https://vimeo.com/517998199',
+    url: 'videos/dwayne_pro_vaccine_sub.mp4',
     type: 'PRO',
-    title: 'Dwayne Johnson promoting Covid-19 Vaccines',
+    title: 'Dwayne Johnson Promoting Covid-19 Vaccines',
     description: 'test description kjsaksa sjgfjkas jhsagkjas',
     numberOfViews: '1,000',
     experiment: 'ConfirmationBias-T',
   },
   {
     step: 1,
-    url: 'https://vimeo.com/517998135',
+    url:
+      'https://drive.google.com/file/d/1WuduYuJoRgBrjlJdCaKF7NB7Gm2jljny/preview',
     type: 'COUNTER',
-    title: 'Dwayne Johnson opposing Covid-19 Vaccines',
+    title: 'Dwayne Johnson Opposing Covid-19 Vaccines',
     description: 'test description kjsaksa sjgfjkas jhsagkjas',
     numberOfViews: '1,000',
     experiment: 'ConfirmationBias-C',

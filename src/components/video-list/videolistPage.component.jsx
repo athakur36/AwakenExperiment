@@ -18,7 +18,11 @@ const useStyles = makeStyles({
     display: 'flex',
     justifyContent: 'space-between',
     margin: '100px 0',
-    columns: '2 auto',
+    flexWrap: 'wrap',
+    '& > div': {
+      flexBasis: '30%',
+      marginBottom: '30px',
+    },
     // padding: '0 100px 0 100px',
   },
   thumbnailContainer: {
