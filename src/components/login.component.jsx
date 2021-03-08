@@ -62,7 +62,6 @@ const Login = ({ history, match }) => {
 
     localStorage.setItem("userID", JSON.stringify(userId));
   };
-
   const onLoginClicked = () => {
     //checkUserValidity();
     localStorage.clear();
@@ -83,7 +82,7 @@ const Login = ({ history, match }) => {
           <TextField
             fullWidth
             required
-            label="Username"
+            label="Enter the username you got from qualtrics here"
             margin="normal"
             type="text"
             variant="outlined"

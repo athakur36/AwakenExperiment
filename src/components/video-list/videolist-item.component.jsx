@@ -123,6 +123,7 @@ const VideoListItem = ({ video, proceedButtonEnable }) => {
                       var likedVids = JSON.parse(
                         localStorage.getItem("LikedVideos")
                       );
+
                       setLiked(!liked);
                       if (!liked) {
                         //add to localStorage
@@ -143,7 +144,12 @@ const VideoListItem = ({ video, proceedButtonEnable }) => {
                         );
                       }
 
-                      //console.log(Object.keys.likedVids.length);
+                      console.log(Object.keys(likedVids).length);
+
+                      if (Object.keys(likedVids).length >= 3) {
+                        //proceedButtonEnable;
+                      }
+
                       //   setDisliked(false);
                     }}
                   >

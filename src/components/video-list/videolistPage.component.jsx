@@ -129,7 +129,11 @@ const VideoListPage = (props) => {
       <div className={classes.videoWrapper}>
         {/* <List> */}
         {shuffled_list.map((video, index) => (
-          <VideoListItem key={video.id} video={video} />
+          <VideoListItem
+            key={video.id}
+            video={video}
+            proceedButtonEnable={proceedButtonEnable}
+          />
         ))}
         {/* </List> */}
       </div>
