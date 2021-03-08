@@ -167,7 +167,7 @@ const SurveyPage = ({ match }) => {
               >
                 PROCEED TO PART 2
               </Button>
-              {/*</div></Link>*/}
+            </Link>
           </div>
         ) : (
             <>
@@ -197,9 +197,10 @@ const SurveyPage = ({ match }) => {
                 }
               </div>
             </>
-        )}
-          </div>
-        );
+          )}
+      </div>
+    </div>
+  );
 };
 
 export default withRouter(SurveyPage);
