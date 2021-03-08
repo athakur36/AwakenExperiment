@@ -49,6 +49,8 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     margin: 'auto',
     maxWidth: 500,
+    maxHeight: 550,
+    minHeight: 550,
   },
   image: {
     width: 128,
@@ -104,7 +106,8 @@ const VideoListItem = ({ video }) => {
                   >
                     {video.name}
                   </Typography>
-                  <Typography>{video.description}</Typography>
+                  <br />
+                  <span>{video.description}</span>
                 </Grid>
                 <Grid item>
                   <IconButton
