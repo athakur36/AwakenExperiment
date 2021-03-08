@@ -22,6 +22,11 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     display: 'flex',
     justifyContent: 'space-between',
+    alignItems: 'center',
+    '& > label': {
+      minWidth: '100px',
+      maxWidth: '100px',
+    },
   },
 }));
 
