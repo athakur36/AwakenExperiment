@@ -1,53 +1,53 @@
-import { IconButton } from '@material-ui/core';
-import { ThumbUp, ThumbDown } from '@material-ui/icons';
-import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import ButtonBase from '@material-ui/core/ButtonBase';
+import { IconButton } from "@material-ui/core";
+import { ThumbUp, ThumbDown } from "@material-ui/icons";
+import React, { useState } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Grid from "@material-ui/core/Grid";
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
+import ButtonBase from "@material-ui/core/ButtonBase";
 
 const useStyles = makeStyles((theme) => ({
   NameWrapper: {
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   CommentListItem: {
-    fontSize: '1rem',
-    fontWeight: '400',
-    lineHeight: '1.5',
-    letterSpacing: '0.00938em',
-    width: '700px',
+    fontSize: "1rem",
+    fontWeight: "400",
+    lineHeight: "1.5",
+    letterSpacing: "0.00938em",
+    width: "700px",
   },
   title: {
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   LikeDislikeButton: {
-    fontSize: '1rem',
+    fontSize: "1rem",
     // padding: '5px 10px',
-    color: '#585858',
+    color: "#585858",
   },
 
   LikedDislikedButton: {
-    fontWeight: 'bold',
-    color: '#1565c0',
+    fontWeight: "bold",
+    color: "#1565c0",
   },
   videoClick: {
-    fontSize: '1rem',
+    fontSize: "1rem",
     // padding: '5px 10px',
-    color: '#585858',
+    color: "#585858",
   },
 
   videoClicked: {
-    background: 'rgb(68, 196, 196)',
-    cursor: 'pointer',
-    border: '2px solid grey',
+    background: "rgb(68, 196, 196)",
+    cursor: "pointer",
+    border: "2px solid grey",
   },
   root: {
     flexGrow: 1,
   },
   paper: {
     padding: theme.spacing(2),
-    margin: 'auto',
+    margin: "auto",
     maxWidth: 500,
     maxHeight: 550,
     minHeight: 550,
@@ -57,13 +57,13 @@ const useStyles = makeStyles((theme) => ({
     height: 128,
   },
   img: {
-    margin: 'auto',
-    display: 'block',
-    maxWidth: '100%',
-    maxHeight: '100%',
+    margin: "auto",
+    display: "block",
+    maxWidth: "100%",
+    maxHeight: "100%",
   },
 }));
-const VideoListItem = ({ video }) => {
+const VideoListItem = ({ video, proceedButtonEnable }) => {
   const classes = useStyles();
   //   const [clicked, setClicked] = useState(false);
   //   const [v1clicked, setv1Clicked] = useState(false);
@@ -75,7 +75,7 @@ const VideoListItem = ({ video }) => {
   const [liked, setLiked] = useState(false);
 
   //   const [disliked, setDisliked] = useState(false);
-  console.log('video item:', video.id);
+  console.log("video item:", video.id);
   return (
     <div
     //   className={clicked ? classes.videoClicked : classes.videoClick}
@@ -93,17 +93,17 @@ const VideoListItem = ({ video }) => {
                 <img
                   className={classes.img}
                   src={video.logo}
-                  alt='video image'
+                  alt="video image"
                 />
               </ButtonBase>
             </Grid>
             <Grid item xs={12} sm container>
-              <Grid item xs container direction='column' spacing={3}>
+              <Grid item xs container direction="column" spacing={3}>
                 <Grid item xs>
                   <Typography
                     className={classes.title}
                     gutterBottom
-                    variant='title'
+                    variant="title"
                   >
                     {video.name}
                   </Typography>
@@ -118,19 +118,32 @@ const VideoListItem = ({ video }) => {
                         : classes.LikeDislikeButton
                     }
                     onClick={() => {
-                      console.log('like pressed on new component! ' + liked);
+                      console.log("like pressed on new component! " + liked);
 
-                      var likedVids = JSON.parse(localStorage.getItem("LikedVideos"))
+                      var likedVids = JSON.parse(
+                        localStorage.getItem("LikedVideos")
+                      );
                       setLiked(!liked);
-                      if(!liked){
+                      if (!liked) {
                         //add to localStorage
-                        likedVids[video.id] = {"name":video.name, "type": video.type}
-                        localStorage.setItem("LikedVideos", JSON.stringify(likedVids))
-                      }else{
+                        likedVids[video.id] = {
+                          name: video.name,
+                          type: video.type,
+                        };
+                        localStorage.setItem(
+                          "LikedVideos",
+                          JSON.stringify(likedVids)
+                        );
+                      } else {
                         //remove from localStorage
-                        delete likedVids[video.id]
-                        localStorage.setItem("LikedVideos", JSON.stringify(likedVids))
+                        delete likedVids[video.id];
+                        localStorage.setItem(
+                          "LikedVideos",
+                          JSON.stringify(likedVids)
+                        );
                       }
+
+                      //console.log(Object.keys.likedVids.length);
                       //   setDisliked(false);
                     }}
                   >

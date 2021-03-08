@@ -39,13 +39,13 @@ const Login = ({ history, match }) => {
   const classes = useStyles();
   const [username, setUserName] = React.useState("");
   const [showUserLoginError, setShowUserLoginError] = React.useState(false);
-  const [
-    showUserDuplicateLoginError,
-    setShowDuplicateUserLoginError,
-  ] = React.useState(false);
 
   const handleUserNameChange = (event) => {
     setUserName(event.target.value);
+  };
+
+  const handleUserErrorCheck = () => {
+    setShowUserLoginError(true);
   };
 
   const createNewUser = () => {
@@ -66,9 +66,12 @@ const Login = ({ history, match }) => {
   const onLoginClicked = () => {
     //checkUserValidity();
     localStorage.clear();
-    createNewUser();
-    history.push(`/task`);
-    // will need to update submit flag at the end of survey to prevent from relogin.
+    if (username === "") {
+      setShowUserLoginError(true);
+    } else {
+      createNewUser();
+      history.push(`/task`);
+    }
   };
 
   return (
@@ -89,11 +92,6 @@ const Login = ({ history, match }) => {
           />
           {showUserLoginError && (
             <div className={classes.error}>Invalid User ID</div>
-          )}
-          {showUserDuplicateLoginError && (
-            <div className={classes.error}>
-              Already submitted. Please talk to experiment admin.
-            </div>
           )}
           <Button
             className={classes.login}

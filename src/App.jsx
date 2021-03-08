@@ -35,8 +35,8 @@ function App() {
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route exact path="/task" component={TaskPage} />
-          <Route exact path="/survey" component={SurveyPage} />
           <Route path="/survey/:id" component={SurveyPage} />
+          <Route path="/survey/" component={SurveyPage} />
           <Route exact path="/experiments" component={ExperimentsPage} />
           <Route exact path="/dashboard" component={DashboardPage} />
           <Route exact path="/commercial" component={CommercialManipPage} />
