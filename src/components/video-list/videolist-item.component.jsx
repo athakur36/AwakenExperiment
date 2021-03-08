@@ -47,10 +47,10 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     padding: theme.spacing(2),
-    margin: "auto",
+    // margin: 'auto',
     maxWidth: 500,
-    maxHeight: 550,
-    minHeight: 550,
+    maxHeight: 500,
+    minHeight: 500,
   },
   image: {
     width: 128,
@@ -61,6 +61,10 @@ const useStyles = makeStyles((theme) => ({
     display: "block",
     maxWidth: "100%",
     maxHeight: "100%",
+  },
+  gridWrapper: {
+    flexDirection: "column",
+    flexWrap: "nowrap",
   },
 }));
 const VideoListItem = ({ video }) => {
@@ -87,7 +91,7 @@ const VideoListItem = ({ video }) => {
     >
       <div className={classes.root}>
         <Paper className={classes.paper}>
-          <Grid container spacing={5}>
+          <Grid className={classes.gridWrapper} container spacing={2}>
             <Grid item>
               <ButtonBase className={classes.image}>
                 <img
@@ -98,7 +102,7 @@ const VideoListItem = ({ video }) => {
               </ButtonBase>
             </Grid>
             <Grid item xs={12} sm container>
-              <Grid item xs container direction="column" spacing={3}>
+              <Grid item xs container direction="column" spacing={2}>
                 <Grid item xs>
                   <Typography
                     className={classes.title}
@@ -124,6 +128,9 @@ const VideoListItem = ({ video }) => {
                         localStorage.getItem("LikedVideos")
                       );
 
+                      var likedVids = JSON.parse(
+                        localStorage.getItem("LikedVideos")
+                      );
                       setLiked(!liked);
                       if (!liked) {
                         //add to localStorage
