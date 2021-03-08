@@ -11,8 +11,7 @@ export const ExpVideosData = [
   },
   {
     step: 1,
-    url:
-      'https://drive.google.com/file/d/1WuduYuJoRgBrjlJdCaKF7NB7Gm2jljny/preview',
+    url: 'videos/dwayne_pro_vaccine_sub.mp4',
     type: 'COUNTER',
     title: 'Dwayne Johnson Opposing Covid-19 Vaccines',
     description: 'test description kjsaksa sjgfjkas jhsagkjas',
