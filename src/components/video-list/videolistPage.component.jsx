@@ -39,15 +39,11 @@ const useStyles = makeStyles({
 
 const { useState } = React;
 
-const VideoListPage = (props) => {
+const VideoListPage = () => {
   //localStorage.setItem("video1", null)
   localStorage.setItem("LikedVideos", JSON.stringify({}));
   const classes = useStyles();
   const imgIndex = React.useState(Math.floor(Math.random(6)));
-
-  const proceedButtonEnable = () => {
-    props.enableProceedButton();
-  };
 
   let numRows = 3;
   const videoslist = [
@@ -129,11 +125,7 @@ const VideoListPage = (props) => {
       <div className={classes.videoWrapper}>
         {/* <List> */}
         {shuffled_list.map((video, index) => (
-          <VideoListItem
-            key={video.id}
-            video={video}
-            proceedButtonEnable={proceedButtonEnable}
-          />
+          <VideoListItem key={video.id} video={video} />
         ))}
         {/* </List> */}
       </div>

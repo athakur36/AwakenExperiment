@@ -63,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
     maxHeight: "100%",
   },
 }));
-const VideoListItem = ({ video, proceedButtonEnable }) => {
+const VideoListItem = ({ video }) => {
   const classes = useStyles();
   //   const [clicked, setClicked] = useState(false);
   //   const [v1clicked, setv1Clicked] = useState(false);
@@ -142,12 +142,6 @@ const VideoListItem = ({ video, proceedButtonEnable }) => {
                           "LikedVideos",
                           JSON.stringify(likedVids)
                         );
-                      }
-
-                      console.log(Object.keys(likedVids).length);
-
-                      if (Object.keys(likedVids).length >= 3) {
-                        //proceedButtonEnable;
                       }
 
                       //   setDisliked(false);

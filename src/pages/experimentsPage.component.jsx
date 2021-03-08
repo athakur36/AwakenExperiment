@@ -113,10 +113,21 @@ const ExperimentsPage = () => {
 
   const handleClickOpen = () => {
     console.log(activeStep);
-    if (activeStep !== 4) {
+    if (activeStep !== 4 && activeStep !== 1) {
       setOpen(true);
     } else {
-      setActiveStep((prevActiveStep) => prevActiveStep + 1);
+      let likedVids = JSON.parse(localStorage.getItem("LikedVideos"));
+      console.log("Check This");
+      console.log(Object.keys(likedVids).length);
+      if (activeStep === 1) {
+        if (Object.keys(likedVids).length < 3) {
+          alert("Please answer at least 3.");
+        } else {
+          setActiveStep((prevActiveStep) => prevActiveStep + 1);
+        }
+      } else {
+        setActiveStep((prevActiveStep) => prevActiveStep + 1);
+      }
     }
   };
 
@@ -168,7 +179,7 @@ const ExperimentsPage = () => {
           />
         );
       case 1:
-        return <VideoListPage enableProceedButton={enableProceedButton} />;
+        return <VideoListPage />;
       case 2:
         return (
           <PopularityBiasExperiment enableProceedButton={enableProceedButton} />
