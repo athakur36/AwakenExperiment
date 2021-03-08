@@ -111,6 +111,18 @@ export const DV_Survey = [
     surveyData: {
       questions: [
         {
+          question:
+            'How excited do you get when you watch sport videos like this one?',
+          responses: [
+            { value: 1, text: 'Very Excited' },
+            { value: 2, text: 'Excited' },
+            { value: 3, text: 'Neutral' },
+            { value: 4, text: 'Little Excited' },
+            { value: 5, text: 'Not at all' },
+          ],
+          id: 'nb-excitedrating',
+        },
+        {
           question: 'How do you rate John Carney’s performance in this game?',
           responses: [
             { value: 1, text: 'Excellent' },
@@ -164,12 +176,12 @@ export const DV_Survey = [
       questions: [
         {
           question:
-            'The fact-checking algorithm is a programmed and tested system to identify false information by looking for common patterns, words, and symbols that typically appear in fake news. The results from the fact-checking system shows that your were wrong in correctly identiying the video. Do you want to revert your action in the previous step?',
+            'The fact-checking algorithm suggests that you were wrong in your judgment of classifying the video. Do you want to revert the classification?',
           responses: [
             { value: 1, text: 'Yes' },
             { value: 2, text: 'No' },
           ],
-          id: 'cdt-revert'
+          id: 'cdt-revert',
         },
       ],
     },
@@ -181,12 +193,12 @@ export const DV_Survey = [
       questions: [
         {
           question:
-            'We give you another chance to think about your action of flagging/not flagging the video. Do you want to revert your action in the previous step?',
+            'We give you another chance to think about your action of classifying the video. Do you want to revert your classification?',
           responses: [
             { value: 1, text: 'Yes' },
             { value: 2, text: 'No' },
           ],
-          id: 'cdc-revert'
+          id: 'cdc-revert',
         },
       ],
     },

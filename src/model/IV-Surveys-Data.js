@@ -111,20 +111,20 @@ export const IV_Surveys = [
       intro: `Please select the option which appears closest to your answer`,
       questions: [
         {
-          text:
-            'The modern scientific evidence does not confirm the connection of vaccines with chronic illnesses such as autism, diabetes and multiple sclerosis.',
+          text: 'Covid-19 vaccination is safe to take.',
           type: 'RADIO_MATRIX',
-          id: '4-1',
+          id: '4-4',
         },
         {
-          text: 'Vaccines are 100% efficient.',
+          text: 'I am willing to take the Covid-19 vaccines.',
           type: 'RADIO_MATRIX',
           id: '4-2',
         },
         {
-          text: 'Covid-19 vaccination is safe to take.',
+          text:
+            'I would describe my attitude towards my family and friends getting Covid-19 vaccine as',
           type: 'RADIO_MATRIX',
-          id: '4-4',
+          id: '4-1',
         },
       ],
     },
