@@ -47,7 +47,7 @@ const Task = ({ history }) => {
           </Box>
           <Box textAlign="center">
             <img
-              src={process.env.PUBLIC_URL + "./images/taskImage.png"}
+              src={process.env.PUBLIC_URL + "./images/taskImage1.png"}
               width="40%"
               height="40%"
             />

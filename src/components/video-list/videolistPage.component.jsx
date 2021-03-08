@@ -114,7 +114,7 @@ const VideoListPage = () => {
       <h1 className={classes.title}>
         {' '}
         Please read the tiltle and description of each video. Carefully evaluate
-        the information and like ATLEAST THREE videos here.{' '}
+        the information and like AT LEAST THREE videos here.{' '}
       </h1>
 
       <div className={classes.videoWrapper}>
