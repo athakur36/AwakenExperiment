@@ -32,6 +32,7 @@ function App() {
     <>
       <Header userName={currentUser} />
       <div className={classes.appBody}>
+
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route exact path="/task" component={TaskPage} />

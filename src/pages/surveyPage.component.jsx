@@ -170,34 +170,34 @@ const SurveyPage = ({ match }) => {
             </Link>
           </div>
         ) : (
-          <>
-            {renderSwitch(activeStep)}
-            <div className={classes.buttons}>
-              {activeStep !== 0 ? (
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={handleBack}
-                >
-                  Back
-                </Button>
-              ) : (
-                <div></div>
-              )}
-              {
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={handleNext}
-                >
-                  {activeStep === IV_Surveys.length - 1
-                    ? "Finish"
-                    : "Submit & Proceed"}
-                </Button>
-              }
-            </div>
-          </>
-        )}
+            <>
+              {renderSwitch(activeStep)}
+              <div className={classes.buttons}>
+                {activeStep !== 0 ? (
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={handleBack}
+                  >
+                    Back
+                  </Button>
+                ) : (
+                    <div></div>
+                  )}
+                {
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={handleNext}
+                  >
+                    {activeStep === IV_Surveys.length - 1
+                      ? "Finish"
+                      : "Submit & Proceed"}
+                  </Button>
+                }
+              </div>
+            </>
+          )}
       </div>
     </div>
   );
