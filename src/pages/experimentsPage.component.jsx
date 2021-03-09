@@ -116,10 +116,10 @@ const ExperimentsPage = () => {
     if (activeStep !== 4 && activeStep !== 1) {
       setOpen(true);
     } else {
-      let likedVids = JSON.parse(localStorage.getItem("LikedVideos"));
-      console.log("Check This");
-      console.log(Object.keys(likedVids).length);
       if (activeStep === 1) {
+        let likedVids = JSON.parse(localStorage.getItem("LikedVideos"));
+        console.log("Check This");
+        console.log(Object.keys(likedVids).length);
         if (Object.keys(likedVids).length < 3) {
           alert("Please answer at least 3.");
         } else {
