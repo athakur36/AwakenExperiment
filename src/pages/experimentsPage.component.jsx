@@ -121,7 +121,7 @@ const ExperimentsPage = () => {
         // console.log('Check This');
         console.log(Object.keys(likedVids).length);
         if (Object.keys(likedVids).length !== 3) {
-          alert('Please like three videos descriptions here.');
+          alert('Please like THREE videos descriptions here.');
         } else {
           setActiveStep((prevActiveStep) => prevActiveStep + 1);
         }
@@ -245,14 +245,12 @@ const ExperimentsPage = () => {
       <div className={classes.stepContent}>
         {activeStep === 6 ? (
           <div className={classes.instructions}>
-            <div>
-              Thank you! Now you will proceed to part-3 of the experiment.
-            </div>
-            <Link to='/dashboard'>
+            <div>Thank you for participating in the study!</div>
+            {/* <Link to='/dashboard'>
               <Button variant='contained' color='primary'>
                 PROCEED TO RESULT DASHBOARD
               </Button>
-            </Link>
+            </Link> */}
           </div>
         ) : (
           <>
