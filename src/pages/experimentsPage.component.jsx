@@ -120,8 +120,8 @@ const ExperimentsPage = () => {
         let likedVids = JSON.parse(localStorage.getItem("LikedVideos"));
         console.log("Check This");
         console.log(Object.keys(likedVids).length);
-        if (Object.keys(likedVids).length < 3) {
-          alert("Please answer at least 3.");
+        if (Object.keys(likedVids).length !== 3) {
+          alert("Please like THREE videos descriptions here.");
         } else {
           setActiveStep((prevActiveStep) => prevActiveStep + 1);
         }
