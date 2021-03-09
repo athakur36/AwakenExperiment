@@ -1,56 +1,56 @@
-import React, { useEffect, useRef } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import { Link } from "react-router-dom";
-import VideoPlayer from "../components/video-player/videoplayer.component";
-import Stepper from "@material-ui/core/Stepper";
-import Step from "@material-ui/core/Step";
-import StepLabel from "@material-ui/core/StepLabel";
-import Button from "@material-ui/core/Button";
-import { DV_Survey } from "../model/DV-Survey-Data";
-import VideoListPage from "../components/video-list/videolistPage.component";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import DVRadio from "../components/dv/dvRadio.component";
-import firebase from "../firebase/firebase.utils";
-import ConfirmationBiasExperiment from "../components/exp-bussinessLogic/confirmationbias-experiment.component";
-import PopularityBiasExperiment from "../components/exp-bussinessLogic/popularitybias-experiment.component";
-import NegativityBiasExperiment from "../components/exp-bussinessLogic/negativitybias-experiment.component";
-import CognitiveDissonanceExperiment from "../components/exp-bussinessLogic/cognitivedissonance-experiment.component";
-import Task2 from "../components/task2.component";
+import React, { useEffect, useRef } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom';
+import VideoPlayer from '../components/video-player/videoplayer.component';
+import Stepper from '@material-ui/core/Stepper';
+import Step from '@material-ui/core/Step';
+import StepLabel from '@material-ui/core/StepLabel';
+import Button from '@material-ui/core/Button';
+import { DV_Survey } from '../model/DV-Survey-Data';
+import VideoListPage from '../components/video-list/videolistPage.component';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import DVRadio from '../components/dv/dvRadio.component';
+import firebase from '../firebase/firebase.utils';
+import ConfirmationBiasExperiment from '../components/exp-bussinessLogic/confirmationbias-experiment.component';
+import PopularityBiasExperiment from '../components/exp-bussinessLogic/popularitybias-experiment.component';
+import NegativityBiasExperiment from '../components/exp-bussinessLogic/negativitybias-experiment.component';
+import CognitiveDissonanceExperiment from '../components/exp-bussinessLogic/cognitivedissonance-experiment.component';
+import Task2 from '../components/task2.component';
 
 const useStyles = makeStyles((theme) => ({
   experimentsRoot: {
-    width: "100%",
-    height: "100%",
-    padding: "0 50px",
+    width: '100%',
+    height: '100%',
+    padding: '0 50px',
   },
   experimentsHeader: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    height: "50px",
-    fontSize: "22px",
-    fontWeight: "bold",
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '50px',
+    fontSize: '22px',
+    fontWeight: 'bold',
   },
   stepContent: {
-    paddingBottom: "50px",
+    paddingBottom: '50px',
   },
   buttons: {
-    display: "flex",
-    justifyContent: "space-between",
-    marginTop: "50px",
+    display: 'flex',
+    justifyContent: 'space-between',
+    marginTop: '50px',
   },
   instructions: {
-    height: "300px",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-evenly",
-    alignItems: "center",
-    fontSize: "24px",
-    marginTop: "100px",
+    height: '300px',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+    fontSize: '24px',
+    marginTop: '100px',
   },
 }));
 
@@ -74,7 +74,7 @@ const ExperimentsPage = () => {
   // is updated. So I use the div container reference and have called the "scrollIntoView()" function
   // in order to "move" the top of page to that component. :)
   useEffect(() => {
-    console.log("Move to top");
+    console.log('Move to top');
     container.current.scrollIntoView();
     if (activeStep !== 4 && activeStep !== 1) {
       setBtnProceedDisabled(true);
@@ -84,31 +84,31 @@ const ExperimentsPage = () => {
 
   const dbRef = firebase
     .database()
-    .ref("users/" + JSON.parse(localStorage.getItem("userID")));
+    .ref('users/' + JSON.parse(localStorage.getItem('userID')));
   const experimentCondition = JSON.parse(
-    localStorage.getItem("experiment_condition")
+    localStorage.getItem('experiment_condition')
   );
 
   const enableProceedButton = () => {
-    console.log("button enabled called");
+    console.log('button enabled called');
     // this enables the button
     setBtnProceedDisabled(false);
   };
   const enableSubmitButton = () => {
-    console.log("button enabled called");
+    console.log('button enabled called');
     // this enables the button
     radiCheckCounter++;
     if (radiCheckCounter === noOfDVQuestions) {
-      console.log("inside");
+      console.log('inside');
       setBtnSubmitDisabled(false);
     }
   };
 
   const pushDataToDatabase = (ExperimentName, ExperimentData) => {
     // Push data into database on finish
-    console.log("Pushing data to the firebase");
+    console.log('Pushing data to the firebase');
     dbRef.child(ExperimentName).set(ExperimentData);
-    console.log("Successfully submitted!");
+    console.log('Successfully submitted!');
   };
 
   const handleClickOpen = () => {
@@ -117,11 +117,11 @@ const ExperimentsPage = () => {
       setOpen(true);
     } else {
       if (activeStep === 1) {
-        let likedVids = JSON.parse(localStorage.getItem("LikedVideos"));
-        console.log("Check This");
+        let likedVids = JSON.parse(localStorage.getItem('LikedVideos'));
+        console.log('Check This');
         console.log(Object.keys(likedVids).length);
-        if (Object.keys(likedVids).length < 3) {
-          alert("Please answer at least 3.");
+        if (Object.keys(likedVids).length !== 3) {
+          alert('Please like three videos descriptions here.');
         } else {
           setActiveStep((prevActiveStep) => prevActiveStep + 1);
         }
@@ -133,32 +133,32 @@ const ExperimentsPage = () => {
 
   const handleClose = () => {
     setOpen(false);
-    dbRef.child("commentType").set(localStorage.getItem("commentType"));
+    dbRef.child('commentType').set(localStorage.getItem('commentType'));
     // Save the DV measurements in the firebase including the condition information (pro or counter)
     let ExperimentData = {
-      Shared: localStorage.getItem("Shared"),
-      Flagged: localStorage.getItem("Flagged"),
-      Reaction: localStorage.getItem("Reaction"),
-      VideoID: localStorage.getItem("VideoID"),
-      Link: localStorage.getItem("Link"),
-      dvData: localStorage.getItem("dvData"),
+      Shared: localStorage.getItem('Shared'),
+      Flagged: localStorage.getItem('Flagged'),
+      Reaction: localStorage.getItem('Reaction'),
+      VideoID: localStorage.getItem('VideoID'),
+      Link: localStorage.getItem('Link'),
+      dvData: localStorage.getItem('dvData'),
     };
-    let ExperimentName = localStorage.getItem("Experiment");
+    let ExperimentName = localStorage.getItem('Experiment');
     pushDataToDatabase(ExperimentName, JSON.stringify(ExperimentData)); //localStorage.getItem(ExperimentName+'Data'));
 
-    let likedVideosData = localStorage.getItem("LikedVideos");
+    let likedVideosData = localStorage.getItem('LikedVideos');
     if (likedVideosData != {} && likedVideosData != null) {
-      pushDataToDatabase("LikedVideos", JSON.stringify(likedVideosData));
+      pushDataToDatabase('LikedVideos', JSON.stringify(likedVideosData));
     }
     // Clear localstorage of old data, ready for next experiement.
-    localStorage.removeItem("Shared");
-    localStorage.removeItem("Flagged");
-    localStorage.removeItem("Reaction");
-    localStorage.removeItem("VideoID");
-    localStorage.removeItem("Link");
-    localStorage.removeItem("dvData");
+    localStorage.removeItem('Shared');
+    localStorage.removeItem('Flagged');
+    localStorage.removeItem('Reaction');
+    localStorage.removeItem('VideoID');
+    localStorage.removeItem('Link');
+    localStorage.removeItem('dvData');
     //localStorage.removeItem('video1');
-    localStorage.removeItem("LikedVideos");
+    localStorage.removeItem('LikedVideos');
   };
 
   const handleNext = () => {
@@ -216,12 +216,12 @@ const ExperimentsPage = () => {
     }
 
     const survey = dvSurvey[surveyIndex];
-    console.log("surveyIndex:", surveyIndex);
+    console.log('surveyIndex:', surveyIndex);
     noOfDVQuestions = Object.keys(survey.surveyData.questions).length;
-    console.log("noOfDVQuestions:", noOfDVQuestions);
+    console.log('noOfDVQuestions:', noOfDVQuestions);
     return survey.surveyData.questions.map((question, index) => (
       <DVRadio
-        key={"dvradio-" + index}
+        key={'dvradio-' + index}
         questData={question}
         enableSubmitButton={enableSubmitButton}
       />
@@ -236,7 +236,7 @@ const ExperimentsPage = () => {
       <Stepper activeStep={activeStep}>
         {[1, 2, 3, 4, 5, 6].map((stepNumber, index) => {
           return (
-            <Step key={"step-" + index}>
+            <Step key={'step-' + index}>
               <StepLabel />
             </Step>
           );
@@ -248,8 +248,8 @@ const ExperimentsPage = () => {
             <div>
               Thank you! Now you will proceed to part-3 of the experiment.
             </div>
-            <Link to="/dashboard">
-              <Button variant="contained" color="primary">
+            <Link to='/dashboard'>
+              <Button variant='contained' color='primary'>
                 PROCEED TO RESULT DASHBOARD
               </Button>
             </Link>
@@ -260,8 +260,8 @@ const ExperimentsPage = () => {
             <div className={classes.buttons}>
               {activeStep !== 0 ? (
                 <Button
-                  variant="contained"
-                  color="primary"
+                  variant='contained'
+                  color='primary'
                   onClick={handleBack}
                   disabled
                 >
@@ -272,8 +272,8 @@ const ExperimentsPage = () => {
               )}
               <Button
                 disabled={btnProceedDisabled}
-                variant="contained"
-                color="primary"
+                variant='contained'
+                color='primary'
                 onClick={handleClickOpen}
               >
                 Proceed
@@ -282,11 +282,11 @@ const ExperimentsPage = () => {
               <Dialog
                 open={open}
                 onClose={handleClose}
-                aria-labelledby="form-dialog-title"
+                aria-labelledby='form-dialog-title'
                 fullWidth={true}
-                maxWidth="md"
+                maxWidth='md'
               >
-                <DialogTitle id="form-dialog-title">
+                <DialogTitle id='form-dialog-title'>
                   Please answer the following questions regarding the video you
                   just watched:
                 </DialogTitle>
@@ -295,8 +295,8 @@ const ExperimentsPage = () => {
                   <Button
                     disabled={btnSubmitDisabled}
                     onClick={handleNext}
-                    variant="contained"
-                    color="primary"
+                    variant='contained'
+                    color='primary'
                   >
                     Submit
                   </Button>
