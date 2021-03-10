@@ -58,7 +58,7 @@ const VideoListPage = () => {
     },
     {
       name:
-        'Covid-19: Lack of transparency on clnical trials data  | The Economist',
+        'Covid-19: Lack of transparency on clinical trials data  | The Economist',
       description:
         'A vaccine for covid-19 could be rolled out before the end of the year. But a worrying rise in mistrust of vaccines threatens its effectiveness.',
       url: 'https://www.youtube.com/watch?v=BJ2rT7h70QM',
