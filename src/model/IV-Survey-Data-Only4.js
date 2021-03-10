@@ -15,7 +15,7 @@ export const IV_Surveys = [
         },
         {
           text:
-            'I would describe my attitude towards my family and friends getting Covid-19 vaccine as',
+            'I would recommend my family and friends to get Covid-19 vaccine.',
           type: 'RADIO_MATRIX',
           id: '4-1',
         },

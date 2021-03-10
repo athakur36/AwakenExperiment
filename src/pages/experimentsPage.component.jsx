@@ -245,7 +245,10 @@ const ExperimentsPage = () => {
       <div className={classes.stepContent}>
         {activeStep === 6 ? (
           <div className={classes.instructions}>
-            <div>Thank you for participating in the study!</div>
+            <div>
+              Thank you for participating in the study! Now please go back to
+              the other window and finish the main survey.
+            </div>
             {/* <Link to='/dashboard'>
               <Button variant='contained' color='primary'>
                 PROCEED TO RESULT DASHBOARD
