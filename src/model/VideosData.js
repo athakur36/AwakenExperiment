@@ -22,7 +22,8 @@ export const ExpVideosData = [
     step: 2,
     url: 'videos/popularity-treatment.mp4',
     type: 'Popular',
-    title: 'The Most Liked and Shared Indian Song in 2020: Ramleela',
+    title:
+      'The Most Liked and Shared Indian Song on Social Media in 2020: Ramleela',
     description: 'test description kjsaksa sjgfjkas jhsagkjas',
     numberOfViews: '8,000,000',
     experiment: 'PopularityBias-T',

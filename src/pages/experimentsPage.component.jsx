@@ -118,7 +118,8 @@ const ExperimentsPage = () => {
     } else {
       if (activeStep === 1) {
         let likedVids = JSON.parse(localStorage.getItem('LikedVideos'));
-        console.log('Check This');
+        // console.log('Check This');
+
         console.log(Object.keys(likedVids).length);
         if (Object.keys(likedVids).length !== 3) {
           alert('Please like THREE videos descriptions here.');
@@ -245,7 +246,12 @@ const ExperimentsPage = () => {
       <div className={classes.stepContent}>
         {activeStep === 6 ? (
           <div className={classes.instructions}>
-            <div>Thank you for participating in the study!</div>
+
+            <div>
+              Thank you for participating in the study! Now please go back to
+              the other window and finish the main survey.
+            </div>
+
             {/* <Link to='/dashboard'>
               <Button variant='contained' color='primary'>
                 PROCEED TO RESULT DASHBOARD
