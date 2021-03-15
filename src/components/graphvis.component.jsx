@@ -23,13 +23,15 @@ const computeAttitudeSurvey2 = () => {
 	let Survey2 = JSON.parse(localStorage.getItem('Survey2'));
 	let Survey2_attitude = 0;
 	let sum = 0;
+	let counter = 0;
 	const experimentCondition = Math.floor(Math.random() * Math.floor(2));
 	for (var el in Survey2) {
 		if (Survey2.hasOwnProperty(el)) {
-			sum += parseFloat(Survey2[el]);
+			sum += 6 - parseFloat(Survey2[el]);
+			counter += 1;
 		}
 	}
-	Survey2_attitude = sum / 5;
+	Survey2_attitude = sum / counter;
 	return Survey2_attitude;
 	localStorage.setItem('Survey2_attitude', JSON.stringify(Survey2_attitude));
 	localStorage.setItem(
@@ -48,13 +50,15 @@ const computeAttitudeSurvey3 = () => {
 	let Survey3 = JSON.parse(localStorage.getItem('Survey3'));
 	let Survey3_attitude = 0;
 	let sum = 0;
+	let counter = 0;
 	const experimentCondition = Math.floor(Math.random() * Math.floor(2));
 	for (var el in Survey3) {
 		if (Survey3.hasOwnProperty(el)) {
-			sum += parseFloat(Survey3[el]);
+			sum += 6 - parseFloat(Survey3[el]);
+			counter += 1;
 		}
 	}
-	Survey3_attitude = sum / 5;
+	Survey3_attitude = sum / counter;
 	return Survey3_attitude;
 	localStorage.setItem('Survey3_attitude', JSON.stringify(Survey3_attitude));
 	localStorage.setItem(
@@ -73,13 +77,15 @@ const computeAttitudeSurvey4 = () => {
 	let Survey4 = JSON.parse(localStorage.getItem('Survey4'));
 	let Survey4_attitude = 0;
 	let sum = 0;
+	let counter = 0;
 	const experimentCondition = Math.floor(Math.random() * Math.floor(2));
 	for (var el in Survey4) {
 		if (Survey4.hasOwnProperty(el)) {
-			sum += parseFloat(Survey4[el]);
+			sum += 6 - parseFloat(Survey4[el]);
+			counter += 1;
 		}
 	}
-	Survey4_attitude = sum / 4;
+	Survey4_attitude = sum / counter;
 	return Survey4_attitude;
 	localStorage.setItem('Survey4_attitude', JSON.stringify(Survey4_attitude));
 	localStorage.setItem(
@@ -117,16 +123,16 @@ class BarChart extends Component {
 				reversed: true,
 			},
 			axisY: {
-				title: "Potential Harm (Higher Score = Healthier Mind)",
+				title: "Potential Harm (Higher Score = Greater Danger)",
 				labelFormatter: this.addSymbols
 			},
 			//Inputs data calculated above into the chart.
 			data: [{
 				type: "bar",
 				dataPoints: [
-					{ y: survey2value, label: "General Calm" },
-					{ y: survey3value, label: "Life Satisfaction" },
-					{ y: survey4value, label: "Trust of Institutions" }
+					{ y: survey2value, label: "General Anxiety" },
+					{ y: survey3value, label: "Life Disatisfaction" },
+					{ y: survey4value, label: "Distrust of Institutions" }
 
 				]
 			}]
